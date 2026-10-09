@@ -182,6 +182,16 @@ nav { display: flex; gap: 6px; flex-shrink: 0; }
   color: var(--paper);
   border-color: var(--ink);
 }
+/* The one filled control in the nav, so "Get Brotto" is distinguishable from
+   the four links beside it without a second colour. */
+.nav-cta {
+  color: var(--ink);
+  background: var(--ink);
+  padding: 5px 12px;
+  border: 1px solid var(--ink);
+  transition: background var(--t), color var(--t);
+}
+.nav-cta:hover, .nav-cta:focus-visible { background: var(--paper); color: var(--ink); }
 
 /* ─── Main + footer ───────────────────────────────────────────────────── */
 main { padding: 0 24px 96px; }
@@ -195,6 +205,17 @@ footer {
 }
 footer a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule-2); }
 footer a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+.footer-mark { width: 15px; height: 15px; display: block; align-self: center; }
+.footer-sep { color: var(--rule-2); }
+/* Pushed to the end of the row rather than given its own line, so the footer
+   stays one band however narrow it gets. */
+.footer-note { margin-left: auto; color: var(--ink-3); }
+
+/* The landing page runs wider than the prose measure: the panel mock and the
+   screenshot grid both lose too much at 680px. Prose blocks inside it keep
+   their own max-width, so the text column does not stretch with the layout. */
+.page--wide { max-width: 900px; }
+.page--wide p, .page--wide .section-note { max-width: 62ch; }
 
 /* ─── Post ──────────────────────────────────────────────────────────────
    Title and meta sit above a hairline, then the prose column. The rule under
@@ -377,7 +398,7 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 }
 .page ul.post-list li {
   margin: 0;
-  padding: 20px 14px 20px 12px;
+  padding: 22px 14px 22px 12px;
   font-size: 15px;
   color: var(--ink-2);
   border-bottom: 1px solid var(--rule);
@@ -390,11 +411,239 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   color: var(--ink);
   border-bottom: 0;
 }
+/* The date sits on the title's baseline rather than its own line, so the row
+   still reads as one entry at 390px where a separate line would triple it. */
+.page ul.post-list .post-when {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin-left: 10px;
+  white-space: nowrap;
+}
+.page ul.post-list .post-stand { display: block; margin-top: 7px; max-width: 54ch; }
 .page ul.post-list li:hover { background: var(--ink); color: var(--paper); }
 .page ul.post-list li:hover a { color: var(--paper); }
+.page ul.post-list li:hover .post-when,
+.page ul.post-list li:hover .post-stand { color: var(--paper-3); }
+.page ul.post-list li:hover em { color: var(--paper); font-style: italic; }
+
+/* ─── Landing page ─────────────────────────────────────────────────────────
+   Everything below is the extension's own interface rebuilt at page scale.
+   The rules are the panel's rules — the status bar's 2×2 cell grid, the
+   message bubbles, the approval card's 2px state-coloured left rule — so the
+   marketing page is showing the product's real surface rather than a picture
+   of it. Only the measure changes.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* The panel's status bar. Four cells, hairline rules doing the dividing: the
+   bottom border on the top row, the left border on the right column, and
+   nothing else. The outcome cell carries the state colour, which is the only
+   place on the page where one appears outside a link. */
+.statusbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--rule-ink);
+  margin: 0 0 8px;
+}
+.statusbar .cell {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 14px 16px 15px;
+}
+.statusbar .cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule-2); }
+.statusbar .cell:nth-child(even) { border-left: 1px solid var(--rule-2); }
+.statusbar .cell .label { color: var(--ink-2); }
+.statusbar .cell .value {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.statusbar .outcome[data-state="done"] { --state: var(--ok); }
+.statusbar .outcome .value { color: var(--state, var(--ink-2)); }
+.statusbar .outcome .value::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: var(--state, var(--ink-3));
+  vertical-align: 1px;
+}
+
+/* Four features in two columns. The heading is a small bold line rather than
+   an h3 in the prose scale, because these are labels on a card and not the
+   start of an argument. */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 40px;
+  margin: 26px 0 0;
+}
+.grid-2 > div { padding: 22px 0; border-top: 1px solid var(--rule); }
+.grid-2 .mini {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+}
+.grid-2 p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
+/* The panel mock. Same construction as sidepanel.html at 400px instead of
+   320px: header rule, message column, bubbles, an approval card. */
+.panel {
+  border: 1px solid var(--rule-ink);
+  margin: 26px 0 0;
+  background: var(--paper);
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule-ink);
+}
+.panel-logo { width: 18px; height: 18px; display: block; }
+.panel-brand { font-weight: 700; font-size: 15px; letter-spacing: -0.03em; }
+.panel-pill {
+  margin-left: auto;
+  border: 1px solid var(--rule-2);
+  padding: 4px 9px;
+  color: var(--ink-2);
+}
+.panel-pill::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  background: var(--ink);
+  vertical-align: 1px;
+}
+.panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 16px 22px;
+  background: var(--paper-2);
+}
+.panel-body .bubble {
+  max-width: 82%;
+  padding: 11px 14px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.bubble--user {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* A step line: a 6px square in the state colour, then the sentence. This is
+   the panel's step bubble, flattened — the panel indents it under a bubble,
+   which does not survive being 400px wide with no history above it. */
+.step { display: flex; gap: 11px; align-items: flex-start; padding: 3px 0; }
+.step-mark { width: 6px; height: 6px; margin-top: 7px; background: var(--ink-3); flex-shrink: 0; }
+.step-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.step-head { font-size: 14px; line-height: 1.5; }
+.step-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* The approval card. The 2px left rule in --wait is the single loudest thing
+   in the panel and it is the reason this card is on the page at all. */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--wait);
+  padding: 15px 17px 16px;
+  margin-top: 4px;
+}
+.card-top { margin-bottom: 10px; }
+.badge {
+  display: inline-block;
+  border: 1px solid var(--wait);
+  color: var(--wait);
+  padding: 3px 8px;
+}
+.card-body { font-size: 14px; line-height: 1.55; margin: 0 0 11px; }
+.card-url {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--paper-2);
+  border-left: 2px solid var(--rule-ink);
+  padding: 8px 11px;
+  margin: 0 0 13px;
+  word-break: break-all;
+}
+.card-actions { display: flex; gap: 8px; }
+.btn-sm {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.btn-sm--primary { background: var(--ink); color: var(--paper); }
+.btn-sm--danger { border-color: var(--bad); color: var(--bad); }
+
+/* The video. A 2px ink rule down the left, same as the code block: the eye
+   gets a spine to follow, and a black letterboxed rectangle on a white page
+   needs something holding it. */
+.demo { margin: 26px 0 0; }
+.demo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--ink);
+  border-left: 2px solid var(--rule-ink);
+}
+.demo figcaption, .shots figcaption {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-top: 11px;
+  max-width: 62ch;
+}
+
+/* The store screenshots. They are 1280×800 and read as a set, so they sit in
+   a two-up grid rather than a carousel: a carousel hides three of five, and
+   these are five claims about what ships. */
+.section-note {
+  font-size: 16px;
+  color: var(--ink-2);
+  margin: 0 0 4px;
+  max-width: 62ch;
+}
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 26px;
+  margin: 26px 0 0;
+}
+.shots figure { margin: 0; }
+.shots figure:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule-2);
+  background: var(--paper-2);
+}
 
 /* The closing block: what is being built, and where the code is. */
-.page h2 { margin-top: 56px; scroll-margin-top: 24px; }
+.page h2 { margin-top: 56px; scroll-margin-top: 72px; }
 
 /* ─── Narrow ──────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
@@ -409,6 +658,32 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   .post-title { font-size: 27px; }
   .prose h2, .page h2 { font-size: 19px; margin-top: 42px; }
   .page ul.post-list a { font-size: 18px; }
+  .page ul.post-list .post-when { display: block; margin: 6px 0 0; }
+  .page ul.post-list .post-stand { max-width: none; }
+
+  /* The status bar is the panel's 2×2 grid and stays 2×2 — the four values
+     are too short to need the width, and two rows read better than one. */
+  .statusbar .cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule-2); }
+  .statusbar .cell:nth-child(even) { border-left: 1px solid var(--rule-2); }
+  .statusbar .cell .value { font-size: 17px; }
+
+  /* Everything two-up collapses at this width. The features grid and the
+     screenshot set are both "read them in pairs" layouts, and pairs stop
+     existing below ~700px. */
+  .grid-2, .shots { grid-template-columns: 1fr; gap: 0; }
+  .grid-2 > div { padding: 20px 0; }
+  .shots { gap: 26px; }
+
+  .panel-body .bubble { max-width: 92%; }
+  .page ul.post-list .post-stand { font-size: 14px; }
+
+  /* Five links plus a CTA do not fit under a wordmark at 390px. The section
+     anchors go; they are all reachable by scrolling, which is what a phone
+     user is doing anyway. */
+  nav { gap: 4px; }
+  .nav-link { display: none; }
+  .nav-cta { padding: 5px 10px; }
+  .footer-note { margin-left: 0; width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
