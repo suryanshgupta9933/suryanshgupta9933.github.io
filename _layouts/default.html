@@ -17,16 +17,28 @@
   <meta name="description" content="{{ page_description }}">
   <!-- The host is written out rather than built from site.url: this repo has
        no _config.yml, so `absolute_url` has nothing to prepend. One hardcoded
-       domain beats a config file that exists only to hold it. -->
-  <link rel="canonical" href="https://suryanshgupta9933.github.io{{ page.url }}">
+       domain beats a config file that exists only to hold it. It is the CNAME,
+       not the Pages fallback — pointing canonical at the .github.io address
+       would tell every search engine the real one is a duplicate. -->
+  <link rel="canonical" href="https://brotto.dev{{ page.url }}">
 
   <meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
   <meta property="og:title" content="{{ page_title | strip }}">
   <meta property="og:description" content="{{ page_description }}">
-  <meta property="og:url" content="https://suryanshgupta9933.github.io{{ page.url }}">
+  <meta property="og:url" content="https://brotto.dev{{ page.url }}">
   <meta property="og:site_name" content="Brotto">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://brotto.dev/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- A shared link renders as a card or as nothing. summary_large_image with a
+       real image is the difference between a preview and a bare URL, and this
+       site exists to be shared. -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title | strip }}">
+  <meta name="twitter:description" content="{{ page_description }}">
 
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/logo.svg">
   <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -38,15 +50,21 @@
       <span class="brand-name">Brotto</span>
     </a>
     <nav>
+      <a class="nav-link label" href="/#what">What it does</a>
       <a class="nav-link label" href="/#how">How it works</a>
       <a class="nav-link label" href="/screens">Screens</a>
-      <a class="nav-link label" href="/privacy">Privacy</a>
-      <a class="nav-link label" href="/security">Security</a>
-      <a class="nav-link label" href="https://github.com/suryanshgupta9933/Brotto">GitHub</a>
-      <!-- Swap for chromewebstore.google.com/detail/brotto/<id> once the listing
-           publishes. Until then the CTA points at the repository, which is
-           the only install path that exists and one we control. -->
-      <a class="nav-cta label" href="https://github.com/suryanshgupta9933/Brotto">Get Brotto</a>
+      <a class="nav-link label" href="/writing">Writing</a>
+      <!-- One link to the repository in the nav, not two. The mark says where
+           this goes without spending a word on it, and it keeps the CTA beside
+           it free to stay on this site. -->
+      <a class="nav-gh" href="https://github.com/suryanshgupta9933/Brotto" aria-label="Brotto on GitHub">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.64 1.653.24 3.873.12 4.798.96.665 1.625-.415 1.625-1.409 0-.937-.093-1.71-.135-2.177A8.005 8.005 0 0 0 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <!-- Points at the install section of the landing page, not at the store
+           and not at the repository: this site is the front door, so the CTA
+           should not throw someone out of it. Swap for the store listing once
+           it publishes. -->
+      <a class="nav-cta label" href="/#try">Get Brotto</a>
     </nav>
   </header>
 
@@ -81,13 +99,15 @@
     <img class="footer-mark" src="/assets/logo.svg" alt="">
     <span class="label">Brotto</span>
     <span class="footer-sep label" aria-hidden="true">/</span>
-    <a class="label" href="/#try">Try it</a>
+    <a class="label" href="/#try">Install</a>
     <a class="label" href="/screens">Screens</a>
-    <a class="label" href="/#writing">Writing</a>
+    <a class="label" href="/writing">Writing</a>
     <a class="label" href="/privacy">Privacy</a>
     <a class="label" href="/security">Security</a>
-    <a class="label" href="https://github.com/suryanshgupta9933/Brotto">Source</a>
     <a class="label" href="https://github.com/suryanshgupta9933/Brotto/discussions">Feedback</a>
+    <a class="footer-gh" href="https://github.com/suryanshgupta9933/Brotto" aria-label="Brotto on GitHub">
+      <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.64 1.653.24 3.873.12 4.798.96.665 1.625-.415 1.625-1.409 0-.937-.093-1.71-.135-2.177A8.005 8.005 0 0 0 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
     <span class="footer-note label">Apache 2.0 · Written by Suryansh Gupta</span>
   </footer>
 </body>

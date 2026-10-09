@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Brotto
+title: Brotto — an AI browser agent that runs where you're already signed in
 wide: true
-description: A browser agent that works in the Chrome tab you are already signed in to. It asks before anything you cannot undo, and it writes down exactly what it did. Apache 2.0, self-hosted, bring your own key.
+description: Brotto is a self-hosted AI browser agent for Chrome. It works in the tab you are already signed in to, asks before anything you cannot undo, and writes down exactly what it did. Apache 2.0, bring your own key.
 ---
 
 <div class="hero">
@@ -11,25 +11,26 @@ description: A browser agent that works in the Chrome tab you are already signed
     <h1 class="hero-title">Brotto</h1>
     <p class="hero-line">It asks before it does anything you can't undo — and you can see exactly what it did.</p>
     <p class="hero-sub">
-      Tell Brotto a task in plain English and it carries that out in the browser
-      tab you're already signed in to. Your inbox, your bank, your admin panel.
-      Not a cloud browser you've never logged into, and not a screenshot of a
-      page it can't read.
+      Brotto is a Chrome extension and an AI agent that carries out a task in
+      the browser tab you are already signed in to. Your inbox, your bank, your
+      admin panel. Not a cloud browser you have never logged into, and not a
+      screenshot of a page it cannot read.
     </p>
     <div class="actions">
-      <a class="btn" href="https://github.com/suryanshgupta9933/Brotto">Get Brotto</a>
-      <a class="btn btn--ghost" href="#try">Run it yourself</a>
-      <a class="btn btn--ghost" href="https://github.com/suryanshgupta9933/Brotto/discussions">Feedback</a>
+      <a class="btn" href="#try">Get Brotto</a>
+      <a class="btn btn--ghost" href="#what">See what it does</a>
+      <a class="btn btn--ghost" href="/screens">Screens</a>
     </div>
     <div class="soon-row">
       <span class="soon">Chrome Web Store · Under review</span>
-      <span>One click to install as soon as it clears.</span>
+      <span>One click to install as soon as it clears. Until then it is one container and one extension.</span>
     </div>
   </div>
 
-  <!-- The panel's own status bar, carrying a real run: 14 steps, 41.2% context
-       used, outcome DONE. It is the product's interface rather than a picture
-       of it, so it is worth saying in markup what a screenshot would blur. -->
+  <!-- The panel's own status bar, rebuilt in markup with the numbers a real
+       run produced: 14 steps, 41.2% context used, outcome DONE. Text stays
+       text, so it is readable, selectable and sharp on any screen — none of
+       which a screenshot is. The video below it is a showcase, not this run. -->
   <div class="hero-panel">
     <div class="statusbar">
       <div class="cell"><span class="label">Steps</span><span class="value">14</span></div>
@@ -45,11 +46,48 @@ description: A browser agent that works in the Chrome tab you are already signed
         Your browser cannot play this video. <a href="/assets/brag.mp4">Download it instead.</a>
       </video>
       <figcaption>
-        Twenty-five seconds of one real run — the plan it wrote, the domain
-        consent, the approval card, and the answer it came back with. No cuts,
-        no staging.
+        Twenty-five seconds of Brotto: the panel, a task being read, an approval
+        coming back, a run finishing. A tour of the shapes you will see — for one
+        task in full, see <a href="/screens">Screens</a>.
       </figcaption>
     </figure>
+  </div>
+</div>
+
+<div class="split" id="what">
+  <div class="claim">
+    <span class="eyebrow label">What it does</span>
+    <h2>Three things worth asking it</h2>
+    <p>
+      There is no form and no workflow to learn. The panel is a chat box, so
+      whatever you can describe is the whole interface.
+    </p>
+  </div>
+  <div class="cardgrid">
+    <div>
+      <span class="card-idx label">01</span>
+      <h3 class="ask">"Find me the cheapest direct flight to Lisbon in November."</h3>
+      <p>
+        It searches, compares and answers — and stops dead before it spends
+        your money, because that part is yours.
+      </p>
+    </div>
+    <div>
+      <span class="card-idx label">02</span>
+      <h3 class="ask">"Pull Q3 numbers from the admin panel and summarise them."</h3>
+      <p>
+        Your cookies, your SSO and your MFA are already there, so there is
+        nothing to sign in to and no second browser to trust.
+      </p>
+    </div>
+    <div>
+      <span class="card-idx label">03</span>
+      <h3 class="ask">"Add a branch protection ruleset to our repo."</h3>
+      <p>
+        The real run on <a href="/screens">the screens page</a>, start to
+        finish. It stops twice, both times on decisions only you can make.
+      </p>
+    </div>
   </div>
 </div>
 
@@ -105,15 +143,17 @@ description: A browser agent that works in the Chrome tab you are already signed
 
 <div class="split split--flip">
   <div class="claim">
-    <span class="eyebrow label">The one that bites</span>
-    <h2>A run, start to finish</h2>
+    <span class="eyebrow label">The part everyone asks about</span>
+    <h2>It stops before it spends your money</h2>
     <p>
-      Brotto adding a branch protection ruleset to this repository. Every shot
-      is the real extension, in a real browser, on a public repo.
+      Booking a flight costs real money and cannot be undone with an undo
+      button, so the agent asks first. Every time — not the first time, not
+      only when it is unsure.
     </p>
     <p>
-      Note where it stops. Not once at the end — twice mid-run, because both
-      were decisions only you could make.
+      This is the same card you get for a sign-in it cannot pass, a delete it
+      cannot undo, or a domain it has never visited. It has no way to approve
+      itself, and neither would anything you installed later.
     </p>
   </div>
 
@@ -239,33 +279,38 @@ description: A browser agent that works in the Chrome tab you are already signed
 
 <div class="split" id="try">
   <div class="claim">
-    <span class="eyebrow label">Self-host</span>
+    <span class="eyebrow label">Install</span>
     <h2>One container, one extension</h2>
     <p>
       The container holds the agent loop; it never launches a browser. About
       510 MB, most of which is the model provider SDKs rather than Chromium.
     </p>
     <p>
-      Everything it keeps — session history, your blocklist, your remembered
-      model — lands in one Docker volume on your disk.
+      Six steps, and they are on their way out — a one-command installer is next,
+      then a hosted option. Everything Brotto keeps lands in one Docker volume on
+      your disk.
     </p>
   </div>
   <div>
 <pre><code>git clone https://github.com/suryanshgupta9933/Brotto.git
-cd brotto
+cd Brotto
 
 cp .env.example .env      # set AGENT_SECRET to any long random string
 docker compose up -d</code></pre>
-<p class="section-note" style="margin-top: 22px;">Then build and load the extension:</p>
+<p class="section-note" style="margin-top: 22px;">
+  That is the whole server, and it listens on <code>:8000</code> with no browser
+  in it. Then build and load the extension:
+</p>
 <pre><code>cd clients/brotto-extension
 npm ci &amp;&amp; npm run build</code></pre>
 <p class="section-note" style="margin-top: 22px;">
   In Chrome, open <code>chrome://extensions</code>, turn on
   <b>Developer mode</b>, and <b>Load unpacked</b> →
-  <code>clients/brotto-extension/dist</code>. Then paste
-  <code>AGENT_SECRET</code> into <b>Settings → Connection</b> and your model key
-  under <b>Settings → Model</b>. The key is held in memory for the run and never
-  written to disk.
+  <code>clients/brotto-extension/dist</code>. Open the Brotto side panel, set the
+  server address to <code>http://127.0.0.1:8000</code>, paste
+  <code>AGENT_SECRET</code> into <b>Settings → Connection</b>, and paste your
+  model key under <b>Settings → Model</b>. The key is held in memory for the run
+  and never written to disk.
 </p>
     <table class="spec">
       <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
@@ -348,7 +393,7 @@ npm ci &amp;&amp; npm run build</code></pre>
 <div class="split">
   <div class="claim">
     <span class="eyebrow label">Where your data goes</span>
-    <h2>No operator between the agent and your documents, because there is no operator</h2>
+    <h2>Your pages reach the model. They do not reach anyone else.</h2>
     <p>
       The browser runs on your machine. The agent loop runs on a server
       <em>you</em> run, so page observations transit it — that is inherent to
@@ -388,8 +433,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       </div>
     </div>
     <p class="section-note" style="margin-top: 24px;">
-      The long versions are separate documents, and putting detail there is the
-      right call rather than a sign this page is hiding something:
+      Both of those are written out in full:
       <a href="/privacy">Privacy</a> and <a href="/security">Security</a>.
     </p>
   </div>
@@ -398,23 +442,23 @@ npm ci &amp;&amp; npm run build</code></pre>
 <div class="split" id="writing">
   <div class="claim">
     <span class="eyebrow label">Writing</span>
-    <h2>The parts that are harder than they look</h2>
-    <p>Two essays on the parts of this that took the most work.</p>
+    <h2>How it actually works</h2>
+    <p>
+      Notes on the parts of this that took the most work, written for anyone
+      deciding whether to trust a browser agent with their own session.
+    </p>
   </div>
   <div>
     <ul class="post-list">
       <li>
-        <a href="blog/2026-10-09-what-an-agent-holding-your-cookies-can-do.html">An agent holding your cookies</a>
+        <a href="/blog/2026-10-09-what-an-agent-holding-your-cookies-can-do.html">An agent holding your cookies</a>
         <span class="post-when">2026-10-09</span>
         <span class="post-stand">What an agent with your sessions can do as <em>you</em>, the three
         gates that stop it, and the fact that all of them are made of strings.</span>
       </li>
-      <li>
-        <a href="blog/2026-10-08-the-browser-is-not-a-picture.html">The browser is not a picture</a>
-        <span class="post-when">2026-10-08</span>
-        <span class="post-stand">On accessibility trees versus screenshots, and on the gap
-        between a reference that resolves and a reference that can be clicked.</span>
-      </li>
     </ul>
+    <p class="section-note" style="margin-top: 22px;">
+      <a href="/writing">All writing</a>
+    </p>
   </div>
 </div>

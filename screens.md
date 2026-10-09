@@ -93,15 +93,17 @@ description: Every screen in the Brotto panel, and one real run from the first s
   </div>
 </div>
 
-<h2>Twenty-five seconds, uncut</h2>
+<h2>Twenty-five seconds</h2>
 
 <div class="split" style="border-top: 0; padding-top: 8px;">
   <div class="claim">
     <span class="eyebrow label">The video</span>
-    <h2>The same run, moving</h2>
+    <h2>What it looks like in motion</h2>
     <p>
-      The plan it wrote, the domain consent, the approval card, and the answer
-      it came back with. No cuts, no staging.
+      A pass through the product: the panel opening, a task being read, an
+      approval coming back, a run finishing. It is a showcase of the shapes you
+      will see, not a recording of one session — the session above is the real
+      one, moment for moment.
     </p>
   </div>
   <div class="hero-panel">

@@ -166,7 +166,7 @@ header {
   white-space: nowrap;
 }
 
-nav { display: flex; gap: 6px; flex-shrink: 0; }
+nav { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
 .nav-link {
   color: var(--ink-2);
   text-decoration: none;
@@ -182,8 +182,31 @@ nav { display: flex; gap: 6px; flex-shrink: 0; }
   color: var(--paper);
   border-color: var(--ink);
 }
+/* The repository link, as a mark rather than a word. It is the only external
+   destination in the nav, and a mark says "this leaves the site" without a
+   label competing with the CTA beside it. Inverts on the same rule as the
+   links, so the whole bar answers hover the same way. */
+.nav-gh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+  color: var(--ink-2);
+  border: 1px solid transparent;
+  transition: color var(--t), background var(--t), border-color var(--t);
+}
+.nav-gh svg { display: block; }
+.nav-gh:hover, .nav-gh:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
 /* The one filled control in the nav, so "Get Brotto" is distinguishable from
-   the four links beside it without a second colour. */
+   the links beside it without a second colour. It points at the install
+   section of this page rather than at the repository: the site is the front
+   door, and the commands are two scrolls down. */
 .nav-cta {
   color: var(--paper);
   background: var(--ink);
@@ -207,6 +230,21 @@ footer {
 footer a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule-2); }
 footer a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .footer-mark { width: 15px; height: 15px; display: block; align-self: center; }
+/* The mark, not the word, for the same reason as in the nav: the footer's job
+   is to be findable, not to be read. No underline — it is an icon, and the
+   rule under an icon reads as a rendering fault. */
+.footer-gh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  align-self: center;
+  color: var(--ink-3);
+  border-bottom: 0 !important;
+}
+.footer-gh svg { display: block; }
+.footer-gh:hover { color: var(--ink); }
 .footer-sep { color: var(--rule-2); }
 /* Pushed to the end of the row rather than given its own line, so the footer
    stays one band however narrow it gets. */
@@ -574,6 +612,12 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 /* A two-up variant, for the two decisions everything else follows from. */
 .cardgrid--2 { grid-template-columns: repeat(2, 1fr); }
 
+/* The three asks in "What it does" are quoted speech rather than headings:
+   the request *is* the interface, so it carries the weight and the sentence
+   explaining what came back stays in the quiet grey. Italic is the only
+   second voice the system has, and it is spent here. */
+.cardgrid h3.ask { font-weight: 500; font-style: italic; letter-spacing: -0.01em; }
+
 /* ─── Gate cards ─────────────────────────────────────────────────────────────
    The three things an agent holding your cookies must not be able to skip.
    Each is numbered and closed with the same sentence, because the reason they
@@ -924,7 +968,11 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   .page ul.post-list .post-when { display: block; margin: 6px 0 0; }
   .page ul.post-list .post-stand { font-size: 14px; max-width: none; }
 
-  /* Five links plus a CTA do not fit under a wordmark at 390px. */
+  /* Four links plus a mark and a CTA do not fit under a wordmark at 390px.
+     The wordmark and the CTA are the two that earn the width — the wordmark
+     is the way back to the top of the page, and the CTA is the only reason
+     most of these visits happen. The links are all still one tap away in the
+     footer, which is where a phone user already scrolls to look. */
   .nav-link { display: none; }
   .nav-cta { padding: 5px 10px; }
   .footer-note { margin-left: 0; width: 100%; }
