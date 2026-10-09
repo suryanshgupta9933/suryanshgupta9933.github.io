@@ -776,7 +776,9 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  margin: 0 0 4px;
+  /* The gap above, not below: this sits directly under the buttons, and at
+     phone width they wrap, so a zero top margin reads as a collision. */
+  margin: 20px 0 4px;
   font-size: 14px;
   color: var(--ink-2);
 }
