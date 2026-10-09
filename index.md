@@ -14,9 +14,11 @@ description: A browser agent that works in the Chrome tab you are already signed
   </p>
   <div class="actions">
     <a class="btn" href="https://github.com/suryanshgupta9933/Brotto">Get Brotto</a>
-    <!-- Chrome Web Store link goes here once the listing is published and has
-         an item id. A link to a search page is worse than no link. -->
-    <a class="btn btn--ghost" href="#writing">Writing</a>
+    <!-- Swap for chromewebstore.google.com/detail/brotto/<id> once the listing
+         is published. The search URL works today but will also match other
+         extensions with the same name. -->
+    <a class="btn btn--ghost" href="https://chromewebstore.google.com/search/brotto">Chrome Web Store</a>
+    <a class="btn btn--ghost" href="https://github.com/suryanshgupta9933/Brotto/discussions">Feedback</a>
   </div>
 </div>
 
