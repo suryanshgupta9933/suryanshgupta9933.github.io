@@ -185,7 +185,7 @@ nav { display: flex; gap: 6px; flex-shrink: 0; }
 /* The one filled control in the nav, so "Get Brotto" is distinguishable from
    the four links beside it without a second colour. */
 .nav-cta {
-  color: var(--ink);
+  color: var(--paper);
   background: var(--ink);
   padding: 5px 12px;
   border: 1px solid var(--ink);
@@ -879,12 +879,14 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
    and the nav drops its section anchors, which are all reachable by
    scrolling anyway. */
 @media (max-width: 940px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 52px; }
+  /* minmax(0, …), not a bare 1fr: a bare track floors at min-content, so a
+     `pre` that scrolls would still push the whole page sideways. */
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 52px; }
   .hero-line { max-width: none; }
-  .split, .split--flip { grid-template-columns: 1fr; gap: 34px; padding: 44px 0 48px; }
+  .split, .split--flip { grid-template-columns: minmax(0, 1fr); gap: 34px; padding: 44px 0 48px; }
   .split .claim { position: static; }
   .split--flip > :first-child, .split--flip > :last-child { order: 0; }
-  .arch { grid-template-columns: 1fr; }
+  .arch { grid-template-columns: minmax(0, 1fr); }
   .arch .link { padding: 14px 22px; }
   .arch .link::after { height: 1px; }
 }
