@@ -237,12 +237,17 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 
 /* Buttons — the panel's pill, promoted to page scale. Solid inverts to
    paper, ghost goes the other way; both keep their border weight so the
-   hit area never changes shape on hover. */
+   hit area never changes shape on hover.
+
+   Scoped under .actions deliberately: `.page a` below is one class plus one
+   type, which outranks a bare .btn, so its `color: inherit` would leave the
+   solid button as ink text on an ink fill. */
 .actions { display: flex; flex-wrap: wrap; gap: 10px; padding-bottom: 32px; }
-.btn {
+.actions .btn {
   display: inline-block;
   padding: 12px 22px;
   border: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-mono);
@@ -253,9 +258,9 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   text-decoration: none;
   transition: background var(--t), color var(--t);
 }
-.btn:hover, .btn:focus-visible { background: var(--paper); color: var(--ink); }
-.btn--ghost { background: var(--paper); color: var(--ink); }
-.btn--ghost:hover, .btn--ghost:focus-visible { background: var(--ink); color: var(--paper); }
+.actions .btn:hover, .actions .btn:focus-visible { background: var(--paper); color: var(--ink); }
+.actions .btn--ghost { background: var(--paper); color: var(--ink); }
+.actions .btn--ghost:hover, .actions .btn--ghost:focus-visible { background: var(--ink); color: var(--paper); }
 
 /* ─── Prose ───────────────────────────────────────────────────────────── */
 .prose p, .page p { margin-bottom: 22px; overflow-wrap: break-word; }
