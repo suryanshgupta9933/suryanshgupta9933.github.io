@@ -1,6 +1,9 @@
-# The browser is not a picture
-
-**2026-10-08 · Suryansh Gupta**
+---
+layout: default
+title: The browser is not a picture
+date: 2026-10-08
+description: On accessibility trees versus screenshots, and on the gap between a reference that resolves and a reference that can be clicked.
+---
 
 Every browser agent I looked at started the same way: screenshot the page, hand
 the pixels to a vision model, decide where to click. Most still do. A few have

@@ -1,6 +1,9 @@
-# An agent holding your cookies
-
-**2026-10-09 · Suryansh Gupta**
+---
+layout: default
+title: An agent holding your cookies
+date: 2026-10-09
+description: What an agent with your sessions can do as you, the three gates that stop it, and the fact that all of them are made of strings.
+---
 
 The previous post was about perception — why Brotto reads the accessibility tree
 instead of screenshots, and why a reference that resolves is not a reference that

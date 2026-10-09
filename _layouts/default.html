@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {%- capture page_title -%}
+    {%- if page.title and page.post -%}{{ page.title }} · Suryansh Gupta
+    {%- elsif page.title -%}{{ page.title }}
+    {%- else -%}Suryansh Gupta{%- endif -%}
+  {%- endcapture -%}
+  {%- capture page_description -%}
+    {{ page.description | default: page.excerpt | default: page.title | strip_html | strip_newlines | truncate: 200 }}
+  {%- endcapture -%}
+
+  <title>{{ page_title | strip }}</title>
+  <meta name="description" content="{{ page_description }}">
+  <!-- The host is written out rather than built from site.url: this repo has
+       no _config.yml, so `absolute_url` has nothing to prepend. One hardcoded
+       domain beats a config file that exists only to hold it. -->
+  <link rel="canonical" href="https://suryanshgupta9933.github.io{{ page.url }}">
+
+  <meta property="og:type" content="{% if page.post %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ page_title | strip }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:url" content="https://suryanshgupta9933.github.io{{ page.url }}">
+  <meta property="og:site_name" content="Suryansh Gupta">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header>
+    <a class="brand" href="/">
+      <img class="brand-logo" src="/assets/logo.svg" alt="">
+      <span class="brand-name">Suryansh Gupta</span>
+    </a>
+    <nav>
+      <a class="nav-link label" href="/">Writing</a>
+      <a class="nav-link label" href="https://github.com/suryanshgupta9933/Brotto">Brotto</a>
+    </nav>
+  </header>
+
+  <main>
+    {%- if page.post -%}
+      <article>
+        <div class="post-head">
+          <h1 class="post-title">{{ page.title }}</h1>
+          <p class="post-meta label">
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+            · Suryansh Gupta
+          </p>
+        </div>
+        <div class="prose">{{ content }}</div>
+      </article>
+    {%- else -%}
+      <div class="page">{{ content }}</div>
+    {%- endif -%}
+  </main>
+
+  <footer>
+    <span class="label">Suryansh Gupta</span>
+    <a class="label" href="/">Writing</a>
+    <a class="label" href="https://github.com/suryanshgupta9933/Brotto">Brotto on GitHub</a>
+  </footer>
+</body>
+</html>

@@ -1,5 +1,7 @@
 ---
+layout: default
 title: Suryansh Gupta
+description: Notes on browser agents, and on the parts of them that turn out to be much harder than the demo suggests.
 ---
 
 # Writing
@@ -13,6 +15,8 @@ harder than the demo suggests.
 - [**The browser is not a picture**](blog/2026-10-08-the-browser-is-not-a-picture.html)
   — 2026-10-08. On accessibility trees versus screenshots, and on the gap
   between a reference that resolves and a reference that can be clicked.
+
+{: .post-list}
 
 ## Currently building
 
