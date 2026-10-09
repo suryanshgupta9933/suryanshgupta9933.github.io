@@ -211,17 +211,18 @@ footer a:hover { color: var(--ink); border-bottom-color: var(--ink); }
    stays one band however narrow it gets. */
 .footer-note { margin-left: auto; color: var(--ink-3); }
 
-/* The landing page runs wider than the prose measure: the panel mock and the
-   screenshot grid both lose too much at 680px. Prose blocks inside it keep
-   their own max-width, so the text column does not stretch with the layout. */
-.page--wide { max-width: 900px; }
-.page--wide p, .page--wide .section-note { max-width: 62ch; }
-
 /* ─── Post ──────────────────────────────────────────────────────────────
    Title and meta sit above a hairline, then the prose column. The rule under
    the meta is the panel's card-header rule doing structural work: it says
    "the header ended" without a box or a shadow. */
 article, .page { max-width: var(--measure); margin: 0 auto; }
+
+/* The landing page runs wider than the prose measure: the panel mock and the
+   screenshot grid both lose too much at 680px. Prose blocks inside keep their
+   own measure, so the text column does not stretch with the layout. Declared
+   after `.page` on purpose — same specificity, so source order decides. */
+.page--wide { max-width: 900px; }
+.page--wide p { max-width: 62ch; }
 
 .post-head { padding: 56px 0 28px; border-bottom: 1px solid var(--rule); margin-bottom: 40px; }
 .post-title {
