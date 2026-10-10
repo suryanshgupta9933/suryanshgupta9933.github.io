@@ -16,14 +16,24 @@ Brotto exists because that afternoon is a sentence.
 
 > *Find my last three unread emails from Priya and summarise them.*
 
+<!-- TO FILL: drop the generated hero-twenty-tabs.png into assets/img/pending/ -->
+<figure class="wide">
+  <img src="/assets/img/pending/hero-twenty-tabs.png" alt="A laptop at the end of the day, its screen a soft out-of-focus glow of many open tabs" loading="lazy">
+  <figcaption>Twenty tabs, none of them urgent. The work is not hard; it is only yours.</figcaption>
+</figure>
+
 ## Why the obvious alternative asks for your password
 
 The obvious way to build this is a browser in a data centre. You give it a URL
-and it opens the page. And then it hits the wall: a cloud browser has no cookie
-jar, so every site starts at the sign-in screen, and a site that has never seen
-this machine has no reputation and serves a bot challenge. Both problems have
-the same fix in the industry, and the fix is to ask you for your credentials and
-store them.
+and it opens the page. And then it hits the wall — because a browser nobody has
+ever used has no cookies, no reputation, and no way past the front door.
+
+<figure class="wide">
+  <img src="/assets/diagrams/the-sign-in-wall.svg" alt="Two paths to the same inbox. A browser in a data centre arrives with a fresh profile, meets a sign-in wall on every site, and so ends up asking for your password and holding on to it. The tab you are already signed into has no wall, and nothing to hand over." loading="lazy">
+</figure>
+
+Both halves of that problem — no session, and no reputation — have the same fix
+in the industry, and the fix is to ask you for your credentials and store them.
 
 I think that is the wrong shape, and not only because handing a third party
 your Google password is a bad idea in the way that handing a stranger your house
@@ -41,15 +51,27 @@ there is nothing to sign in to, and nothing to hand over.
 That is the whole design decision, and most of what follows from it is a
 consequence rather than a feature.
 
+<!-- TO FILL: drop the generated the-tab-you-use.png into assets/img/pending/ -->
+<figure class="wide">
+  <img src="/assets/img/pending/the-tab-you-use.png" alt="One hand resting on a laptop already open to the page it was using, nothing signed-in-to visible" loading="lazy">
+  <figcaption>The session was there the whole time. Nothing was locked behind a handoff.</figcaption>
+</figure>
+
 ## It reads the page, but not by looking at it
 
 One more thing decides what this can and cannot do, and it is worth knowing
-because it is visible in every run below.
+because it is visible in every run.
 
 Brotto does not take screenshots and ask a vision model to read them. It reads
 the **accessibility tree** — the roles, labels, values and references that a
-screen reader already navigates by. A button is a button because the page says
-it is one, not because something guessed that a rectangle is probably a button.
+screen reader already navigates by.
+
+<figure class="wide">
+  <img src="/assets/diagrams/what-it-reads.svg" alt="One control read two ways. A vision model sees the page as unlabelled rectangles and has to guess what each one is. Brotto sees what the page publishes: role, name, value, and a reference it can act on." loading="lazy">
+</figure>
+
+A button is a button because the page says it is one, not because something
+guessed that a rectangle is probably a button.
 
 No vision model, no image tokens, no cost that scales with the size of the
 window. And a specific failure mode disappears rather than being reduced: it is
@@ -58,113 +80,62 @@ is the structure the page publishes rather than the picture it paints.
 
 ## One run, start to finish
 
-This is a real task, not a demo. Brotto adding a branch protection ruleset to
-its own public repository, recorded end to end. Nothing below is staged or
-cropped; [the screens page](/screens) has all seven panels.
+This is a real task, not a demo: Brotto adding a branch protection ruleset to
+its own public repository, recorded end to end. Four things happened.
 
-<div class="moment">
-  <div class="n label">01</div>
-  <div>
-    <h3>You ask for it in a sentence</h3>
-    <p>
-      There is no form and no workflow to learn. The panel is a chat box, and
-      whatever you can describe is the whole interface. This is the whole
-      product's front door: there is nothing else to set up.
-    </p>
-  </div>
-</div>
+**You ask for it in a sentence.** There is no form and no workflow to learn.
+The panel is a chat box, and whatever you can describe is the whole interface.
 
-<figure class="wide">
-  <img src="/assets/img/run-1-the-prompt.webp" alt="Brotto's side panel with the task typed out: go to GitHub, find the Brotto repository, add a branch protection ruleset to main, and open a pull request for it" loading="lazy">
-</figure>
+**It asks before it leaves.** GitHub is the first domain this run touches, so
+it stops and waits. The reason to gate the *domain* and not the action is worth
+a sentence: a malicious instruction does not arrive from a search engine, it
+arrives from a page the agent was sent to. If it cannot reach an unfamiliar
+domain without asking you, that whole class of problem shrinks considerably.
 
-<div class="moment">
-  <div class="n label">02</div>
-  <div>
-    <h3>It asks before it leaves</h3>
-    <p>
-      GitHub is the first domain this run touches, so it stops and waits. The
-      reason to gate the <em>domain</em> and not the action is worth a
-      sentence: a malicious instruction does not arrive from a search engine,
-      it arrives from a page the agent was sent to. If it cannot reach an
-      unfamiliar domain without asking you, that whole class of problem shrinks
-      considerably.
-    </p>
-  </div>
-</div>
+**It stops again when the page offers a choice.** GitHub has two ways to add
+branch protection, and guessing wrong means clicking back through settings.
+Rather than pick one silently, it hands you the question. This is the same card
+you would get for a sign-in it cannot pass — the panel is a conversation, not a
+log.
 
-<figure class="wide">
-  <img src="/assets/img/run-2-before-it-navigates.webp" alt="Brotto's side panel showing a first-navigation approval card for github.com, with Allow and Deny buttons" loading="lazy">
-</figure>
-
-<div class="moment">
-  <div class="n label">03</div>
-  <div>
-    <h3>It stops again when the page offers a choice</h3>
-    <p>
-      GitHub has two ways to add branch protection, and guessing wrong means
-      clicking back through settings. Rather than pick one silently, it hands
-      you the question. This is the same card you would get for a sign-in it
-      cannot pass — the panel is a conversation, not a log.
-    </p>
-  </div>
-</div>
-
-<figure class="wide">
-  <img src="/assets/img/run-3-it-asks-when-unsure.webp" alt="Brotto's side panel stopping to clarify that the repository has two ways to add branch protection, with Skip and Say options" loading="lazy">
-</figure>
-
-<div class="moment">
-  <div class="n label">04</div>
-  <div>
-    <h3>It finishes, and the whole thing is on your disk</h3>
-    <p>
-      Note where the ruleset was written: on github.com, by your own session,
-      with your own permissions. Nothing was sent to us. The transcript lands
-      in <code>logs/sessions/</code> beside the rest of your files, which is
-      what lets you read a run back, resume one that was interrupted, or delete
-      it outright.
-    </p>
-  </div>
-</div>
-
-<figure class="wide">
-  <img src="/assets/img/run-4-the-ruleset-it-wrote.webp" alt="Brotto reporting DONE: it created a classic branch protection ruleset on the main branch of the Brotto repository, with targets, enforcement status, required checks and force-push settings" loading="lazy">
-</figure>
+**It finishes, and the whole thing is on your disk.** Note where the ruleset
+was written: on github.com, by your own session, with your own permissions.
+Nothing was sent to us. The transcript lands in `logs/sessions/` beside the rest
+of your files, which is what lets you read a run back, resume one that was
+interrupted, or delete it outright.
 
 Two stops in a fourteen-step run, both on decisions only you could make. That
 is the shape I want by default: the agent is willing, and it is not the one
 holding the authority when it matters.
 
+I have kept the screens out of this post on purpose. It is one run, and the
+panel showing seven identical-looking cards is better judged in motion than in a
+row of stills — [the screens page](/screens) has them, and it is a better use of
+your scroll than a gallery here would be.
+
 ## What it asks about
 
-Once a task is in flight there are three cards, and they resolve in place so
-the run reads as a conversation:
+Once a task is in flight there are three things it will stop for, and they all
+resolve in place, so the run reads as a conversation rather than a log.
 
-<div class="shots">
-  <figure>
-    <img src="/assets/gifs/approval.gif" alt="Brotto's panel stopping on an approval card for a domain it has not visited in this task, with Deny and Approve buttons" loading="lazy" width="400" height="760">
-    <figcaption><b>Approve.</b> A domain it has not visited stops the run until you say yes or no.</figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/gifs/clarify.gif" alt="Brotto's panel asking which time the launch announcement should go out on Tuesday, with a Skip button" loading="lazy" width="400" height="760">
-    <figcaption><b>Ask.</b> When the page has two equally good answers, it puts the question to you.</figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/gifs/login.gif" alt="Brotto's panel stopped on a Google sign-in page, waiting for you to sign in before it continues" loading="lazy" width="400" height="760">
-    <figcaption><b>Sign in.</b> Your cookies stay yours. Brotto hands the wall back to you and picks up after.</figcaption>
-  </figure>
-</div>
+**A domain it has not been to.** Approve and it proceeds; deny and it does not
+ask again in this task. An approval sticks as an eTLD+1 grant afterwards, so
+you are not re-answering for github.com every week — which is also why the
+blocked-domains list is yours alone and has no server-side floor.
 
-The third one is the loop closing. When Brotto hits a wall that needs your
-credentials, it stops and asks — which is exactly the moment the credential
-vault products exist to automate away.
+**A question the page made ambiguous.** Two equally good answers, and picking
+wrong costs you a click trip through settings. It puts the question to you
+instead, with a Skip if you would rather it just chose.
+
+**A wall that needs your credentials.** This is the loop closing. When Brotto
+hits a sign-in it cannot pass, it stops and asks — which is exactly the moment
+the credential-vault products exist to automate away.
 
 ## The part you should read before installing anything
 
 An agent running in your signed-in session is not a sandbox. It acts with the
-authority you have, and if it is wrong, it is wrong *as you*. An email it
-sends is not flagged as suspicious, because it genuinely came from you.
+authority you have, and if it is wrong, it is wrong *as you*. An email it sends
+is not flagged as suspicious, because it genuinely came from you.
 
 I think that deserves more than a reassurance, so I wrote down what actually
 stops it, what does not, and the fact that every guard in the path is ultimately
@@ -177,9 +148,6 @@ the next post, and the one to read first if that is your question.
 
 I would rather these were here than discovered.
 
-- **Installing it is six steps**, not one. A container, an extension, and a
-  few settings. [The install](/#try) is written out; a one-command installer is
-  next.
 - **There is no reliability number, and I am not going to invent one.** Until
   the harness scores real runs against a real model, any percentage in this
   space — mine included — is a guess. What the run above shows is a *shape*,

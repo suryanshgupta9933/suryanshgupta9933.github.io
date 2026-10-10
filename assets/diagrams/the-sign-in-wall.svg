@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" width="1200" height="430" role="img" aria-labelledby="wallTitle wallDesc">
+  <title id="wallTitle">Two ways to reach a site you are signed in to</title>
+  <desc id="wallDesc">A browser in a data centre arrives with a fresh profile, so it meets a sign-in wall on every site, which is why credential storage gets sold as a feature. The tab you are already signed into has no wall, and nothing to hand over.</desc>
+
+  <rect width="1200" height="430" fill="#FFFFFF"/>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="11" letter-spacing="1.4" fill="#6E6E6E">
+    <text x="60" y="38">A BROWSER IN A DATA CENTRE</text>
+    <text x="60" y="268">THE TAB YOU ARE ALREADY SIGNED IN TO</text>
+  </g>
+
+  <!-- Track one: the wall. -->
+  <g>
+    <rect x="60" y="64" width="280" height="116" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="88" y="118" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="#000000">A fresh profile</text>
+    <text x="88" y="142" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#5C5C5C">no cookies, no reputation</text>
+
+    <line x1="348" y1="122" x2="392" y2="122" stroke="#C9C9C9"/>
+    <path d="M392 122 L384 117 L384 127 Z" fill="#C9C9C9"/>
+
+    <rect x="400" y="64" width="280" height="116" fill="#FFFFFF" stroke="#DC2626"/>
+    <text x="428" y="118" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="#DC2626">The sign-in wall</text>
+    <text x="428" y="142" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#5C5C5C">every site, every time</text>
+
+    <line x1="688" y1="122" x2="732" y2="122" stroke="#C9C9C9"/>
+    <path d="M732 122 L724 117 L724 127 Z" fill="#C9C9C9"/>
+
+    <rect x="740" y="64" width="400" height="116" fill="#FFFFFF" stroke="#DC2626"/>
+    <text x="768" y="112" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="#DC2626">So we ask for your password</text>
+    <text x="768" y="136" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#5C5C5C">and hold on to it</text>
+    <text x="768" y="160" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#6E6E6E">sold as a feature</text>
+  </g>
+
+  <!-- Track two: no wall. -->
+  <g>
+    <rect x="60" y="294" width="280" height="116" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="88" y="348" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="#000000">Your own tab</text>
+    <text x="88" y="372" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#5C5C5C">the session you already have</text>
+
+    <line x1="348" y1="352" x2="392" y2="352" stroke="#C9C9C9"/>
+    <path d="M392 352 L384 347 L384 357 Z" fill="#C9C9C9"/>
+
+    <rect x="400" y="294" width="280" height="116" fill="#FFFFFF" stroke="#15803D"/>
+    <text x="428" y="348" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="#15803D">Already signed in</text>
+    <text x="428" y="372" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#5C5C5C">cookies &#183; MFA &#183; SSO</text>
+
+    <line x1="688" y1="352" x2="732" y2="352" stroke="#C9C9C9"/>
+    <path d="M732 352 L724 347 L724 357 Z" fill="#C9C9C9"/>
+
+    <rect x="740" y="294" width="400" height="116" fill="#FFFFFF" stroke="#15803D"/>
+    <text x="768" y="348" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="#000000">Your inbox</text>
+    <text x="768" y="372" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#5C5C5C">nothing to hand over</text>
+  </g>
+</svg>

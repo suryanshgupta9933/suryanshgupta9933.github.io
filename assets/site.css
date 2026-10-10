@@ -476,6 +476,15 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   border: 1px solid var(--rule-2);
   background: var(--paper-2);
 }
+.prose figure.wide figcaption {
+  width: min(1120px, calc(100vw - 48px));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-2);
+  text-align: center;
+}
 
 /* The three-card row breaks out for the same reason. It already collapses to
    a single column below 700px, so the wide cap is safe on narrow screens. */
