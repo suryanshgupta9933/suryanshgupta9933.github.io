@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Privacy
-description: What Brotto stores, what transits your server, what reaches disk, and what an idle-page suggestion reads. There is no Brotto-operated service.
+description: What Brotto stores, what transits your server, what reaches disk, and what an idle-page suggestion reads — for both the self-hosted deployment and the hosted beta.
 ---
 
 # Brotto Privacy Policy
@@ -16,15 +16,32 @@ Everything below describes what that purpose requires and nothing more.
 
 This policy explains what Brotto does with data.
 
-Brotto has one deployment. **You run the orchestrator.** It is open-source software you install on
-your own machine or your own server, and the extension talks to whatever address you type into its
-settings. There is no Brotto-operated service, we run no servers, and "the server" below means the
-machine you chose to run it on.
+Brotto has two deployments, and which one you are on decides this entire policy.
 
-That is the whole privacy story, and it is worth being precise about it: whoever operates the machine
-the orchestrator runs on can read the pages the agent reads. There is no operator between the agent and
-your documents in this product, because there is no operator at all. It is a property of the
-deployment, not a promise from us.
+**Self-hosted is the product, and it is free and permanent.** You run the
+orchestrator. It is open-source software you install on your own machine or your
+own server, and the extension talks to whatever address you type into its
+settings. In this deployment there is no Brotto-operated service and "the
+server" below means the machine you chose to run it on.
+
+**There is also a hosted orchestrator, at `agent.brotto.dev`, run by us.** It is
+a closed, invitation-only beta with a small number of invited users and a hard
+cap on tasks. It is not a free tier, not a trial, and not required for anything
+— you never need an account to use Brotto yourself. If you are on it, the
+honest statement is: **the pages your agent reads transit a machine we operate,
+and we could read them.** That is a different privacy posture from the one
+below, and it is the reason the beta is capped and closed rather than open.
+
+Two things are true only of the hosted beta: sessions are retained on a
+schedule rather than kept until you delete them (`BROTTO_RETENTION_DAYS`, which
+is **off** by default because a self-hoster's disk is their own data — that is
+correct there and wrong here), and access is by account.
+
+Either way the underlying point is worth being precise about: **whoever operates
+the machine the orchestrator runs on can read the pages the agent reads.** In
+the self-hosted deployment there is no operator at all, which is a property of
+the deployment rather than a promise from us. In the hosted one there is. It is
+noted here rather than buried, because you should be able to find it.
 
 If you would rather not trust anyone with that — including yourself in six months — do not have an
 agent work on pages you would not paste into a chat window.
@@ -32,10 +49,10 @@ agent work on pages you would not paste into a chat window.
 ## Summary
 
 Brotto is built so that we collect as little as possible. There is no analytics, no telemetry, no
-advertising, no tracking across sites, and we do not sell or share data with anyone for marketing. We
-do not operate the server, so we do not receive your data. The data that moves during a task is the
-data the task inherently requires: what the page looks like to a computer, and the model provider you
-chose.
+advertising, no tracking across sites, and we do not sell or share data with anyone for marketing. On
+the self-hosted deployment we do not operate the server, so we do not receive your data at all. The
+data that moves during a task is the data the task inherently requires: what the page looks like to a
+computer, and the model provider you chose.
 
 **The extension makes no outbound requests of its own.** Its interface fonts are bundled with it, so
 opening the side panel contacts nothing. The only network traffic the extension starts is to the server
@@ -82,6 +99,12 @@ for this to be forgotten. It is pattern matching, not a guarantee: it will miss 
 occasionally redact an innocuous number that happens to pass a checksum. The agent is told the redaction
 already happened and is instructed not to try to reconstruct a redacted value.
 
+**The accessibility tree is not redacted, and this paragraph does not cover it.**
+The list above runs on the page-text channel only. The tree — the roles, labels, values and references
+listed in the previous section, and the channel the model mostly reads — is passed through as it is. A
+token that appears in a field's label or value rather than in body text will reach your provider
+unredacted.
+
 The orchestrator then sends **the page observations to the model provider you selected**. Brotto ships
 with Anthropic, OpenAI, MiniMax, Gemini, OpenRouter, DeepSeek and Groq, and can be pointed at a
 compatible endpoint of your own. This is the core of what a browser agent does: the model has to see the
@@ -89,8 +112,10 @@ page in order to act on it. Which provider receives it is entirely your choice, 
 determines which company's privacy policy governs that data. If you point Brotto at your own endpoint,
 that data goes to your own machine and no model company sees it at all.
 
-**None of this reaches us.** The orchestrator is software on your machine, so both the key and the page
-observations go from your browser to your machine and on to your model provider. The observations do
+**On the self-hosted deployment, none of this reaches us.** The orchestrator is software on your
+machine, so both the key and the page observations go from your browser to your machine and on to your
+model provider. On the hosted beta they transit `agent.brotto.dev` instead, which means they pass
+through a machine we operate — see the top of this policy. The observations do
 not stop at the model call, though: the server saves the URL, the page title, and a short digest of
 each page to a file on its own disk, and that file is still there after the task ends. The next section
 says exactly what is in it.

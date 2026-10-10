@@ -5,11 +5,12 @@ date: 2026-10-09
 description: What an agent with your sessions can do as you, the three gates that stop it, and the fact that all of them are made of strings.
 ---
 
-The previous post was about perception — why Brotto reads the accessibility tree
-instead of screenshots, and why a reference that resolves is not a reference that
-can be clicked. That argument is about capability. This one is about the part
-that should worry you: **an agent that runs inside your signed-in browser is
-holding your sessions, and what happens when it is wrong.**
+The previous post was about what Brotto does — why it works in the tab you are
+already signed into instead of a cloud browser with a credential vault, and what
+one real run looks like start to finish. That argument is about capability.
+This one is about the part that should worry you: **an agent that runs inside
+your signed-in browser is holding your sessions, and what happens when it is
+wrong.**
 
 I want to be specific rather than reassuring, because the reassuring version of
 this post is what every agent product writes, and it is the reason people hand
@@ -37,7 +38,7 @@ which is what Brotto does and what most of them don't.
 
 ## What actually stops it
 
-Three mechanisms, none of them a setting you can turn off.
+Three mechanisms. Two cannot be switched off; one is yours to extend.
 
 **It stops and asks before anything irreversible.** Not "before anything it
 classifies as risky" — before it sends, pays, deletes, publishes, approves,
@@ -55,19 +56,28 @@ with no override path — the task ends.
 
 And then the one that is easy to skip and that I would not skip: **every run
 writes an audit document to your disk.** Not a chat transcript. Tasks, turns,
-each observation, each prompt, each action, each approval, each timing, on a
-filesystem you control, greppable and deletable as a unit. When something goes
-wrong, the difference between "I think it clicked the wrong thing" and a
-grep for `off-screen` across `logs/sessions/` is the difference between a fear
-and an incident report.
+prompts, actions, approvals, timings, and a 200-character digest of each page —
+on a filesystem you control, greppable and deletable as a unit.
+
+That digest is the honest version of what a log gives you, and I want to be
+precise about it, because it is easy to overclaim here. **The page itself is not
+written to disk.** Each step records how much text was there (`ax_chars`,
+`page_text_chars`) and the opening 200 characters of it, not the tree. So the
+difference between "I think it clicked the wrong thing" and a record you can
+grep and read is real — but if you are trying to prove what was *on* a
+particular page, the digest will not do it. Two things survive in full: the text
+you typed, and the model's own prose about what it saw.
 
 ## Where my own guardrails are made of strings
 
 Here is the part I would want to read in someone else's post about their own
 tool, so I am going to write it about mine.
 
-The irreversible-action gate is **a regex over the action's own description.**
-Ten patterns:
+There are actually **two** gates here, not one, and they are easy to conflate.
+A separate list — `sensitive_actions`, editable in the panel's settings — is
+what covers a password change, a revoked token and a submitted form. It is the
+one gate you can extend. The other one is **a regex over the action the model
+wrote**, eleven patterns:
 
 ```python
 CRITICAL_PATTERNS = [
@@ -78,25 +88,35 @@ CRITICAL_PATTERNS = [
 ```
 
 matched against `f"{action} {action_args}"`. Nothing clever is happening. The
-action name the model wrote, concatenated with its arguments, run past those ten
-patterns.
+action name the model wrote, concatenated with its arguments — the whole
+arguments dict, not just a description — run past those eleven patterns.
 
-**Which means the label is the security boundary.** A destructive control
-labelled `Purge`, `Empty`, `Remove`, `Wipe`, `Archive`, `Trash`, or `Cancel
-subscription` does not match any of them. `Clear inbox` does not match. `Delete`
-is in the list and `Purge` is not, and there is no principled difference between
-those two buttons — only a linguistic one.
+**Which means the string the model writes is the security boundary.** A
+destructive control labelled `Purge`, `Empty`, `Remove`, `Wipe`, `Archive`,
+`Trash`, or `Cancel subscription` matches none of them. `Clear inbox` does not
+match. `Delete` is in the list and `Purge` is not, and there is no principled
+difference between those two buttons — only a linguistic one.
+
+Two things cut the other way, and I would rather state them than let you find
+them. The haystack is the **entire arguments dict**, so a button labelled
+`Purge` does trip the gate if the model happens to write `delete my account` in
+its value field — the label is not the only string being tested. And
+`r"confirm"` is unanchored, so `confirmation` and `confirmed` match too: the
+gate is noisier as well as leakier, which means the "click through without
+reading" failure mode is live here and I do not want to pretend otherwise.
 
 The same shape appears one layer up. A domain grant is keyed on the **eTLD+1**,
 deliberately: approving `example.com` approves every subdomain and every future
 verb on it, for good, because keying it finer made one run ask the same question
 once per action type on the same page. That is the right default and it is also
-exactly the shape of a confused-deputy bug.
+exactly the shape of a confused-deputy bug. It is written to your policy file
+*and* to the extension's local storage, so it outlives the browser and the
+session both.
 
 And the most important limitation of all, stated plainly: **page content reaches
 the model.** A hostile page can put text in front of the model the same way a
-hostile email can. The approval gate is a list of ten strings; the domain gate is
-a list you wrote. An attacker who can get the agent to take an action whose
+hostile email can. The approval gate is a list of eleven strings; the domain gate
+is a list you wrote. An attacker who can get the agent to take an action whose
 description is innocuous has walked around all of it, because every guard in the
 path is a string test and the attacker controls the string.
 
@@ -126,11 +146,15 @@ is broad, so find the one thing it must not cover, and cover that separately.
   *common* case safe and make the *indirect* case much harder. A determined
   attacker with page control has real leverage, and I have described exactly
   where.
-- **Redaction is not a boundary.** Credentials, API keys, bearer tokens, card
-  numbers and government identifiers are stripped from page text before it
-  reaches the provider — in code, on every task, no setting. But that is a filter
-  on the way out, not a guarantee about what is in the page. Redaction catches
-  things that *look* like secrets.
+- **Redaction is not a boundary, and it does not cover everything you might
+  assume.** Nine specific shapes — credentials, API keys, bearer tokens, private
+  keys, cloud and vendor tokens, card numbers, government identifiers — are
+  stripped from page text before it reaches the provider, in code, on every task,
+  no setting. Two limits worth naming: it is pattern matching, so it catches
+  things that *look* like those nine shapes and not others; and it runs on the
+  page-text channel only. **The accessibility tree is not redacted**, and that is
+  the primary channel the model actually reads. If a token is in a label, a
+  value, or an attribute, it reaches the provider.
 - **Bring your own key is about the key, not the pages.** The agent loop runs on
   a server you run, so page observations transit it — that is inherent, not a
   leak. What you choose is that there is no operator between the agent and your
@@ -155,5 +179,5 @@ is broad, so find the one thing it must not cover, and cover that separately.
 ---
 
 Brotto is [Apache 2.0](https://github.com/suryanshgupta9933/Brotto). The
-previous post, on perception, is
-[here](https://suryanshgupta9933.github.io/blog/2026-10-08-the-browser-is-not-a-picture.html).
+previous post, on what it does, is
+[here](/blog/2026-10-11-twenty-tabs-one-sentence.html).
