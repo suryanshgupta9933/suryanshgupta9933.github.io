@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Privacy
-description: What Brotto stores, what transits your server, what reaches disk, and what an idle-page suggestion reads — for both the self-hosted deployment and the hosted beta.
+description: What Brotto stores, what transits the server, what reaches disk, and what an idle-page suggestion reads — for both the self-hosted install and the capped, invite-only relay at agent.brotto.dev.
 ---
 
 # Brotto Privacy Policy
 
-**Effective date:** 2026-10-03
+**Effective date:** 2026-10-11
 
 Brotto has a single purpose:
 
@@ -16,43 +16,35 @@ Everything below describes what that purpose requires and nothing more.
 
 This policy explains what Brotto does with data.
 
-Brotto has two deployments, and which one you are on decides this entire policy.
+Brotto has two deployments.
 
-**Self-hosted is the product, and it is free and permanent.** You run the
-orchestrator. It is open-source software you install on your own machine or your
-own server, and the extension talks to whatever address you type into its
-settings. In this deployment there is no Brotto-operated service and "the
-server" below means the machine you chose to run it on.
+On a self-hosted install **you run the orchestrator.** It is open-source software you install on your
+own machine or your own server, and the extension talks to whatever address you type into its settings.
+There is no Brotto-operated service there, we run no servers on your behalf, and "the server" below
+means the machine you chose to run it on.
 
-**There is also a hosted orchestrator, at `agent.brotto.dev`, run by us.** It is
-a closed, invitation-only beta with a small number of invited users and a hard
-cap on tasks. It is not a free tier, not a trial, and not required for anything
-— you never need an account to use Brotto yourself. If you are on it, the
-honest statement is: **the pages your agent reads transit a machine we operate,
-and we could read them.** That is a different privacy posture from the one
-below, and it is the reason the beta is capped and closed rather than open.
+There is also a capped, invite-only hosted relay at `agent.brotto.dev`, operated by Brotto on Heroku.
+If you point the extension at it, page observations transit a server we run and are written to a dyno
+disk that is erased on restart or deploy. Retention on the relay is the life of the task.
 
-Two things are true only of the hosted beta: sessions are retained on a
-schedule rather than kept until you delete them (`BROTTO_RETENTION_DAYS`, which
-is **off** by default because a self-hoster's disk is their own data — that is
-correct there and wrong here), and access is by account.
-
-Either way the underlying point is worth being precise about: **whoever operates
-the machine the orchestrator runs on can read the pages the agent reads.** In
-the self-hosted deployment there is no operator at all, which is a property of
-the deployment rather than a promise from us. In the hosted one there is. It is
-noted here rather than buried, because you should be able to find it.
+That is worth being precise about: whoever operates the machine the orchestrator runs on can read the
+pages the agent reads. On a self-hosted install there is no operator between the agent and your
+documents, because there is no operator at all. It is a property of the deployment, not a promise
+from us. On the relay that operator is us, which is the reason the relay is capped, invite-only, and
+not the recommended install.
 
 If you would rather not trust anyone with that — including yourself in six months — do not have an
-agent work on pages you would not paste into a chat window.
+agent work on pages you would not paste into a chat window, and self-host rather than use the relay.
 
 ## Summary
 
 Brotto is built so that we collect as little as possible. There is no analytics, no telemetry, no
 advertising, no tracking across sites, and we do not sell or share data with anyone for marketing. On
-the self-hosted deployment we do not operate the server, so we do not receive your data at all. The
-data that moves during a task is the data the task inherently requires: what the page looks like to a
-computer, and the model provider you chose.
+a self-hosted install we do not operate the server, so we do not receive your data. On the hosted
+relay at `agent.brotto.dev` we do operate it, and choosing that relay means your page observations
+reach us for as long as the task runs; the rest of this policy applies to it unchanged. The data that
+moves during a task is the data the task inherently requires: what the page looks like to a computer,
+and the model provider you chose.
 
 **The extension makes no outbound requests of its own.** Its interface fonts are bundled with it, so
 opening the side panel contacts nothing. The only network traffic the extension starts is to the server
@@ -112,13 +104,14 @@ page in order to act on it. Which provider receives it is entirely your choice, 
 determines which company's privacy policy governs that data. If you point Brotto at your own endpoint,
 that data goes to your own machine and no model company sees it at all.
 
-**On the self-hosted deployment, none of this reaches us.** The orchestrator is software on your
-machine, so both the key and the page observations go from your browser to your machine and on to your
-model provider. On the hosted beta they transit `agent.brotto.dev` instead, which means they pass
-through a machine we operate — see the top of this policy. The observations do
-not stop at the model call, though: the server saves the URL, the page title, and a short digest of
-each page to a file on its own disk, and that file is still there after the task ends. The next section
-says exactly what is in it.
+**None of this reaches us — on a self-hosted install.** The orchestrator is software on your machine,
+so both the key and the page observations go from your browser to your machine and on to your model
+provider, and no copy passes through Brotto. If you are using the hosted relay instead, that last
+sentence is not true of us: the key and the observations cross a machine we operate on their way to
+the provider, and we describe what that machine keeps below. The observations do not stop at the model
+call on either deployment, though: the server saves the URL, the page title, and a short digest of
+each page to a file on its own disk, and that file is still there after the task ends — on the relay,
+until the dyno restarts. The next section says exactly what is in it.
 
 ## What the orchestrator writes to disk
 
@@ -158,7 +151,10 @@ The files are named after the install that created them, so that separate users 
 share settings. That name is the random install id the extension generated on your machine — not your
 name, not your IP address, and not your network. The model-configuration file is named with the install
 id in plain text; the policy file is named with a scrambled version of it. It is not used for
-advertising or analytics — the machine holding them is yours, and nothing is sent anywhere with it.
+advertising or analytics — on a self-hosted install the machine holding them is yours, and nothing is
+sent anywhere with it. On the hosted relay that machine is ours, for the life of the task and no
+longer; the files are removed when the dyno cycles, and the install id is a random identifier the
+browser generated, so it does not name you.
 
 **The approved-sites list is a record of where you have let Brotto work.** When you approve a site in
 an approval card, its domain is added to your policy file and stays there until you clear it, so you
@@ -206,9 +202,15 @@ Those terms are between you and them, and we do not control them. Your orchestra
 this data, in the sense that it holds the page observations in memory while it waits for the model to
 answer.
 
+**On the hosted relay, that orchestrator is ours rather than yours**, which makes us a party to your
+page data rather than only to the relay's traffic. Nothing else changes: the provider still receives
+what it would have received on a self-hosted install, Brotto still runs no analytics, and no other
+company is given a copy.
+
 ## Retention and deletion
 
-Nothing expires on a timer unless you ask it to. **Deletion is entirely yours**, and it is immediate:
+Nothing expires on a timer unless you ask it to. **Deletion is entirely yours, and it is immediate** —
+on a self-hosted install:
 
 - **Session records** — the audit file and the scratchpad, described above — are written to disk and
   stay there until you remove them. Nothing expires on a schedule unless you ask for it: the server has
@@ -230,7 +232,15 @@ Nothing expires on a timer unless you ask it to. **Deletion is entirely yours**,
   which domains you have let an agent work on — delete that file by hand, or clear the approved list
   inside the panel's policy screen.
 - **Your API key** is not retained by Brotto anywhere. It is held in the orchestrator's memory for the
-  duration of a task and not written to disk.
+  duration of a task and not written to disk. On the hosted relay that memory belongs to a machine we
+  operate, for the duration of the task.
+
+**The two deployments differ in who has to be trusted, not in what is written.** On the relay the disk
+is ours and it is ephemeral: a dyno restart, a deploy or a crash erases every session on it without
+being asked, so a run in flight when that happens is lost rather than stored. That is an upper bound on
+retention as much as a failure, but it is not a guarantee you control, and the panel's **Delete** and
+**Delete all** are the reliable path on both deployments. If you want a record that survives because
+you chose it, self-host.
 
 ## Security
 
@@ -239,6 +249,16 @@ Nothing expires on a timer unless you ask it to. **Deletion is entirely yours**,
 - The extension requests `chrome.debugger` to read the accessibility tree and dispatch input, and
   `<all_urls>` host access so it can work on the site you name. Both are exercised only during a task
   you started.
+- The extension requests `notifications`, so a task that is waiting on you — an approval, a sign-in, a
+  question — can say so, and so a finished or failed task can tell you when you are not looking at the
+  panel. The notification is rendered by the operating system on your own machine and nothing about it
+  is sent to the orchestrator or to us. Be aware that its wording is Brotto's own description of the
+  event — the reason for an approval, or the run's summary on completion — and **a summary can quote
+  what was on the page**, so a notification is page-derived and should be treated as one. Both kinds of
+  alert are on by default and can be switched off independently in settings.
+- The extension's other permissions are `storage` for the settings listed above, `sidePanel` for the
+  panel you talk to it in, and `scripting`, which is used only to read the visible text of a page for
+  idle suggestions, and only after you have turned that on. None of the three contacts a server.
 - Brotto always asks for approval before sensitive actions (sending email, payments, deletes,
   publishing, changing passwords, and similar), and always asks before acting on a site for the first
   time. There is no setting that turns either off.
@@ -252,14 +272,23 @@ any proxy in front of it. With the secret unset, every caller is treated as trus
 so in its startup log, so if you expose the port to a network, set the secret first. The default
 `docker compose` binds to `127.0.0.1` for exactly this reason.
 
-One endpoint is deliberately left open, and it is not a session one: `POST /run` launches a headless
-browser with no authentication. Do not put it on a public interface. `/health` is also unauthenticated
-because the container's own healthcheck needs it; it reports that the service is up and which model is
-resolved, and nothing else.
+One endpoint is deliberately left open on a self-hosted install, and it is not a session one: `POST
+/run` launches a headless browser with no authentication. Do not put it on a public interface. It is
+refused outright on the hosted relay, which runs in production mode. `/health` is also
+unauthenticated because the container's own healthcheck needs it; it reports that the service is up
+and which model is resolved, and nothing else.
 
 No system is perfect. A browser agent operating with your session has the same access you do, and a
 compromise of the extension or the server would have the same effect. Do not use it on accounts where
 that risk is unacceptable.
+
+## Chrome Web Store Limited Use
+
+> The use of information received from Google APIs will adhere to the Chrome Web Store User Data
+> Policy, including the Limited Use requirements.
+
+We collect user data only to perform the task you asked for — driving the tab you selected on your
+behalf — and for nothing else. We do not sell it, and we do not use it for advertising or analytics.
 
 ## Children
 

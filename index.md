@@ -293,7 +293,8 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     </p>
     <p>
       Six steps, and they are on their way out — a one-command installer is next,
-      then a hosted option. Everything Brotto keeps lands in one Docker volume on
+      and there is an invite-only hosted relay if you would rather skip all of
+      it. Everything Brotto keeps lands in one Docker volume on
       your disk.
     </p>
   </div>
@@ -321,7 +322,7 @@ npm ci &amp;&amp; npm run build</code></pre>
     <table class="spec">
       <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
       <tr><td>Cost</td><td>Nothing, beyond the model calls you make</td></tr>
-      <tr><td>Your data</td><td>Audit files on your disk. The server transits page text and never stores it.</td></tr>
+      <tr><td>Your data</td><td>Audit files on your disk. The server transits page text and stores only a short digest of each page.</td></tr>
       <tr><td>Providers</td><td>Eight, or any OpenAI-compatible endpoint you run</td></tr>
       <tr><td>Chrome only</td><td><code>chrome.debugger</code> has no Firefox equivalent</td></tr>
     </table>
@@ -355,8 +356,10 @@ npm ci &amp;&amp; npm run build</code></pre>
       <span class="card-idx label">02 · Planned</span>
       <h3>Remove the last step</h3>
       <p>
-        A one-command installer for the container, then a hosted option — at
-        which point there is nothing left to run yourself.
+        A one-command installer for the container — at which point there is
+        nothing left to run yourself. The invite-only relay at
+        <code>agent.brotto.dev</code> already removes the step entirely, for
+        anyone we invite.
       </p>
     </div>
     <div>
@@ -399,11 +402,18 @@ npm ci &amp;&amp; npm run build</code></pre>
 <div class="split">
   <div class="claim">
     <span class="eyebrow label">Where your data goes</span>
-    <h2>Your pages reach the model. They do not reach anyone else.</h2>
+    <h2>Your pages reach the model. On a self-hosted install, nobody else.</h2>
     <p>
       The browser runs on your machine. The agent loop runs on a server
       <em>you</em> run, so page observations transit it — that is inherent to
       the design. What you choose is that nobody is on the other end.
+    </p>
+    <p>
+      There is also a capped, invite-only hosted relay at
+      <code>agent.brotto.dev</code>, which we operate. On that one there is an
+      operator: page observations transit a machine we run. Self-hosting stays
+      free and permanent. <a href="/privacy">Both deployments are covered in the
+      policy.</a>
     </p>
   </div>
   <div>
