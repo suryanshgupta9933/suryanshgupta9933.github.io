@@ -458,35 +458,32 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 }
 .prose tr:last-child td, .page tr:last-child td { border-bottom: 0; }
 
-/* A screenshot inside a post breaks out of the 680px measure. The run images
-   are 1280px wide and mostly panel text: at measure they shrink to half size
-   and stop being readable, which defeats the only reason to put them in. The
-   cap matches the landing page's full-bleed width, and falls back to the
-   viewport on narrow screens, so it needs no breakpoint. */
-.prose figure.wide {
+/* Figures sit inside the 680px measure like everything else. An earlier
+   version broke them out to 1120px, which left every image visibly wider than
+   the column it belongs to; the diagrams are now drawn at a viewBox that keeps
+   their labels legible at measure instead. */
+.prose figure {
   margin: 30px 0;
 }
-.prose figure.wide img,
-.prose figure.wide video {
+.prose figure img,
+.prose figure video {
   display: block;
-  width: min(1120px, calc(100vw - 48px));
-  margin-left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   height: auto;
   border: 1px solid var(--rule-2);
   background: var(--paper-2);
 }
-.prose figure.wide figcaption {
-  width: min(1120px, calc(100vw - 48px));
-  margin-left: 50%;
-  transform: translateX(-50%);
+.prose figure figcaption {
   margin-top: 10px;
   font-size: 13px;
+  line-height: 1.5;
   color: var(--ink-2);
   text-align: center;
 }
 
-/* The three-card row breaks out for the same reason. It already collapses to
+/* The three-card row breaks out for the same reason it did before: it is three
+   columns that cannot survive 680px. It already collapses to a single column
+   below 700px, so the wide cap is safe on narrow screens. */
    a single column below 700px, so the wide cap is safe on narrow screens. */
 .prose .shots {
   width: min(1120px, calc(100vw - 48px));
