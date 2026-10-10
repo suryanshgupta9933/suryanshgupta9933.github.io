@@ -566,18 +566,29 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 .split--flip > :first-child { order: 2; }
 .split--flip > :last-child { order: 1; }
 .split .claim { position: sticky; top: 32px; }
-.split .claim h2 {
+.claim h2 {
   border: 0;
   padding: 0;
   margin: 0 0 16px;
 }
-.split .claim p {
+.claim p {
   font-size: 16px;
   color: var(--ink-2);
   max-width: 42ch;
   margin-bottom: 16px;
 }
-.split .claim .eyebrow { display: block; margin-bottom: 14px; color: var(--ink-3); }
+.claim .eyebrow { display: block; margin-bottom: 14px; color: var(--ink-3); }
+
+/* One band that is not a split. Every other section on the page is a claim
+   beside its evidence, but the split's 7fr column hands each of the three
+   panel GIFs 135px at desktop — not enough to read 13.5px panel text, and a
+   GIF that cannot be read is the one thing the section exists to avoid. Full
+   bleed gives each one 365px, which is the panel's own width. */
+.band {
+  border-top: 1px solid var(--rule-ink);
+  padding: 60px 0 64px;
+}
+.band .claim { margin-bottom: 36px; }
 
 /* ─── The card grid ─────────────────────────────────────────────────────────
    Cells share one border, drawn around the grid and between the cells, so a
@@ -807,7 +818,6 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   margin-top: 11px;
 }
 .shots figcaption b { color: var(--ink); font-weight: 600; }
-.shots--2 { grid-template-columns: repeat(2, 1fr); }
 
 /* A numbered walkthrough step. The number is the panel's mono label at a size
    that survives being the first thing read. */
@@ -959,7 +969,7 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   /* Every three-up grid collapses. A cell narrower than ~200px puts a
      three-word label on two lines, which is the point at which a grid stops
      reading as a set. */
-  .cardgrid, .cardgrid--2, .shots, .shots--2 { grid-template-columns: 1fr; }
+  .cardgrid, .cardgrid--2, .shots { grid-template-columns: 1fr; }
   .cardgrid > div { border-left: 0; border-top: 1px solid var(--rule); }
   .cardgrid > div:first-child { border-top: 0; }
 

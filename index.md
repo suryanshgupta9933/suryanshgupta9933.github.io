@@ -255,24 +255,30 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
   </div>
 </div>
 
-<div class="split split--flip">
+<div class="band">
   <div class="claim">
     <span class="eyebrow label">In the panel</span>
-    <h2>Three screens</h2>
+    <h2>Three cards</h2>
     <p>
-      What it offers when the page is idle, what it remembers, and what it will
-      refuse to touch. <a href="/screens">All seven screens</a>, including one
-      run in four moments.
+      Brotto stops and asks rather than guessing. A site it has not visited, a
+      question only you can answer, a sign-in only you can do. Each one resolves
+      in place, so the run reads as a conversation and not a log — and these are
+      the real panel, rendered from the extension itself.
+      <a href="/screens">All seven screens</a>, including one run in four moments.
     </p>
   </div>
-  <div class="shots shots--2">
+  <div class="shots">
     <figure>
-      <img src="/assets/img/panel-idle.webp" alt="The Brotto panel idle, offering what the open page could be asked to do" loading="lazy">
-      <figcaption><b>Idle.</b> The panel offers what the page in front of you could be asked to do.</figcaption>
+      <img src="/assets/gifs/approval.gif" alt="Brotto's panel stopping on an approval card for a domain it has not visited in this task, with Deny and Approve buttons" loading="lazy" width="400" height="760">
+      <figcaption><b>Approve.</b> A domain it has not visited stops the run until you say yes or no.</figcaption>
     </figure>
     <figure>
-      <img src="/assets/img/panel-settings.webp" alt="Brotto settings: connection, secret key, blocked sites and model provider" loading="lazy">
-      <figcaption><b>Yours.</b> Your model key, your server, and the list of sites Brotto refuses outright.</figcaption>
+      <img src="/assets/gifs/clarify.gif" alt="Brotto's panel asking which time the launch announcement should go out on Tuesday, with a Skip button" loading="lazy" width="400" height="760">
+      <figcaption><b>Ask.</b> When the page has two equally good answers, it puts the question to you.</figcaption>
+    </figure>
+    <figure>
+      <img src="/assets/gifs/login.gif" alt="Brotto's panel stopped on a Google sign-in page, waiting for you to sign in before it continues" loading="lazy" width="400" height="760">
+      <figcaption><b>Sign in.</b> Your cookies stay yours. Brotto hands the wall back to you and picks up after.</figcaption>
     </figure>
   </div>
 </div>
