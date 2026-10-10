@@ -102,9 +102,10 @@ Nothing was sent to us. The transcript lands in `logs/sessions/` beside the rest
 of your files, which is what lets you read a run back, resume one that was
 interrupted, or delete it outright.
 
-Two stops in a fourteen-step run, both on decisions only you could make. That
-is the shape I want by default: the agent is willing, and it is not the one
-holding the authority when it matters.
+Fourteen steps, 377 seconds of the agent working, 41% of the context window
+used — and two stops, both on decisions only you could make. That is the shape
+I want by default: the agent is willing, and it is not the one holding the
+authority when it matters.
 
 I have kept the screens out of this post on purpose. It is one run, and the
 panel showing seven identical-looking cards is better judged in motion than in a
