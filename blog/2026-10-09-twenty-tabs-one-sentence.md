@@ -14,7 +14,7 @@ because that is the only way to reach the inside of a site you are signed in to.
 
 Brotto exists because that afternoon is a sentence.
 
-> *Find my last three unread emails from Priya and summarise them.*
+> *Find the invoice from March, and check whether the refund landed.*
 
 <figure>
   <img src="/assets/img/hero-twenty-tabs.webp" alt="A wireframe of a browser window with twenty unlabelled tabs across the top, grey placeholder blocks for page content below, and one small button outlined in red" loading="lazy">
