@@ -923,16 +923,16 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 }
 
 /* ─── Video ─────────────────────────────────────────────────────────────────
-   A 2px ink rule down the left, same as the code block: the eye gets a spine
-   to follow, and a black letterboxed rectangle on a white page needs
-   something holding it. */
+   An ink rule all the way round, same weight as the code block's spine: the
+   eye gets an edge to follow, and a black letterboxed rectangle on a white
+   page needs something holding it. */
 .demo { margin: 0; }
 .demo video {
   display: block;
   width: 100%;
   height: auto;
   background: var(--ink);
-  border-left: 2px solid var(--rule-ink);
+  border: 2px solid var(--rule-ink);
 }
 .demo figcaption {
   font-size: 13px;
