@@ -457,6 +457,13 @@ npm ci &amp;&amp; npm run build</code></pre>
   <div>
     <ul class="post-list">
       <li>
+        <a href="/blog/2026-10-11-twenty-tabs-one-sentence.html">Twenty tabs, one sentence</a>
+        <span class="post-when">2026-10-11</span>
+        <span class="post-stand">Why cloud browser agents ask for your passwords, and what it
+        looks like to drive the tab you are already signed into. One real run, start to
+        finish.</span>
+      </li>
+      <li>
         <a href="/blog/2026-10-09-what-an-agent-holding-your-cookies-can-do.html">An agent holding your cookies</a>
         <span class="post-when">2026-10-09</span>
         <span class="post-stand">What an agent with your sessions can do as <em>you</em>, the three

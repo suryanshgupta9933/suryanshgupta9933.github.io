@@ -458,6 +458,33 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 }
 .prose tr:last-child td, .page tr:last-child td { border-bottom: 0; }
 
+/* A screenshot inside a post breaks out of the 680px measure. The run images
+   are 1280px wide and mostly panel text: at measure they shrink to half size
+   and stop being readable, which defeats the only reason to put them in. The
+   cap matches the landing page's full-bleed width, and falls back to the
+   viewport on narrow screens, so it needs no breakpoint. */
+.prose figure.wide {
+  margin: 30px 0;
+}
+.prose figure.wide img,
+.prose figure.wide video {
+  display: block;
+  width: min(1120px, calc(100vw - 48px));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+  border: 1px solid var(--rule-2);
+  background: var(--paper-2);
+}
+
+/* The three-card row breaks out for the same reason. It already collapses to
+   a single column below 700px, so the wide cap is safe on narrow screens. */
+.prose .shots {
+  width: min(1120px, calc(100vw - 48px));
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 /* ─── The post list ──────────────────────────────────────────────────────
    Two entries, so a bulleted list reads as filler. Each entry is a full-width
    row between two hairlines that inverts on hover, which is the panel's
