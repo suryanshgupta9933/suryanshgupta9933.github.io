@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Twenty tabs, one sentence
-date: 2026-10-11
+date: 2026-10-09
 description: Every cloud browser agent starts at a sign-in wall, which is why they ask for your passwords. Brotto runs in the tab you are already signed into, so there is nothing to hand over — here is one real task, start to finish.
 ---
 
@@ -16,9 +16,8 @@ Brotto exists because that afternoon is a sentence.
 
 > *Find my last three unread emails from Priya and summarise them.*
 
-<!-- TO FILL: drop the generated hero-twenty-tabs.png into assets/img/pending/ -->
 <figure class="wide">
-  <img src="/assets/img/pending/hero-twenty-tabs.png" alt="A laptop at the end of the day, its screen a soft out-of-focus glow of many open tabs" loading="lazy">
+  <img src="/assets/img/hero-twenty-tabs.webp" alt="A wireframe of a browser window with twenty unlabelled tabs across the top, grey placeholder blocks for page content below, and one small button outlined in red" loading="lazy">
   <figcaption>Twenty tabs, none of them urgent. The work is not hard; it is only yours.</figcaption>
 </figure>
 
@@ -51,9 +50,8 @@ there is nothing to sign in to, and nothing to hand over.
 That is the whole design decision, and most of what follows from it is a
 consequence rather than a feature.
 
-<!-- TO FILL: drop the generated the-tab-you-use.png into assets/img/pending/ -->
 <figure class="wide">
-  <img src="/assets/img/pending/the-tab-you-use.png" alt="One hand resting on a laptop already open to the page it was using, nothing signed-in-to visible" loading="lazy">
+  <img src="/assets/img/the-tab-you-use.webp" alt="A wireframe of a single browser window outlined in green, mostly empty apart from a few thin grey rules and one solid green button, with two further windows receding behind it to the right" loading="lazy">
   <figcaption>The session was there the whole time. Nothing was locked behind a handoff.</figcaption>
 </figure>
 
@@ -137,12 +135,10 @@ An agent running in your signed-in session is not a sandbox. It acts with the
 authority you have, and if it is wrong, it is wrong *as you*. An email it sends
 is not flagged as suspicious, because it genuinely came from you.
 
-I think that deserves more than a reassurance, so I wrote down what actually
-stops it, what does not, and the fact that every guard in the path is ultimately
-a string test — including the ones I am proudest of.
-
-**[An agent holding your cookies](/blog/2026-10-09-what-an-agent-holding-your-cookies-can-do.html)** —
-the next post, and the one to read first if that is your question.
+I think that deserves more than a reassurance, so I went through the path line
+by line: what actually stops it, what does not, and the fact that every guard in
+it is ultimately a string test — including the ones I am proudest of. That
+write-up is the next post, and it is not written yet.
 
 ## What it is not yet
 

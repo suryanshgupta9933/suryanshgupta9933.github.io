@@ -65,8 +65,9 @@ What Brotto does **not** provide, and you should not assume:
   your machine. It is not a real user account, and it is not a credential.
 - No protection against a hostile page. The gates reduce the blast radius; they do not eliminate it.
   We say this plainly because every guard in the action path is a string test, and the model chooses
-  the string. [A post on exactly this](/blog/2026-10-09-what-an-agent-holding-your-cookies-can-do.html)
-  names the eleven patterns and where each one fails.
+  the string. The action path is matched by eleven regular expressions in the orchestrator, plus an
+  editable list of sensitive actions in your own settings; both are string tests, and a sufficiently
+  determined phrasing will land beside them rather than on them.
 
 ## Out of scope
 
