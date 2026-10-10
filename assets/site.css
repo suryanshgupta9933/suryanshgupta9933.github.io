@@ -548,13 +548,14 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
    ───────────────────────────────────────────────────────────────────────── */
 
 /* The panel's status bar. Four cells, hairline rules doing the dividing: the
-   bottom border on the top row, the left border on the right column, and
-   nothing else. The outcome cell carries the state colour, which is the only
-   place on the page where one appears outside a link. */
+   bottom border on the top row, a left border on every cell after the first,
+   and nothing else. The outcome cell carries the state colour, which is the
+   only place on the page where one appears outside a link. */
 .statusbar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--rule-ink);
+  margin-bottom: 28px;
 }
 .statusbar .cell {
   display: flex;
@@ -563,7 +564,7 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   padding: 14px 16px 15px;
 }
 .statusbar .cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule-2); }
-.statusbar .cell:nth-child(even) { border-left: 1px solid var(--rule-2); }
+.statusbar .cell + .cell { border-left: 1px solid var(--rule-2); }
 .statusbar .cell .label { color: var(--ink-2); }
 .statusbar .cell .value {
   font-size: 19px;
@@ -948,6 +949,29 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   max-width: 62ch;
 }
 
+/* ─── The cloud waitlist ─────────────────────────────────────────────────
+   One input and the panel's button, on one baseline. The row carries
+   `.actions` rather than restating it: that class already holds the flex,
+   the 10px gap and the button, so the input only has to match the button's
+   border weight and vertical padding to read as one control instead of two
+   objects sitting near each other. Square, no shadow, same ink — the input
+   is the only form control the site has, so it inherits rather than
+   introduces. */
+.waitlist { margin-top: 26px; }
+.waitlist label { display: block; margin-bottom: 10px; color: var(--ink-3); }
+.waitlist input {
+  flex: 1 1 200px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.4;
+}
+.waitlist input::placeholder { color: var(--ink-3); }
+
 /* The spec table on the landing page. */
 .spec { max-width: none; display: table; }
 .spec td:first-child {
@@ -994,9 +1018,12 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   .prose h2, .page h2 { font-size: 19px; margin-top: 42px; }
 
   /* The status bar is the panel's 2×2 grid and stays 2×2 — the four values
-     are too short to need the width, and two rows read better than one. */
+     are too short to need the width, and two rows read better than one. The
+     four-across rule above borders every cell after the first, which would put
+     a stray divider down the left of the third cell here. */
   .statusbar .cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule-2); }
   .statusbar .cell:nth-child(even) { border-left: 1px solid var(--rule-2); }
+  .statusbar .cell:nth-child(odd) { border-left: 0; }
   .statusbar .cell .value { font-size: 17px; }
 
   /* Every three-up grid collapses. A cell narrower than ~200px puts a

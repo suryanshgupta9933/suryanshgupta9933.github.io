@@ -98,9 +98,9 @@ log.
 
 **It finishes, and the whole thing is on your disk.** Note where the ruleset
 was written: on github.com, by your own session, with your own permissions.
-Nothing was sent to us. The transcript lands in `logs/sessions/` beside the rest
-of your files, which is what lets you read a run back, resume one that was
-interrupted, or delete it outright.
+Nothing was sent to us. The whole run is written to your own machine beside
+everything else you keep, which is what lets you read it back afterwards,
+pick up one that got interrupted, or delete it outright.
 
 Fourteen steps, 377 seconds of the agent working, 41% of the context window
 used — and two stops, both on decisions only you could make. That is the shape

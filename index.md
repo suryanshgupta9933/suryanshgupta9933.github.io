@@ -22,20 +22,23 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
       <a class="btn btn--ghost" href="/screens">Screens</a>
     </div>
     <div class="soon-row">
-      <span class="soon">Chrome Web Store · Under review</span>
-      <span>One click to install as soon as it clears. Until then it is one container and one extension.</span>
+      <span class="soon">Chrome Web Store · Not published yet</span>
+      <span>The listing was rejected on 2026-10-10 for naming model providers
+        in the description. It has been rewritten and resubmitted. Until it
+        clears, it is one container and one extension.</span>
     </div>
   </div>
 
-  <!-- The panel's own status bar, rebuilt in markup with the numbers a real
-       run produced: 14 steps, 41.2% context used, outcome DONE. Text stays
-       text, so it is readable, selectable and sharp on any screen — none of
-       which a screenshot is. The video below it is a showcase, not this run. -->
+  <!-- The panel's own status bar, rebuilt in markup so the values stay text:
+       readable, selectable and sharp on any screen, none of which a screenshot
+       is. The figures are illustrative — the run behind them is written up in
+       full, with its real numbers, in the first post. The video below is a
+       showcase rather than a recording of one session. -->
   <div class="hero-panel">
     <div class="statusbar">
-      <div class="cell"><span class="label">Steps</span><span class="value">14</span></div>
-      <div class="cell"><span class="label">Active</span><span class="value">377.3s</span></div>
-      <div class="cell"><span class="label">Context</span><span class="value">41.2%</span></div>
+      <div class="cell"><span class="label">Steps</span><span class="value">9</span></div>
+      <div class="cell"><span class="label">Active</span><span class="value">212s</span></div>
+      <div class="cell"><span class="label">Context</span><span class="value">33%</span></div>
       <div class="cell outcome" data-state="done">
         <span class="label">Outcome</span><span class="value">Done</span>
       </div>
@@ -293,9 +296,9 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     </p>
     <p>
       Six steps, and they are on their way out — a one-command installer is next,
-      and there is an invite-only hosted relay if you would rather skip all of
-      it. Everything Brotto keeps lands in one Docker volume on
-      your disk.
+      and there is a hosted beta if you would rather skip all of it
+      (<a href="#cloud">below</a>). Everything Brotto keeps lands in one Docker
+      volume on your disk.
     </p>
   </div>
   <div>
@@ -333,6 +336,83 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
 </div>
 
+<!-- The hosted beta gets its own band rather than a paragraph inside the
+     install section. Self-host is the product and stays permanent; the invite
+     path is a small, early, capped thing sitting beside it, and folding it
+     into the install copy is how a beta gets read as the main product. The
+     promise here is an invitation to test and nothing more, because the
+     decision doc carries a written-in kill criterion: if the beta produces
+     no returners and no public writeups, it does not proceed. Copy that
+     promised a permanent hosted service would be a promise we have already
+     agreed in writing not to make. -->
+<div class="split" id="cloud">
+  <div class="claim">
+    <span class="eyebrow label">Or don't run a server</span>
+    <h2>Brotto Cloud, by invitation</h2>
+    <p>
+      We run the orchestrator at <code>agent.brotto.dev</code> and you use the
+      same extension. Install it, enter your email, get a six-digit code by
+      email, and start a task. No container, no <code>.env</code>, no terminal.
+    </p>
+    <p>
+      It is for you if you want to try Brotto without standing up a server. It
+      is not the better version — the one above is, and it stays free and
+      permanent. This is an early beta with a small number of invitees, and it
+      may not become a permanent hosted service.
+    </p>
+  </div>
+  <div>
+    <div class="cardgrid cardgrid--2">
+      <div>
+        <h3>What changes</h3>
+        <p>
+          Only who runs the server. Same extension, same gates, same model
+          providers, same API key you already have.
+        </p>
+      </div>
+      <div>
+        <h3>What it costs</h3>
+        <p>
+          Nothing during the beta. It is capped — a number of tasks a week and
+          a ceiling on what one task may spend, because it is our compute.
+        </p>
+      </div>
+      <div>
+        <h3>What we see</h3>
+        <p>
+          Page observations transit a machine we run, for as long as the task is
+          in flight. That disk is ephemeral: a restart or a deploy erases it.
+        </p>
+      </div>
+      <div>
+        <h3>What you can delete</h3>
+        <p>
+          Every session, from the panel. Self-hosting is the version where the
+          record is yours to keep. <a href="/privacy">Both are in the policy.</a>
+        </p>
+      </div>
+    </div>
+
+    <form class="waitlist" action="mailto:suryanshgupta9933@gmail.com"
+          method="post" enctype="text/plain">
+      <label class="label" for="waitlist-email">Request an invitation</label>
+      <div class="actions waitlist-row">
+        <input id="waitlist-email" name="email" type="email" required
+               autocomplete="email" placeholder="you@example.com"
+               aria-describedby="waitlist-note">
+        <button class="btn" type="submit">Ask for an invite</button>
+      </div>
+      <p class="section-note" id="waitlist-note" style="margin-top: 14px;">
+        This opens your own mail app — there is no form service behind it, no
+        account, and nothing on this page that records who you are. The address
+        is used to send an invitation and nothing else, and one reply unsubscribes.
+        If mail does not open, write to
+        <a href="mailto:suryanshgupta9933@gmail.com">suryanshgupta9933@gmail.com</a>.
+      </p>
+    </form>
+  </div>
+</div>
+
 <div class="split">
   <div class="claim">
     <span class="eyebrow label">Next</span>
@@ -345,11 +425,12 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
   <div class="cardgrid">
     <div>
-      <span class="card-idx label">01 · Soon</span>
+      <span class="card-idx label">01 · In review</span>
       <h3>The store listing clears</h3>
       <p>
-        The extension becomes one click to install. That takes the install from
-        six steps to one, and it needs nothing from us but a review.
+        The extension becomes one click to install, which takes the install from
+        six steps to one. The first submission was rejected for naming model
+        providers in the description; that copy is fixed and back in review.
       </p>
     </div>
     <div>
@@ -357,9 +438,8 @@ npm ci &amp;&amp; npm run build</code></pre>
       <h3>Remove the last step</h3>
       <p>
         A one-command installer for the container — at which point there is
-        nothing left to run yourself. The invite-only relay at
-        <code>agent.brotto.dev</code> already removes the step entirely, for
-        anyone we invite.
+        nothing left to run yourself. The hosted beta removes the step entirely
+        today, for anyone we invite. <a href="#cloud">Ask for an invite.</a>
       </p>
     </div>
     <div>
