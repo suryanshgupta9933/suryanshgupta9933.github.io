@@ -30,9 +30,6 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     </p>
     <div class="soon-row">
       <span class="soon">Chrome Web Store · Not published yet</span>
-      <span>The listing was rejected on 2026-10-10 for naming model providers
-        in the description. It has been rewritten and resubmitted. Until it
-        clears, it is one container and one extension.</span>
     </div>
   </div>
 
@@ -343,39 +340,19 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
 </div>
 
-<!-- The hosted beta lives on its own page (/waitlist) rather than as a band
-     here. Self-host is the product and stays permanent; the invite path is a
-     small, early, capped thing sitting beside it, and the reason it now gets
-     the hero's only button is that the store listing is not published — not
-     because it is the better version, which the page it points at says
-     plainly. The promise there is an invitation to test and nothing more,
-     because the decision doc carries a written-in kill criterion: if the beta
-     produces no returners and no public writeups, it does not proceed. Copy
-     that promised a permanent hosted service would be a promise we have
-     already agreed in writing not to make. -->
-
 <div class="split">
   <div class="claim">
     <span class="eyebrow label">Next</span>
     <h2>Not built yet</h2>
     <p>
-      Ordered by what unblocks the most people. Two of these are the reason a
-      person who doesn't write code cannot use Brotto yet, and removing them is
+      Ordered by what unblocks the most people. One of these is the reason a
+      person who doesn't write code cannot use Brotto yet, and removing it is
       the top priority rather than a someday item.
     </p>
   </div>
   <div class="cardgrid">
     <div>
-      <span class="card-idx label">01 · In review</span>
-      <h3>The store listing clears</h3>
-      <p>
-        The extension becomes one click to install, which takes the install from
-        six steps to one. The first submission was rejected for naming model
-        providers in the description; that copy is fixed and back in review.
-      </p>
-    </div>
-    <div>
-      <span class="card-idx label">02 · Planned</span>
+      <span class="card-idx label">01 · Planned</span>
       <h3>Remove the last step</h3>
       <p>
         A one-command installer for the container — at which point there is
@@ -384,7 +361,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       </p>
     </div>
     <div>
-      <span class="card-idx label">03 · Planned</span>
+      <span class="card-idx label">02 · Planned</span>
       <h3>Canvas surfaces</h3>
       <p>
         Google Sheets genuinely draws to a canvas and is the one place Brotto is
@@ -392,7 +369,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       </p>
     </div>
     <div>
-      <span class="card-idx label">04 · Planned</span>
+      <span class="card-idx label">03 · Planned</span>
       <h3>A published benchmark</h3>
       <p>
         Until it scores real runs, any reliability number in this space is a
@@ -401,7 +378,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       </p>
     </div>
     <div>
-      <span class="card-idx label">05 · Planned</span>
+      <span class="card-idx label">04 · Planned</span>
       <h3>Routines</h3>
       <p>
         Saved, reusable tasks — <em>every weekday, summarise these</em> — and
@@ -409,7 +386,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       </p>
     </div>
     <div>
-      <span class="card-idx label">06 · Not released</span>
+      <span class="card-idx label">05 · Not released</span>
       <h3>Pro</h3>
       <p>
         Multi-tab parallelism, a speed pack, routines and per-run cost caps.

@@ -14,13 +14,6 @@ description: The hosted version of Brotto, by invitation — the same extension 
 
 # Brotto Cloud
 
-<p class="section-note" style="margin-top: -6px;">
-  The same browser agent, with our server running it instead of yours. This is
-  an early beta with a small number of invitees, and it may not become a
-  permanent hosted service — if the people we invite do not want it, we stop
-  and put the effort back into self-hosting.
-</p>
-
 <h2>What it is</h2>
 
 <p>
