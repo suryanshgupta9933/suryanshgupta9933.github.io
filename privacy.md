@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Privacy
-description: What Brotto stores, what transits the server, what reaches disk, and what an idle-page suggestion reads — for both the self-hosted install and the capped, invite-only relay at agent.brotto.dev.
+description: What Brotto stores, what transits the server, what reaches disk, and what an idle-page suggestion reads — on self-host and on the hosted relay.
 ---
 
 # Brotto Privacy Policy
@@ -25,7 +25,8 @@ means the machine you chose to run it on.
 
 There is also a capped, invite-only hosted relay at `agent.brotto.dev`, operated by Brotto on Heroku.
 If you point the extension at it, page observations transit a server we run and are written to a dyno
-disk that is erased on restart or deploy. Retention on the relay is the life of the task.
+disk that is erased on restart or deploy. Retention on the relay is 30 days after a run last moves,
+not the life of the task — see [Retention and deletion](#retention-and-deletion).
 
 That is worth being precise about: whoever operates the machine the orchestrator runs on can read the
 pages the agent reads. On a self-hosted install there is no operator between the agent and your
@@ -38,8 +39,11 @@ agent work on pages you would not paste into a chat window, and self-host rather
 
 ## Summary
 
-Brotto is built so that we collect as little as possible. There is no analytics, no telemetry, no
-advertising, no tracking across sites, and we do not sell or share data with anyone for marketing. On
+Brotto is built so that we collect as little as possible. There is no analytics, no advertising, no
+tracking across sites, and we do not sell or share data with anyone for marketing. The one exception,
+described in full under [What the relay keeps](#what-the-relay-keeps), is a failure log: when a run
+breaks we record a machine-readable reason code and your account id so we can find the bug. It holds
+no page content, no prompts, no task text and no URLs. On
 a self-hosted install we do not operate the server, so we do not receive your data. On the hosted
 relay at `agent.brotto.dev` we do operate it, and choosing that relay means your page observations
 reach us for as long as the task runs; the rest of this policy applies to it unchanged. The data that
@@ -59,13 +63,14 @@ model provider.
 |---|---|---|
 | Model configuration (provider, model name, context window) | `chrome.storage.local` | Until you clear it |
 | **Your model API key** | `chrome.storage.session` | **Memory only.** Cleared when the browser closes. Never written to disk by the extension. |
-| **Your server secret** (`AGENT_SECRET`) | `chrome.storage.local` | Until you clear it. It authorizes reading every transcript on your server, so treat it like a password. |
+| **Your server secret** (`AGENT_SECRET`)**, or, if you signed in to Brotto Cloud, your cloud access token** | `chrome.storage.local` | Until you clear it. On a self-hosted server it authorizes reading every transcript on that server, so treat it like a password. On the relay it is an account token and carries no server-wide access. |
 | An install id — a random identifier generated once, with no relationship to you, your machine, or your network | `chrome.storage.local` | Until you clear it |
 | Your policy (blocked domains, sensitive-action list) | `chrome.storage.local` | Until you clear it |
 | Session ID for the conversation | `chrome.storage.session` | Until the browser closes |
 | The address of the server you are connected to | `chrome.storage.local` | Kept until you change it |
 | The last page URL the agent saw | `chrome.storage.session` | Cleared when the browser closes |
 | A running transcript of the current task — your messages, the cards Brotto is showing you | `chrome.storage.session` | Cleared when the browser closes |
+| **A mirror of your finished runs** — page URLs and titles, what you typed, the agent's replies, kept so history works offline | **IndexedDB** | **Until you delete the session.** This is a copy on your own disk, and it is the broadest one we keep. |
 
 Because the key lives in `chrome.storage.session`, it is not written to disk by Chrome and is gone when
 the browser exits. You will be asked for it again next session.
@@ -83,13 +88,19 @@ When you start a task, the extension sends to the orchestrator:
    accessibility tree of interactive elements (role, accessible name, value, and a stable reference for
    each), and visible page text when the task calls for it.
 
-**Page text is redacted before it is sent.** Before any page text reaches the model, the orchestrator
-removes credentials, API keys, bearer tokens, payment card numbers and government identifiers, replacing
+**Page text is redacted before it is sent.** Before page text reaches the model, the orchestrator
+removes credentials, API keys, bearer tokens and payment card numbers, replacing
 each with `[redacted]`. This happens in code, on your machine, on every task, with no setting to turn it
 off — and on the suggestions path too, which reads a page with no task running and is the easiest place
 for this to be forgotten. It is pattern matching, not a guarantee: it will miss an unfamiliar identifier format, and it will
 occasionally redact an innocuous number that happens to pass a checksum. The agent is told the redaction
 already happened and is instructed not to try to reconstruct a redacted value.
+
+**One limit worth stating plainly.** This is a best-effort pattern match over a fixed list, so an
+unfamiliar identifier format will pass through, and an innocuous number that happens to look like a
+card may be redacted when it is not. It runs on every path by which page text reaches the model,
+including the agent's own page-reading tool on a later step — but treat it as a guard against
+accidents, not as a boundary you can rely on.
 
 **The accessibility tree is not redacted, and this paragraph does not cover it.**
 The list above runs on the page-text channel only. The tree — the roles, labels, values and references
@@ -111,7 +122,7 @@ sentence is not true of us: the key and the observations cross a machine we oper
 the provider, and we describe what that machine keeps below. The observations do not stop at the model
 call on either deployment, though: the server saves the URL, the page title, and a short digest of
 each page to a file on its own disk, and that file is still there after the task ends — on the relay,
-until the dyno restarts. The next section says exactly what is in it.
+for up to 30 days. The next section says exactly what is in it.
 
 ## What the orchestrator writes to disk
 
@@ -152,8 +163,8 @@ share settings. That name is the random install id the extension generated on yo
 name, not your IP address, and not your network. The model-configuration file is named with the install
 id in plain text; the policy file is named with a scrambled version of it. It is not used for
 advertising or analytics — on a self-hosted install the machine holding them is yours, and nothing is
-sent anywhere with it. On the hosted relay that machine is ours, for the life of the task and no
-longer; the files are removed when the dyno cycles, and the install id is a random identifier the
+sent anywhere with it. On the hosted relay that machine is ours, and its records are swept after 30
+days; the install id is a random identifier the
 browser generated, so it does not name you.
 
 **The approved-sites list is a record of where you have let Brotto work.** When you approve a site in
@@ -196,6 +207,11 @@ suggestion, so it comes back with it after you reopen the panel.
 The only third party that receives your page data is **the model provider you selected**. Brotto does
 not share data with analytics providers, advertising networks, data brokers, or social platforms.
 
+**If you use Brotto Cloud, one more third party is involved.** The relay authenticates accounts through
+**Supabase**, which holds your email address and your quota row. Supabase never receives page content,
+your prompts or your model key — it only answers "is this signed in, and how many tasks has this
+account used this week". Everything else stays on the dyno, under our control, for the 30 days above.
+
 The model providers we support — Anthropic, OpenAI, MiniMax, Gemini, OpenRouter, DeepSeek and Groq —
 each have their own privacy policy and terms governing what they receive and how long they keep it.
 Those terms are between you and them, and we do not control them. Your orchestrator is also a party to
@@ -207,6 +223,21 @@ page data rather than only to the relay's traffic. Nothing else changes: the pro
 what it would have received on a self-hosted install, Brotto still runs no analytics, and no other
 company is given a copy.
 
+## What the relay keeps
+
+On the hosted relay at `agent.brotto.dev` only, and only for cloud accounts, we keep a **failure log**.
+When a run ends in an error we write one row: your account id, a machine-readable reason code, a
+timestamp, and the app version that produced it. It exists so that when someone reports "it just
+stopped", we can tell which of a hundred possible failures they hit instead of guessing.
+
+What it does **not** contain is the point. No page content, no accessibility tree, no prompt text, no
+task titles, no URLs, no model responses. The row is built from a fixed set of fields and the code
+raises rather than record if it is handed anything it does not recognise, so a new field cannot be
+added to it by accident. It is not used to measure usage, rank accounts, or decide who to invite. We
+would delete this whole section if the product ever stops breaking.
+
+Nothing here applies to a self-hosted install. That disk is yours, and there is no failure log.
+
 ## Retention and deletion
 
 Nothing expires on a timer unless you ask it to. **Deletion is entirely yours, and it is immediate** —
@@ -214,7 +245,8 @@ on a self-hosted install:
 
 - **Session records** — the audit file and the scratchpad, described above — are written to disk and
   stay there until you remove them. Nothing expires on a schedule unless you ask for it: the server has
-  a `BROTTO_RETENTION_DAYS` setting that will age sessions out, and it is **off by default**.
+  a `BROTTO_RETENTION_DAYS` setting that will age sessions out, and it is **off by default**. (The
+  hosted relay is the exception — it defaults to 30 days, because that disk is ours.)
   - **In the panel:** each conversation in **Session history** has a delete button, and there is a
     **Delete all** above the list. Both ask you to confirm first — the question names the conversation
     by its own first message, or names how many are about to go. There is no undo.
@@ -236,11 +268,12 @@ on a self-hosted install:
   operate, for the duration of the task.
 
 **The two deployments differ in who has to be trusted, not in what is written.** On the relay the disk
-is ours and it is ephemeral: a dyno restart, a deploy or a crash erases every session on it without
-being asked, so a run in flight when that happens is lost rather than stored. That is an upper bound on
-retention as much as a failure, but it is not a guarantee you control, and the panel's **Delete** and
-**Delete all** are the reliable path on both deployments. If you want a record that survives because
-you chose it, self-host.
+is ours, and it expires on its own: a sweep runs hourly and deletes any session record untouched for
+30 days, and a dyno restart or deploy clears the disk outright on top of that. So a relay record has a
+ceiling of about 30 days rather than none — it is still the shortest-lived copy anywhere, but it is a
+timetable rather than a certainty. On a self-hosted install there is no timer at all unless you set
+`BROTTO_RETENTION_DAYS`. Either way the panel's **Delete** and **Delete all** are immediate and are
+the path you control. If you want a record that survives because you chose it, self-host.
 
 ## Security
 
@@ -275,8 +308,9 @@ so in its startup log, so if you expose the port to a network, set the secret fi
 One endpoint is deliberately left open on a self-hosted install, and it is not a session one: `POST
 /run` launches a headless browser with no authentication. Do not put it on a public interface. It is
 refused outright on the hosted relay, which runs in production mode. `/health` is also
-unauthenticated because the container's own healthcheck needs it; it reports that the service is up
-and which model is resolved, and nothing else.
+unauthenticated because the container's own healthcheck needs it; it reports that the service is up,
+which model is resolved, the version, and which authentication mode is in force. It names a mode and
+never a secret.
 
 No system is perfect. A browser agent operating with your session has the same access you do, and a
 compromise of the extension or the server would have the same effect. Do not use it on accounts where

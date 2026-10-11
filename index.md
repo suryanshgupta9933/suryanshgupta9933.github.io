@@ -2,14 +2,17 @@
 layout: default
 title: Brotto — an AI browser agent that runs where you're already signed in
 wide: true
-description: Brotto is a self-hosted AI browser agent for Chrome. It works in the tab you are already signed in to, asks before anything you cannot undo, and writes down exactly what it did. Apache 2.0, bring your own key.
+description: Brotto is a self-hosted AI browser agent for Chrome. It works in the tab you are already signed in to, and asks before anything you cannot undo.
 ---
 
 <div class="hero">
   <div>
     <img class="hero-mark" src="/assets/logo.svg" alt="">
-    <h1 class="hero-title">Brotto</h1>
-    <p class="hero-line">It asks before it does anything you can't undo — and you can see exactly what it did.</p>
+    <!-- The wordmark is the design, not the heading. Every other page's <h1>
+         describes the page; this one should too, so the name stays a wordmark
+         and the sentence that actually says what this is becomes the h1. -->
+    <div class="hero-title" aria-hidden="true">Brotto</div>
+    <h1 class="hero-line">It asks before it does anything you can't undo — and you can see exactly what it did.</h1>
     <p class="hero-sub">
       Brotto is a Chrome extension and an AI agent that carries out a task in
       the browser tab you are already signed in to. Your inbox, your bank, your
@@ -47,8 +50,13 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
         <span class="label">Outcome</span><span class="value">Done</span>
       </div>
     </div>
+    <!-- The disclosure is visible, not a comment. These four numbers are a
+         representative run, not a measurement of anything, and a reader
+         deciding whether to trust the product is owed that in the same type
+         as the numbers rather than in a comment nobody reads. -->
+    <p class="statusbar-note label">A representative run, not a benchmark</p>
     <figure class="demo">
-      <video controls playsinline preload="metadata" poster="/assets/poster.jpg">
+      <video controls playsinline preload="metadata" width="1280" height="720" poster="/assets/poster.jpg">
         <source src="/assets/brag.mp4" type="video/mp4">
         Your browser cannot play this video. <a href="/assets/brag.mp4">Download it instead.</a>
       </video>
@@ -330,7 +338,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
       <tr><td>Cost</td><td>Nothing, beyond the model calls you make</td></tr>
       <tr><td>Your data</td><td>Audit files on your disk. The server transits page text and stores only a short digest of each page.</td></tr>
-      <tr><td>Providers</td><td>Eight, or any OpenAI-compatible endpoint you run</td></tr>
+      <tr><td>Providers</td><td>Eight — Anthropic, OpenAI, Gemini, MiniMax, OpenRouter, DeepSeek, Groq, or any OpenAI-compatible endpoint you run</td></tr>
       <tr><td>Chrome only</td><td><code>chrome.debugger</code> has no Firefox equivalent</td></tr>
     </table>
     <p class="section-note" style="margin-top: 22px;">

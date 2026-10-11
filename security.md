@@ -32,24 +32,30 @@ Brotto is unusual in a way that changes what "safe" means, so it is worth being 
 A malicious page, a prompt injection in page content, or a bug in Brotto can all cause actions to be
 taken as you. Treat a Brotto run the way you would treat handing your logged-in browser to a contractor.
 
+Two things this product does **not** claim: that it stops a determined prompt injection, and that
+redaction is a security boundary. Neither is true. Both are described as the limits they are below,
+rather than left for you to discover.
+
 What Brotto does provide:
 
 - **Gates that always ask.** An approval card before a sensitive action (send email, payment, delete,
   publish, change password, revoke access, and similar), before the first action on a given domain,
-  and on patterns marked critical. Two lists, not one: the sensitive-action list is yours to extend
-  in the panel's settings, and the pattern list is fixed in code. Neither can be turned off, and
+  and on patterns marked critical. Two lists, not one: the sensitive-action list is a file you can
+  extend by hand, and the pattern list is fixed in code. Neither can be turned off, and
   nothing can be installed that approves on your behalf.
 - **Your domain blocklist, and only yours.** There is no server-side floor policy, by design.
 - **Prompt-injection *resistance*, not defence.** The system prompt establishes a trust hierarchy
   (system > user task > page content) and instructs the model to treat page content as data. That is
   an instruction to a model, not an enforced boundary — it changes behaviour on most runs and does not
   stop a determined attacker. The gates below are the load-bearing control, and they are string tests.
-- **Secret redaction** — credentials, API keys, bearer tokens, private keys, payment card numbers and
-  government identifiers are stripped from page text before it reaches your model provider, and typed
+- **Secret redaction** — credentials, API keys, bearer tokens, private keys and payment card numbers
+  are stripped from page text before it reaches your model provider, and typed
   values in credential fields are kept out of the audit record. Pattern matching, so it can miss a
-  novel format and can over-redact; both directions are the accepted trade. **This runs on the
-  page-text channel only — the accessibility tree is not redacted**, and that is the channel the model
-  mostly reads.
+  novel format and can over-redact; both directions are the accepted trade. It runs on every path by
+  which page text reaches the model, including the agent's own page-reading tool on a later step.
+  **The limit that matters is the channel, not the code:** this covers page text only — the
+  accessibility tree is not redacted, and that is the channel the model mostly reads. Treat redaction
+  as protection against accidents, not as a boundary you can rely on.
 - **No remote code execution.** The extension never `eval`s, never fetches a script, and dispatches only
   a fixed set of typed actions. See
   [the extension's README](https://github.com/suryanshgupta9933/Brotto/blob/main/clients/brotto-extension/README.md#what-this-extension-does-not-do).
@@ -59,8 +65,9 @@ What Brotto does **not** provide, and you should not assume:
 - **Authentication is on only if you set a secret.** The orchestrator requires `AGENT_SECRET` on every
   route the extension calls, including the WebSocket. With no secret set it logs a warning and serves
   **open** — anyone who can reach it can drive a browser. Do not expose an unconfigured server to a
-  network you do not control. (The hosted beta at `agent.brotto.dev` has it set; if you are running
-  your own, this is the line to check.)
+  network you do not control. (The hosted beta at `agent.brotto.dev` runs with no shared secret and
+  authenticates each account individually instead; if you are running your own, this is the line to
+  check.)
 - No isolation between concurrent users. Identity is a random per-install id the extension generates on
   your machine. It is not a real user account, and it is not a credential.
 - No protection against a hostile page. The gates reduce the blast radius; they do not eliminate it.

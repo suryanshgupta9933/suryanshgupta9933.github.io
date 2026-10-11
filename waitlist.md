@@ -1,15 +1,19 @@
 ---
 layout: default
 title: Brotto Cloud
-description: The hosted version of Brotto, by invitation — the same extension with someone else's server running it. Free during the beta, capped, and honest about what we see.
+description: The hosted version of Brotto, by invitation — the same extension with someone else's server running it. Free during the beta, capped, honest.
 ---
 
 <!-- THE ONE PLACE THE ADDRESS LIVES.
      `waitlist_email` below is the single source for the form action, the
-     visible fallback address and the mailto link. Change it here and all three
-     move together. It is a mailto: on purpose — no form service, no third
-     party holding every address that lands on this page — and it degrades to
-     a plain email if a browser has no mail handler. -->
+     visible fallback address, the mailto link and the two messages the script
+     prints. Change it here and all of them move together.
+
+     The form's action is still a mailto: on purpose. It is what runs when
+     JavaScript is off, which is the only path that works without us: no form
+     service, no third party holding every address that lands on this page.
+     With JavaScript on, the script below intercepts the submit and posts to our
+     own relay instead — our server, no one else's. -->
 {% assign waitlist_email = "suryanshgupta9933@gmail.com" %}
 
 # Brotto Cloud
@@ -61,26 +65,31 @@ description: The hosted version of Brotto, by invitation — the same extension 
 
 <div class="cardgrid cardgrid--2" style="margin-top: 26px;">
   <div>
-    <h3>Only while a task runs</h3>
+    <h3>Thirty days, then gone</h3>
     <p>
-      The relay holds observations for the life of the task and no longer. That
-      disk is ephemeral: a restart or a deploy erases it.
+      Each run's record is deleted automatically 30 days after it last moved.
+      That is its prompts, its actions and its timings — never the page text,
+      which is not written down at all. A restart or a deploy clears the disk
+      as well.
     </p>
   </div>
   <div>
     <h3>Stripped before it goes further</h3>
     <p>
-      Credentials, API keys, bearer tokens, card numbers and government
-      identifiers are redacted in code on every task, before anything reaches
-      your model provider. No setting turns it off.
+      Credentials, API keys, bearer tokens and card numbers are redacted in code
+      before page text reaches your model provider. It is a best-effort pattern
+      match rather than a guarantee, and
+      <a href="/privacy">the policy</a> says exactly what it covers.
     </p>
   </div>
   <div>
-    <h3>No analytics, no third party</h3>
+    <h3>Nothing sold, nothing profiled</h3>
     <p>
-      No telemetry, no advertising, nothing sold or shared. You bring your own
-      model key, so your model provider sees your page — as it does on any
-      deployment.
+      No analytics, no advertising, nothing sold or shared. The one thing we
+      keep is a failure log — when a run breaks, the reason code and your
+      account id, so we can find the bug and fix it. No page content, no
+      prompts, no task text, no URLs. You bring your own model key, so your
+      model provider sees your page, as it does on any deployment.
     </p>
   </div>
   <div>
@@ -99,8 +108,9 @@ description: The hosted version of Brotto, by invitation — the same extension 
 
 <h2>Ask for an invitation</h2>
 
-<form class="waitlist" action="mailto:{{ waitlist_email }}" method="post"
-      enctype="text/plain">
+<form class="waitlist" id="waitlist-form" method="post"
+      action="mailto:{{ waitlist_email }}" enctype="text/plain"
+      data-endpoint="https://agent.brotto.dev/v1/waitlist">
   <label class="label" for="waitlist-email">Your email</label>
   <div class="actions waitlist-row">
     <input id="waitlist-email" name="email" type="email" required
@@ -109,13 +119,91 @@ description: The hosted version of Brotto, by invitation — the same extension 
     <button class="btn" type="submit">Ask for an invite</button>
   </div>
   <p class="section-note" id="waitlist-note" style="margin-top: 14px;">
-    This opens your own mail app — there is no form service behind it, no
-    account, and nothing on this page that records who you are. The address is
-    used to send an invitation and nothing else, and one reply unsubscribes.
-    If mail does not open, write to
+    This sends the address to <code>agent.brotto.dev</code>, our own server,
+    over an encrypted connection — no form service, no account, no third party
+    in between, and nothing on this page that records who you are. It is used
+    to send an invitation and nothing else, and one reply unsubscribes. If your
+    browser has JavaScript off, the button opens your own mail app instead and
+    nothing is sent to us; if that does not open, write to
     <a href="mailto:{{ waitlist_email }}">{{ waitlist_email }}</a>.
   </p>
+  <p class="section-note" id="waitlist-msg" role="status" aria-live="polite"
+     style="margin-top: 14px; display: none;"></p>
 </form>
+
+<script>
+// Progressive enhancement over the mailto: form above. The form still submits
+// to the mail client when this does not run or when fetch is unavailable, so
+// the page is never a dead button; this just makes the address arrive without
+// a person having to compose it.
+//
+// Every branch says something. A form that fails silently is worse than no
+// form, because the visitor leaves believing they are on a list they are not.
+(function () {
+  var form = document.getElementById('waitlist-form');
+  if (!form || !window.fetch) return;
+  var input = document.getElementById('waitlist-email');
+  var button = form.querySelector('button[type="submit"]');
+  var msg = document.getElementById('waitlist-msg');
+  var ADDRESS = '{{ waitlist_email }}';
+
+  // One line per status the relay can return. 404 is deliberately not folded
+  // into the generic case: it is not the visitor's fault and not a transient
+  // fault, it means this page is pointed at a server with no waitlist
+  // configured, and the owner needs to see that rather than see "try later".
+  var REPLIES = {
+    400: 'That does not look like a valid email address — check it and try again.',
+    429: 'Too many attempts from this browser — wait a few minutes and try again.',
+    502: 'We could not write your address to the list, so nothing was sent. Try again in a little while.',
+    404: 'The invite list is not switched on on our server, so nothing was sent. Write to ' + ADDRESS + ' and we will add you by hand.'
+  };
+
+  function say(text, colour) {
+    msg.textContent = text;
+    msg.style.color = colour;
+    msg.style.display = 'block';
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var email = input.value.trim();
+    if (!email) return;
+
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    msg.style.display = 'none';
+
+    fetch(form.dataset.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).then(function (res) {
+      // A proxy or a crash can answer with HTML, so the body is not trusted
+      // to be JSON; the status line is what decides the message.
+      return res.json().catch(function () { return {}; }).then(function (body) {
+        return { status: res.status, ok: res.ok, body: body };
+      });
+    }).then(function (result) {
+      if (result.ok && result.body.ok === true) {
+        say('That is you on the list. We will email you when there is an invite.', 'var(--ok)');
+        button.disabled = true;
+        button.textContent = 'On the list';
+        return;
+      }
+      var known = REPLIES[result.status];
+      say(known || 'That did not go through, so nothing was sent. Try again, or write to ' + ADDRESS + '.',
+          'var(--bad)');
+      button.disabled = false;
+      button.textContent = 'Ask for an invite';
+    }).catch(function () {
+      say('That never reached us, so nothing was sent. Check your connection and try again, or write to ' + ADDRESS + '.',
+          'var(--bad)');
+      button.disabled = false;
+      button.textContent = 'Ask for an invite';
+    });
+  });
+})();
+</script>
 
 <h2>If you would rather just run it</h2>
 
