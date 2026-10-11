@@ -16,17 +16,17 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
       admin panel. Not a cloud browser you have never logged into, and not a
       screenshot of a page it cannot read.
     </p>
+    <!-- One button, and it is the waitlist. The store listing is not published,
+         so "get Brotto" cannot honestly mean "install it" to anybody who is
+         not already running the repository; the waitlist is the one next step a
+         stranger can actually take. Self-host stays reachable one line below,
+         quieter because it is the fuller option, not the lesser one. -->
     <div class="actions">
-      <a class="btn" href="#try">Get Brotto</a>
-      <a class="btn btn--ghost" href="#what">See what it does</a>
-      <a class="btn btn--ghost" href="/screens">Screens</a>
+      <a class="btn" href="/waitlist">Join the waitlist</a>
     </div>
-    <div class="soon-row">
-      <span class="soon">Chrome Web Store · Not published yet</span>
-      <span>The listing was rejected on 2026-10-10 for naming model providers
-        in the description. It has been rewritten and resubmitted. Until it
-        clears, it is one container and one extension.</span>
-    </div>
+    <p class="section-note" style="margin: 22px 0 0;">
+      Or <a href="/#try">run it yourself</a> — free, and always will be.
+    </p>
   </div>
 
   <!-- The panel's own status bar, rebuilt in markup so the values stay text:
@@ -297,8 +297,8 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     <p>
       Six steps, and they are on their way out — a one-command installer is next,
       and there is a hosted beta if you would rather skip all of it
-      (<a href="#cloud">below</a>). Everything Brotto keeps lands in one Docker
-      volume on your disk.
+      (<a href="/waitlist">Brotto Cloud</a>). Everything Brotto keeps lands in
+      one Docker volume on your disk.
     </p>
   </div>
   <div>
@@ -336,82 +336,16 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
 </div>
 
-<!-- The hosted beta gets its own band rather than a paragraph inside the
-     install section. Self-host is the product and stays permanent; the invite
-     path is a small, early, capped thing sitting beside it, and folding it
-     into the install copy is how a beta gets read as the main product. The
-     promise here is an invitation to test and nothing more, because the
-     decision doc carries a written-in kill criterion: if the beta produces
-     no returners and no public writeups, it does not proceed. Copy that
-     promised a permanent hosted service would be a promise we have already
-     agreed in writing not to make. -->
-<div class="split" id="cloud">
-  <div class="claim">
-    <span class="eyebrow label">Or don't run a server</span>
-    <h2>Brotto Cloud, by invitation</h2>
-    <p>
-      We run the orchestrator at <code>agent.brotto.dev</code> and you use the
-      same extension. Install it, enter your email, get a six-digit code by
-      email, and start a task. No container, no <code>.env</code>, no terminal.
-    </p>
-    <p>
-      It is for you if you want to try Brotto without standing up a server. It
-      is not the better version — the one above is, and it stays free and
-      permanent. This is an early beta with a small number of invitees, and it
-      may not become a permanent hosted service.
-    </p>
-  </div>
-  <div>
-    <div class="cardgrid cardgrid--2">
-      <div>
-        <h3>What changes</h3>
-        <p>
-          Only who runs the server. Same extension, same gates, same model
-          providers, same API key you already have.
-        </p>
-      </div>
-      <div>
-        <h3>What it costs</h3>
-        <p>
-          Nothing during the beta. It is capped — a number of tasks a week and
-          a ceiling on what one task may spend, because it is our compute.
-        </p>
-      </div>
-      <div>
-        <h3>What we see</h3>
-        <p>
-          Page observations transit a machine we run, for as long as the task is
-          in flight. That disk is ephemeral: a restart or a deploy erases it.
-        </p>
-      </div>
-      <div>
-        <h3>What you can delete</h3>
-        <p>
-          Every session, from the panel. Self-hosting is the version where the
-          record is yours to keep. <a href="/privacy">Both are in the policy.</a>
-        </p>
-      </div>
-    </div>
-
-    <form class="waitlist" action="mailto:suryanshgupta9933@gmail.com"
-          method="post" enctype="text/plain">
-      <label class="label" for="waitlist-email">Request an invitation</label>
-      <div class="actions waitlist-row">
-        <input id="waitlist-email" name="email" type="email" required
-               autocomplete="email" placeholder="you@example.com"
-               aria-describedby="waitlist-note">
-        <button class="btn" type="submit">Ask for an invite</button>
-      </div>
-      <p class="section-note" id="waitlist-note" style="margin-top: 14px;">
-        This opens your own mail app — there is no form service behind it, no
-        account, and nothing on this page that records who you are. The address
-        is used to send an invitation and nothing else, and one reply unsubscribes.
-        If mail does not open, write to
-        <a href="mailto:suryanshgupta9933@gmail.com">suryanshgupta9933@gmail.com</a>.
-      </p>
-    </form>
-  </div>
-</div>
+<!-- The hosted beta lives on its own page (/waitlist) rather than as a band
+     here. Self-host is the product and stays permanent; the invite path is a
+     small, early, capped thing sitting beside it, and the reason it now gets
+     the hero's only button is that the store listing is not published — not
+     because it is the better version, which the page it points at says
+     plainly. The promise there is an invitation to test and nothing more,
+     because the decision doc carries a written-in kill criterion: if the beta
+     produces no returners and no public writeups, it does not proceed. Copy
+     that promised a permanent hosted service would be a promise we have
+     already agreed in writing not to make. -->
 
 <div class="split">
   <div class="claim">
@@ -425,12 +359,11 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
   <div class="cardgrid">
     <div>
-      <span class="card-idx label">01 · In review</span>
-      <h3>The store listing clears</h3>
+      <span class="card-idx label">01 · Planned</span>
+      <h3>One-click install</h3>
       <p>
-        The extension becomes one click to install, which takes the install from
-        six steps to one. The first submission was rejected for naming model
-        providers in the description; that copy is fixed and back in review.
+        The extension installs from the Chrome Web Store in a single click,
+        which takes the install from six steps to one.
       </p>
     </div>
     <div>
@@ -438,8 +371,8 @@ npm ci &amp;&amp; npm run build</code></pre>
       <h3>Remove the last step</h3>
       <p>
         A one-command installer for the container — at which point there is
-        nothing left to run yourself. The hosted beta removes the step entirely
-        today, for anyone we invite. <a href="#cloud">Ask for an invite.</a>
+        nothing left to run yourself. <a href="/waitlist">Brotto Cloud</a>
+        removes the step entirely, for anyone we invite.
       </p>
     </div>
     <div>
@@ -493,7 +426,7 @@ npm ci &amp;&amp; npm run build</code></pre>
       <code>agent.brotto.dev</code>, which we operate. On that one there is an
       operator: page observations transit a machine we run. Self-hosting stays
       free and permanent. <a href="/privacy">Both deployments are covered in the
-      policy.</a>
+      policy.</a> The invite path is <a href="/waitlist">Brotto Cloud</a>.
     </p>
   </div>
   <div>
