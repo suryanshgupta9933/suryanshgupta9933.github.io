@@ -18,15 +18,15 @@ description: Every screen in the Brotto panel, and one real run from the first s
 
 <div class="shots">
   <figure>
-    <img src="/assets/img/panel-idle.webp" alt="The Brotto panel idle, with suggestions" loading="lazy">
+    <img src="/assets/img/panel-idle.webp" alt="The Brotto panel idle, with suggestions" loading="lazy" width="918" height="2032">
     <figcaption><b>Idle.</b> The panel offers what the page in front of you could be asked to do.</figcaption>
   </figure>
   <figure>
-    <img src="/assets/img/panel-session-history.webp" alt="The session history list" loading="lazy">
+    <img src="/assets/img/panel-session-history.webp" alt="The session history list" loading="lazy" width="918" height="2032">
     <figcaption><b>History.</b> Every run, on your own disk, yours to delete.</figcaption>
   </figure>
   <figure>
-    <img src="/assets/img/panel-settings.webp" alt="Brotto's settings: bring your own model key, and the sites it refuses" loading="lazy">
+    <img src="/assets/img/panel-settings.webp" alt="Brotto's settings: bring your own model key, and the sites it refuses" loading="lazy" width="918" height="2032">
     <figcaption><b>Yours.</b> Your model key, your server, and the list of sites Brotto refuses outright.</figcaption>
   </figure>
 </div>
@@ -47,7 +47,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
       There is no form and no workflow to learn. The panel is a chat box, and
       whatever you can describe is the whole interface.
     </p>
-    <img src="/assets/img/run-1-the-prompt.webp" alt="Brotto's panel with the task typed out: go to GitHub, find the Brotto repository, add a branch protection ruleset to main, and open a pull request for it" loading="lazy">
+    <img src="/assets/img/run-1-the-prompt.webp" alt="Brotto's panel with the task typed out: go to GitHub, find the Brotto repository, add a branch protection ruleset to main, and open a pull request for it" loading="lazy" width="1280" height="821">
   </div>
 </div>
 
@@ -61,7 +61,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
       for the one verb — and a page Brotto has never seen cannot be pre-approved
       by anything but you.
     </p>
-    <img src="/assets/img/run-2-before-it-navigates.webp" alt="Brotto's panel showing a first-navigation approval card for github.com, with Allow and Deny buttons" loading="lazy">
+    <img src="/assets/img/run-2-before-it-navigates.webp" alt="Brotto's panel showing a first-navigation approval card for github.com, with Allow and Deny buttons" loading="lazy" width="1280" height="821">
   </div>
 </div>
 
@@ -75,7 +75,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
       question and waits. This is the same card you would get for a sign-in it
       cannot pass.
     </p>
-    <img src="/assets/img/run-3-it-asks-when-unsure.webp" alt="Brotto's panel stopping to clarify that the repository has two ways to add branch protection, with Skip and Say options" loading="lazy">
+    <img src="/assets/img/run-3-it-asks-when-unsure.webp" alt="Brotto's panel stopping to clarify that the repository has two ways to add branch protection, with Skip and Say options" loading="lazy" width="1280" height="821">
   </div>
 </div>
 
@@ -89,7 +89,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
       transcript lands in <code>logs/sessions/</code> beside the rest of your
       files.
     </p>
-    <img src="/assets/img/run-4-the-ruleset-it-wrote.webp" alt="Brotto reporting DONE: it created a classic branch protection ruleset on the main branch of the Brotto repository, with targets, enforcement status, required checks and force-push settings" loading="lazy">
+    <img src="/assets/img/run-4-the-ruleset-it-wrote.webp" alt="Brotto reporting DONE: it created a classic branch protection ruleset on the main branch of the Brotto repository, with targets, enforcement status, required checks and force-push settings" loading="lazy" width="1280" height="821">
   </div>
 </div>
 
@@ -108,7 +108,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
   </div>
   <div class="hero-panel">
     <figure class="demo">
-      <video controls playsinline preload="metadata" poster="/assets/poster.jpg">
+      <video controls playsinline preload="metadata" width="1280" height="720" poster="/assets/poster.jpg">
         <source src="/assets/brag.mp4" type="video/mp4">
         Your browser cannot play this video. <a href="/assets/brag.mp4">Download it instead.</a>
       </video>

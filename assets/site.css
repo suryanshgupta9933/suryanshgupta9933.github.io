@@ -104,6 +104,20 @@ body {
   z-index: 999;
   pointer-events: none;
 }
+/* Off-screen until focused, then a real target in the top-left. The nav has
+   seven focus stops before <main>, so without this a keyboard user crosses
+   all of them on every single page. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  font-size: 14px;
+}
+.skip:focus { left: 8px; top: 8px; }
 .grain::before {
   content: '';
   position: absolute;
@@ -237,8 +251,8 @@ footer a:hover { color: var(--ink); border-bottom-color: var(--ink); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   align-self: center;
   color: var(--ink-3);
   border-bottom: 0 !important;
@@ -318,6 +332,9 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
    disagree about what the thing is. */
 .hero-line {
   font-size: 20px;
+  /* Now an <h1> rather than a <p>, so the weight has to be said back or the
+     sentence sets bold and changes the design it was borrowed from. */
+  font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -555,7 +572,13 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--rule-ink);
-  margin-bottom: 28px;
+  margin-bottom: 10px;
+}
+/* Sits under the numbers it qualifies, at the label size so it reads as an
+   annotation on them rather than as a paragraph about something else. */
+.statusbar-note {
+  margin: 0 0 22px;
+  color: var(--ink-3);
 }
 .statusbar .cell {
   display: flex;
@@ -1047,8 +1070,14 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
      most of these visits happen. The links are all still one tap away in the
      footer, which is where a phone user already scrolls to look. */
   .nav-link { display: none; }
-  .nav-cta { padding: 5px 10px; }
+  /* WCAG 2.5.8 wants 24x24 CSS px minimum. At 5px/10px padding this lands at
+     about 22px, which is a miss on the one control the whole visit is for. */
+  .nav-cta { padding: 9px 12px; min-height: 24px; }
   .footer-note { margin-left: 0; width: 100%; }
+  /* Footer links are the only way to reach the hidden nav links at this
+     width, so they get the same 24px floor. */
+  footer a { display: inline-block; padding: 4px 0; min-height: 24px; }
+  .footer-gh { min-width: 24px; min-height: 24px; }
 
   .spec { display: block; overflow-x: auto; }
   .spec td:first-child { width: auto; }

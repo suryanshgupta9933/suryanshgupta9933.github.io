@@ -2,7 +2,7 @@
 layout: default
 title: Twenty tabs, one sentence
 date: 2026-10-09
-description: Every cloud browser agent starts at a sign-in wall, which is why they ask for your passwords. Brotto runs in the tab you are already signed into, so there is nothing to hand over — here is one real task, start to finish.
+description: Cloud browser agents start at a sign-in wall, which is why they ask for your passwords. Brotto runs in the tab you are already signed into.
 ---
 
 There is a particular kind of afternoon. You have twenty tabs open and a thing
@@ -17,7 +17,7 @@ Brotto exists because that afternoon is a sentence.
 > *Find the invoice from March, and check whether the refund landed.*
 
 <figure>
-  <img src="/assets/img/hero-twenty-tabs.webp" alt="A wireframe of a browser window with twenty unlabelled tabs across the top, grey placeholder blocks for page content below, and one small button outlined in red" loading="lazy">
+  <img src="/assets/img/hero-twenty-tabs.webp" alt="A wireframe of a browser window with twenty unlabelled tabs across the top, grey placeholder blocks for page content below, and one small button outlined in red" loading="lazy" width="1800" height="1005">
   <figcaption>Twenty tabs, none of them urgent. The work is not hard; it is only yours.</figcaption>
 </figure>
 
@@ -28,7 +28,7 @@ and it opens the page. And then it hits the wall — because a browser nobody ha
 ever used has no cookies, no reputation, and no way past the front door.
 
 <figure>
-  <img src="/assets/diagrams/the-sign-in-wall.svg" alt="Two paths to the same inbox. A browser in a data centre arrives with a fresh profile, meets a sign-in wall on every site, and so ends up asking for your password and holding on to it. The tab you are already signed into has no wall, and nothing to hand over." loading="lazy">
+  <img src="/assets/diagrams/the-sign-in-wall.svg" width="900" height="410" alt="Two paths to the same inbox. A browser in a data centre arrives with a fresh profile, meets a sign-in wall on every site, and so ends up asking for your password and holding on to it. The tab you are already signed into has no wall, and nothing to hand over." loading="lazy">
 </figure>
 
 Both halves of that problem — no session, and no reputation — have the same fix
@@ -51,7 +51,7 @@ That is the whole design decision, and most of what follows from it is a
 consequence rather than a feature.
 
 <figure>
-  <img src="/assets/img/the-tab-you-use.webp" alt="A wireframe of a single browser window outlined in green, mostly empty apart from a few thin grey rules and one solid green button, with two further windows receding behind it to the right" loading="lazy">
+  <img src="/assets/img/the-tab-you-use.webp" alt="A wireframe of a single browser window outlined in green, mostly empty apart from a few thin grey rules and one solid green button, with two further windows receding behind it to the right" loading="lazy" width="1800" height="1005">
   <figcaption>The session was there the whole time. Nothing was locked behind a handoff.</figcaption>
 </figure>
 
@@ -65,7 +65,7 @@ the **accessibility tree** — the roles, labels, values and references that a
 screen reader already navigates by.
 
 <figure>
-  <img src="/assets/diagrams/what-it-reads.svg" alt="One control read two ways. A vision model sees the page as unlabelled rectangles and has to guess what each one is. Brotto sees what the page publishes: role, name, value, and a reference it can act on." loading="lazy">
+  <img src="/assets/diagrams/what-it-reads.svg" width="900" height="386" alt="One control read two ways. A vision model sees the page as unlabelled rectangles and has to guess what each one is. Brotto sees what the page publishes: role, name, value, and a reference it can act on." loading="lazy">
 </figure>
 
 A button is a button because the page says it is one, not because something
