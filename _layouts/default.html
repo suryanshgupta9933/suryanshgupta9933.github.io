@@ -13,8 +13,8 @@
     {{ page.description | default: page.excerpt | default: page.title | strip_html | strip_newlines | truncate: 200 }}
   {%- endcapture -%}
 
-  <title>{{ page_title | strip }}</title>
-  <meta name="description" content="{{ page_description }}">
+  <title>{{ page_title | strip | escape }}</title>
+  <meta name="description" content="{{ page_description | escape }}">
   <!-- The host is written out rather than built from site.url: this repo has
        no _config.yml, so `absolute_url` has nothing to prepend. One hardcoded
        domain beats a config file that exists only to hold it. It is the CNAME,
@@ -24,8 +24,8 @@
 
   <meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
   {% if page.date %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">{% endif %}
-  <meta property="og:title" content="{{ page_title | strip }}">
-  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:title" content="{{ page_title | strip | escape }}">
+  <meta property="og:description" content="{{ page_description | escape }}">
   <meta property="og:url" content="https://brotto.dev{{ page.url }}">
   <meta property="og:site_name" content="Brotto">
   <meta property="og:image" content="https://brotto.dev/assets/og.png">
@@ -36,8 +36,8 @@
        real image is the difference between a preview and a bare URL, and this
        site exists to be shared. -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ page_title | strip }}">
-  <meta name="twitter:description" content="{{ page_description }}">
+  <meta name="twitter:title" content="{{ page_title | strip | escape }}">
+  <meta name="twitter:description" content="{{ page_description | escape }}">
 
   <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/logo.svg">
@@ -52,6 +52,14 @@
     avoiding. Post dates drive BlogPosting off the same front-matter date the
     visible byline uses.
   {%- endcomment -%}
+  {%- comment -%}
+    Every interpolated string below is pushed through `replace: "<", "\u003c"`.
+    A <script> element is an HTML raw-text context: the browser does not
+    re-parse its contents, but it *does* stop at the first `</script`,` — so a
+    `<` inside a description is a breakout even though the JSON itself is
+    valid and the quotes are escaped. Escaping `<` as its JSON unicode form
+    leaves the parsed value byte-identical and closes the context.
+  {%- endcomment -%}
   {%- if page.url == "/" -%}
   <script type="application/ld+json">
   {
@@ -59,7 +67,7 @@
     "@type": "SoftwareSourceCode",
     "name": "Brotto",
     "alternateName": "brotto",
-    "description": {{ page_description | jsonify }},
+    "description": {{ page_description | jsonify | replace: "<", "\u003c" }},
     "url": "https://brotto.dev/",
     "codeRepository": "https://github.com/suryanshgupta9933/Brotto",
     "license": "https://spdx.org/licenses/Apache-2.0.html",
@@ -77,9 +85,9 @@
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": {{ page_title | strip | jsonify }},
-    "description": {{ page_description | jsonify }},
-    "url": "https://brotto.dev{{ page.url }}",
+    "headline": {{ page_title | strip | jsonify | replace: "<", "\u003c" }},
+    "description": {{ page_description | jsonify | replace: "<", "\u003c" }},
+    "url": "https://brotto.dev{{ page.url | replace: "<", "\u003c" }}",
     "datePublished": "{{ page.date | date: "%Y-%m-%d" }}",
     "author": { "@type": "Person", "name": "Suryansh Gupta" },
     "publisher": { "@type": "Organization", "name": "Brotto" },
