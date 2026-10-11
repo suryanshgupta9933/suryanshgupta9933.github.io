@@ -798,6 +798,17 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
    exactly one meaning: not built yet. Nothing that ships uses it, which is
    what makes it legible without a word. A disabled control is the same
    statement without any words, so the token lives here. */
+.soon {
+  display: inline-block;
+  border: 1px dashed var(--rule-2);
+  color: var(--ink-3);
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 .btn:disabled, .btn[aria-disabled="true"] {
   background: var(--paper);
   color: var(--ink-3);
@@ -805,6 +816,17 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   border-style: dashed;
   cursor: default;
   pointer-events: none;
+}
+.soon-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  /* The gap above, not below: this sits directly under the buttons, and at
+     phone width they wrap, so a zero top margin reads as a collision. */
+  margin: 20px 0 4px;
+  font-size: 14px;
+  color: var(--ink-2);
 }
 
 /* ─── Screens ────────────────────────────────────────────────────────────────

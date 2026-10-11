@@ -16,17 +16,24 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
       admin panel. Not a cloud browser you have never logged into, and not a
       screenshot of a page it cannot read.
     </p>
-    <!-- One button, and it is the waitlist. The store listing is not published,
-         so "get Brotto" cannot honestly mean "install it" to anybody who is
-         not already running the repository; the waitlist is the one next step a
-         stranger can actually take. Self-host stays reachable one line below,
-         quieter because it is the fuller option, not the lesser one. -->
+    <!-- The waitlist is the hero's one button: the store listing is not
+         published, so "get Brotto" cannot honestly mean "install it" to anybody
+         who is not already running the repository. Self-host stays reachable
+         one line below, quieter because it is the fuller option, not the
+         lesser one. The nav keeps "Get Brotto" because the hero already says
+         this, in the same words, one scroll away. -->
     <div class="actions">
       <a class="btn" href="/waitlist">Join the waitlist</a>
     </div>
     <p class="section-note" style="margin: 22px 0 0;">
       Or <a href="/#try">run it yourself</a> — free, and always will be.
     </p>
+    <div class="soon-row">
+      <span class="soon">Chrome Web Store · Not published yet</span>
+      <span>The listing was rejected on 2026-10-10 for naming model providers
+        in the description. It has been rewritten and resubmitted. Until it
+        clears, it is one container and one extension.</span>
+    </div>
   </div>
 
   <!-- The panel's own status bar, rebuilt in markup so the values stay text:
@@ -359,11 +366,12 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
   <div class="cardgrid">
     <div>
-      <span class="card-idx label">01 · Planned</span>
-      <h3>One-click install</h3>
+      <span class="card-idx label">01 · In review</span>
+      <h3>The store listing clears</h3>
       <p>
-        The extension installs from the Chrome Web Store in a single click,
-        which takes the install from six steps to one.
+        The extension becomes one click to install, which takes the install from
+        six steps to one. The first submission was rejected for naming model
+        providers in the description; that copy is fixed and back in review.
       </p>
     </div>
     <div>
