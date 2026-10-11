@@ -126,8 +126,10 @@ description: The hosted version of Brotto, by invitation — the same extension 
   <h3 class="waitlist-done-h">You are on the list</h3>
   <p class="waitlist-done-p">
     We will write to <span id="waitlist-echo"></span> when there is an invite,
-    and the occasional update on Brotto after that. Nothing else uses the
-    address, and a reply to any of those emails takes you off the list.
+    and once in a while after that with something worth reading.
+
+    Or skip the wait entirely — <a href="/#try">install Brotto yourself</a>.
+    It is free, permanent, and the better version anyway.
   </p>
 </div>
 
