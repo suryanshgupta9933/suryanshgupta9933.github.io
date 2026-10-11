@@ -114,22 +114,22 @@ description: The hosted version of Brotto, by invitation — the same extension 
   <label class="label" for="waitlist-email">Your email</label>
   <div class="actions waitlist-row">
     <input id="waitlist-email" name="email" type="email" required
-           autocomplete="email" placeholder="you@example.com"
-           aria-describedby="waitlist-note">
+           autocomplete="email" placeholder="you@example.com">
     <button class="btn" type="submit">Ask for an invite</button>
   </div>
-  <p class="section-note" id="waitlist-note" style="margin-top: 14px;">
-    This sends the address to <code>agent.brotto.dev</code>, our own server,
-    over an encrypted connection — no form service, no account, no third party
-    in between, and nothing on this page that records who you are. It is used
-    to send an invitation and nothing else, and one reply unsubscribes. If your
-    browser has JavaScript off, the button opens your own mail app instead and
-    nothing is sent to us; if that does not open, write to
-    <a href="mailto:{{ waitlist_email }}">{{ waitlist_email }}</a>.
-  </p>
   <p class="section-note" id="waitlist-msg" role="status" aria-live="polite"
      style="margin-top: 14px; display: none;"></p>
 </form>
+
+<div class="waitlist-done" id="waitlist-done" role="status" tabindex="-1" hidden>
+  <p class="waitlist-done-mark" aria-hidden="true">&check;</p>
+  <h3 class="waitlist-done-h">You are on the list</h3>
+  <p class="waitlist-done-p">
+    We will write to <span id="waitlist-echo"></span> when there is an invite,
+    and the occasional update on Brotto after that. Nothing else uses the
+    address, and a reply to any of those emails takes you off the list.
+  </p>
+</div>
 
 <script>
 // Progressive enhancement over the mailto: form above. The form still submits
@@ -145,6 +145,8 @@ description: The hosted version of Brotto, by invitation — the same extension 
   var input = document.getElementById('waitlist-email');
   var button = form.querySelector('button[type="submit"]');
   var msg = document.getElementById('waitlist-msg');
+  var done = document.getElementById('waitlist-done');
+  var echo = document.getElementById('waitlist-echo');
   var ADDRESS = '{{ waitlist_email }}';
 
   // One line per status the relay can return. 404 is deliberately not folded
@@ -185,9 +187,19 @@ description: The hosted version of Brotto, by invitation — the same extension 
       });
     }).then(function (result) {
       if (result.ok && result.body.ok === true) {
-        say('That is you on the list. We will email you when there is an invite.', 'var(--ok)');
+        // The confirmation replaces the form rather than printing under it,
+        // so the answer is the thing on screen and not a line of small grey
+        // text under a button that has already gone dead.
+        //
+        // One message for a new address and one already on the list. The
+        // relay answers both with 200 on purpose — a form that says "you are
+        // already signed up" is a way to ask whether a stranger is on it.
         button.disabled = true;
         button.textContent = 'On the list';
+        echo.textContent = email;
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
         return;
       }
       var known = REPLIES[result.status];

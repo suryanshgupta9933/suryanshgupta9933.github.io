@@ -973,6 +973,47 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 }
 .waitlist input::placeholder { color: var(--ink-3); }
 
+/* The waitlist confirmation. Replaces the form rather than printing under it,
+   so success is a panel rather than a line of small grey text.
+
+   The `:not([hidden])` is load-bearing. An author `display` on `.waitlist-done`
+   would beat the UA stylesheet's `display: none` for [hidden] and the panel
+   would sit on the page, empty, from first paint. */
+.waitlist-done:not([hidden]) {
+  display: block;
+  margin-top: 26px;
+  padding: 26px;
+  border: 1px solid var(--rule-ink);
+  animation: waitlist-done 220ms ease-out;
+}
+.waitlist-done-mark {
+  margin: 0 0 14px;
+  color: var(--ok);
+  font-size: 26px;
+  line-height: 1;
+}
+.waitlist-done-h {
+  margin: 0 0 8px;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+.waitlist-done-p {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.waitlist-done-p span { color: var(--ink); font-weight: 600; }
+
+@keyframes waitlist-done {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .waitlist-done:not([hidden]) { animation: none; }
+}
+
 /* The spec table on the landing page. */
 .spec { max-width: none; display: table; }
 .spec td:first-child {
