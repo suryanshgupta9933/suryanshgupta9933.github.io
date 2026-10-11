@@ -28,7 +28,7 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     <div class="actions">
       <a class="btn" href="/waitlist">Join the waitlist</a>
     </div>
-    <p class="section-note" style="margin: 22px 0 0;">
+    <p class="section-note" style="margin: 22px 0 38px;">
       Or <a href="/#try">run it yourself</a> — free, and always will be.
     </p>
   </div>
