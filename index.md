@@ -31,9 +31,6 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     <p class="section-note" style="margin: 22px 0 0;">
       Or <a href="/#try">run it yourself</a> — free, and always will be.
     </p>
-    <div class="soon-row">
-      <span class="soon">Chrome Web Store · Not published yet</span>
-    </div>
   </div>
 
   <!-- The panel's own status bar, rebuilt in markup so the values stay text:
