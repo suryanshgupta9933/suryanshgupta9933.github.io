@@ -214,7 +214,8 @@ not share data with analytics providers, advertising networks, data brokers, or 
 your prompts or your model key — it only answers "is this signed in, and how many tasks has this
 account used this week". Everything else stays on the dyno, under our control, for the 30 days above.
 
-**Asking for an invitation puts your address in two more places.** A waitlist address is held in our
+**Asking for an invitation puts your address in two more places.** A waitlist row — the address, and
+the optional name you typed beside it — is held in our
 Supabase table, and the single confirmation email we send is delivered by **Resend**. Resend sees the
 recipient, the subject and the body of that one email — all of which we wrote — and nothing about any
 task, because no task exists yet. It never sees a page, a prompt or a model key. Each of those emails

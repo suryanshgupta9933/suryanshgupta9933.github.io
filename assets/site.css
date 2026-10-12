@@ -951,15 +951,21 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 }
 
 /* ─── The cloud waitlist ─────────────────────────────────────────────────
-   One input and the panel's button, on one baseline. The row carries
-   `.actions` rather than restating it: that class already holds the flex,
-   the 10px gap and the button, so the input only has to match the button's
-   border weight and vertical padding to read as one control instead of two
-   objects sitting near each other. Square, no shadow, same ink — the input
-   is the only form control the site has, so it inherits rather than
-   introduces. */
+   The optional name sits above the email row on its own line; the email and
+   the panel's button share one baseline. The row carries `.actions` rather
+   than restating it: that class already holds the flex, the 10px gap and the
+   button, so the input only has to match the button's border weight and
+   vertical padding to read as one control instead of two objects sitting
+   near each other. Square, no shadow, same ink — these are the only form
+   controls the site has, so they inherit rather than introduce. */
 .waitlist { margin-top: 26px; }
 .waitlist label { display: block; margin-bottom: 10px; color: var(--ink-3); }
+/* Not in `.waitlist-row`, so `flex: 1` does nothing and it would shrink to
+   the default input width under the email that fills its row. */
+.waitlist input[name="name"] {
+  width: 100%;
+  margin-bottom: 18px;
+}
 .waitlist input {
   flex: 1 1 200px;
   min-width: 0;

@@ -114,6 +114,10 @@ description: The hosted version of Brotto, by invitation — the same extension 
 <form class="waitlist" id="waitlist-form" method="post"
       action="mailto:{{ waitlist_email }}" enctype="text/plain"
       data-endpoint="https://agent.brotto.dev/v1/waitlist">
+  <label class="label" for="waitlist-name">Name (optional)</label>
+  <input id="waitlist-name" name="name" type="text" maxlength="64"
+         autocomplete="name" spellcheck="false">
+
   <label class="label" for="waitlist-email">Your email</label>
   <div class="actions waitlist-row">
     <input id="waitlist-email" name="email" type="email" required
@@ -148,6 +152,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
   var form = document.getElementById('waitlist-form');
   if (!form || !window.fetch) return;
   var input = document.getElementById('waitlist-email');
+  var nameInput = document.getElementById('waitlist-name');
   var button = form.querySelector('button[type="submit"]');
   var msg = document.getElementById('waitlist-msg');
   var done = document.getElementById('waitlist-done');
@@ -183,7 +188,12 @@ description: The hosted version of Brotto, by invitation — the same extension 
     fetch(form.dataset.endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
+      // `name` is optional and the relay treats a missing one the same as an
+      // empty one — same two keys the extension's own waitlist form sends.
+      body: JSON.stringify({
+        email: email,
+        name: nameInput ? nameInput.value.trim() : ''
+      })
     }).then(function (res) {
       // A proxy or a crash can answer with HTML, so the body is not trusted
       // to be JSON; the status line is what decides the message.
