@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Writing
-description: Notes on building Brotto, a self-hosted AI browser agent — what it does, what it gets wrong, and what an agent holding your cookies can do as you.
+description: Notes on building Brotto, an AI browser agent — what it does, what it gets wrong, and what an agent holding your cookies can do as you.
 ---
 
 # Writing

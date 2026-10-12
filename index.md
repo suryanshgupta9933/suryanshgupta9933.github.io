@@ -2,7 +2,7 @@
 layout: default
 title: Brotto — an AI browser agent that runs where you're already signed in
 wide: true
-description: Brotto is a self-hosted AI browser agent for Chrome. It works in the tab you are already signed in to, and asks before anything you cannot undo.
+description: Brotto is an AI browser agent for Chrome — run it yourself, free and permanent, or ask for a seat on the cloud beta. It works in the tab you are already signed in to, and asks before anything you cannot undo.
 ---
 
 <div class="hero">
@@ -19,17 +19,13 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
       admin panel. Not a cloud browser you have never logged into, and not a
       screenshot of a page it cannot read.
     </p>
-    <!-- The waitlist is the hero's one button. Brotto Cloud is closed and
-         admitted by address, so the waitlist is the front door to it; the
-         store listing is one click and lives further down, beside the
-         self-host instructions, because a one-click install and a container
-         are not the same offer. -->
+    <!-- The hero's one button is the fork, not the waitlist. Get Brotto opens
+         both doors — self-host and the cloud beta — on /get, so the hero does
+         not pick one for the reader. There is no secondary line: the button
+         already is both offers. -->
     <div class="actions">
-      <a class="btn" href="/waitlist">Join the waitlist</a>
+      <a class="btn" href="/get">Get Brotto</a>
     </div>
-    <p class="section-note" style="margin: 22px 0 38px;">
-      Or <a href="/#try">run it yourself</a> — free, and always will be.
-    </p>
   </div>
 
   <!-- The panel's own status bar, rebuilt in markup so the values stay text:
@@ -133,9 +129,10 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
       <h3>It writes down what it did</h3>
       <p>
         Every run produces a per-session record — each observation, prompt,
-        action, approval and timing — in a document on your disk. That is what
-        lets you read a run back afterwards, resume one that was interrupted,
-        or delete it outright. It is a record, not a chat transcript.
+        action, approval and timing — in a document on the server that ran it.
+        On a self-hosted install that disk is yours. That is what lets you read
+        a run back afterwards, resume one that was interrupted, or delete it
+        outright. It is a record, not a chat transcript.
       </p>
       <span class="gate-lock label">A file, not a database</span>
     </div>
@@ -310,33 +307,16 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
     </p>
   </div>
   <div>
-<pre><code>git clone https://github.com/suryanshgupta9933/Brotto.git
-cd Brotto
-
-cp .env.example .env      # set AGENT_SECRET to any long random string
-docker compose up -d</code></pre>
-<p class="section-note" style="margin-top: 22px;">
-  That is the whole server, and it listens on <code>:8000</code> with no browser
-  in it. Then build and load the extension:
-</p>
-<pre><code>cd clients/brotto-extension
-npm ci &amp;&amp; npm run build</code></pre>
-<p class="section-note" style="margin-top: 22px;">
-  In Chrome, open <code>chrome://extensions</code>, turn on
-  <b>Developer mode</b>, and <b>Load unpacked</b> →
-  <code>clients/brotto-extension/dist</code>. Open the Brotto side panel, set the
-  server address to <code>http://127.0.0.1:8000</code>, paste
-  <code>AGENT_SECRET</code> into <b>Settings → Connection</b>, and paste your
-  model key under <b>Settings → Model</b>. The key is held in memory for the run
-  and never written to disk.
-</p>
-<p class="section-note" style="margin-top: 22px;">
-  You do not have to build any of that to use Brotto. It is
-  <a href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
-    >on the Chrome Web Store</a
-  > — the build above is only for running the server yourself, which is what
-  makes it free of an account, an operator and a cap.
-</p>
+    <p>
+      The install lives on one page: a prompt you can paste into an AI coding
+      tool, the manual steps, and the extension — store install first.
+    </p>
+    <div class="actions" style="margin-bottom: 26px;">
+      <a class="btn" href="/self-host">Run it yourself</a>
+      <a class="btn btn--ghost"
+        href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
+        >Chrome Web Store</a>
+    </div>
     <table class="spec">
       <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
       <tr><td>Cost</td><td>Nothing, beyond the model calls you make</td></tr>
@@ -397,12 +377,13 @@ npm ci &amp;&amp; npm run build</code></pre>
       </p>
     </div>
     <div>
-      <span class="card-idx label">05 · Not released</span>
+      <span class="card-idx label">05 · Not on sale</span>
       <h3>Pro</h3>
       <p>
-        Multi-tab parallelism, a speed pack, routines and per-run cost caps.
-        Brotto stays Apache 2.0, and the free build is the whole product as it
-        stands.
+        Pro does not exist and nothing is on sale. If it is ever built it would
+        carry multi-tab parallelism, a speed pack and per-run cost caps — and
+        Brotto stays Apache 2.0 either way, because the free build is the whole
+        product as it stands.
       </p>
     </div>
   </div>
@@ -445,8 +426,9 @@ npm ci &amp;&amp; npm run build</code></pre>
       <div>
         <h3>Your key never touches disk</h3>
         <p>
-          Held in memory for the run, by Brotto, anywhere. There is no account,
-          no credit balance and nothing to top up.
+          Held in memory for the run, by Brotto, anywhere. No credit balance and
+          nothing to top up — your key, your provider, your money. An account is
+          only on the cloud beta; a self-hosted install needs none.
         </p>
       </div>
       <div>

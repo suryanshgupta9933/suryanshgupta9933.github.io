@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" role="img" aria-labelledby="installTitle installDesc">
+  <title id="installTitle">The install path</title>
+  <desc id="installDesc">Two doors in and one path out: paste the prompt into an AI coding tool or run four commands by hand. Either way a container starts on your machine, the extension is added from the Chrome Web Store, and a task can run in the tab you are already signed in to.</desc>
+
+  <rect width="900" height="340" fill="#FFFFFF"/>
+
+  <text x="32" y="34" font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="1.6" fill="#6E6E6E">ONE PATH, TWO DOORS IN</text>
+
+  <!-- Step 01: the two doors share the first box, stacked. -->
+  <rect x="32" y="58" width="188" height="170" fill="#FFFFFF" stroke="#C9C9C9"/>
+  <text x="52" y="94" font-family="ui-monospace, Menlo, monospace" font-size="13" letter-spacing="1.4" fill="#6E6E6E">STEP 01</text>
+  <text x="52" y="130" font-family="-apple-system, system-ui, sans-serif" font-size="19" font-weight="600" fill="#000000">The server</text>
+  <line x1="52" y1="148" x2="200" y2="148" stroke="#E5E5E5"/>
+  <text x="52" y="176" font-family="-apple-system, system-ui, sans-serif" font-size="16" fill="#5C5C5C">an AI prompt</text>
+  <text x="52" y="200" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#6E6E6E">or four commands</text>
+  <text x="52" y="228" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">Docker is the only ask</text>
+
+  <line x1="220" y1="143" x2="250" y2="143" stroke="#C9C9C9"/>
+  <path d="M256 143 L246 137 L246 149 Z" fill="#C9C9C9"/>
+
+  <!-- Step 02: the container. Heavier rule — this is the object the page
+       describes and the one that lands on the reader's disk. -->
+  <rect x="256" y="58" width="188" height="170" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+  <text x="276" y="94" font-family="ui-monospace, Menlo, monospace" font-size="13" letter-spacing="1.4" fill="#6E6E6E">STEP 02</text>
+  <text x="276" y="130" font-family="-apple-system, system-ui, sans-serif" font-size="19" font-weight="600" fill="#000000">Container</text>
+  <line x1="276" y1="148" x2="424" y2="148" stroke="#E5E5E5"/>
+  <text x="276" y="176" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#5C5C5C">127.0.0.1:8000</text>
+  <text x="276" y="200" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">the agent loop,</text>
+  <text x="276" y="222" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">no browser in it</text>
+
+  <line x1="444" y1="143" x2="474" y2="143" stroke="#C9C9C9"/>
+  <path d="M480 143 L470 137 L470 149 Z" fill="#C9C9C9"/>
+
+  <!-- Step 03: the extension. -->
+  <rect x="480" y="58" width="188" height="170" fill="#FFFFFF" stroke="#C9C9C9"/>
+  <text x="500" y="94" font-family="ui-monospace, Menlo, monospace" font-size="13" letter-spacing="1.4" fill="#6E6E6E">STEP 03</text>
+  <text x="500" y="130" font-family="-apple-system, system-ui, sans-serif" font-size="19" font-weight="600" fill="#000000">Extension</text>
+  <line x1="500" y1="148" x2="648" y2="148" stroke="#E5E5E5"/>
+  <text x="500" y="176" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">Chrome Web Store,</text>
+  <text x="500" y="198" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">then two settings</text>
+  <text x="500" y="228" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#6E6E6E">connection · model</text>
+
+  <line x1="668" y1="143" x2="698" y2="143" stroke="#C9C9C9"/>
+  <path d="M704 143 L694 137 L694 149 Z" fill="#C9C9C9"/>
+
+  <!-- Step 04: running. -->
+  <rect x="704" y="58" width="164" height="170" fill="#FFFFFF" stroke="#C9C9C9"/>
+  <text x="724" y="94" font-family="ui-monospace, Menlo, monospace" font-size="13" letter-spacing="1.4" fill="#6E6E6E">STEP 04</text>
+  <text x="724" y="130" font-family="-apple-system, system-ui, sans-serif" font-size="19" font-weight="600" fill="#000000">Running</text>
+  <line x1="724" y1="148" x2="848" y2="148" stroke="#E5E5E5"/>
+  <text x="724" y="176" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">a task in the tab</text>
+  <text x="724" y="198" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">you are already</text>
+  <text x="724" y="220" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">signed in to</text>
+
+  <!-- The line under the path: what each step costs the reader. -->
+  <line x1="32" y1="268" x2="868" y2="268" stroke="#E5E5E5"/>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="13" letter-spacing="1.2" fill="#6E6E6E">
+    <text x="32" y="300">NO ACCOUNT</text>
+    <text x="256" y="300">ON YOUR DISK</text>
+    <text x="480" y="300">TWO FIELDS</text>
+    <text x="704" y="300">YOUR KEY</text>
+  </g>
+</svg>

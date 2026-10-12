@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Brotto Cloud
+title: Brotto Cloud — Beta
 description: The hosted version of Brotto, by invitation — the same extension with someone else's server running it. Free during the beta, capped, honest.
 ---
 
@@ -16,7 +16,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
      own relay instead — our server, no one else's. -->
 {% assign waitlist_email = "suryanshgupta9933@gmail.com" %}
 
-# Brotto Cloud
+<h1>Brotto Cloud <span class="badge label">Beta</span></h1>
 
 <h2>What it is</h2>
 
@@ -32,25 +32,49 @@ description: The hosted version of Brotto, by invitation — the same extension 
   eight model providers, the same API key you already have.
 </p>
 
+<!-- Batched admission, as it actually works: addresses wait, a batch opens,
+     an invitation lands. No queue number, because there is not one — and the
+     last line is the one the copy keeps making. -->
+<figure>
+  <img src="/assets/diagrams/batched-invites.svg" width="900" height="380" loading="lazy"
+    alt="Admission in batches. Addresses sit on a list with no queue number. When a batch opens, a few seats fill now and the rest wait. What arrives is an email, a six-digit code and the same extension. What it is not: open signup, a paid tier, or the better version.">
+  <figcaption>Admitted in batches, not as addresses arrive. An invitation is not a subscription.</figcaption>
+</figure>
+
 <h2>Who it is for</h2>
 
-<p>
-  For you if you want to try Brotto without standing up a server — no
-  container, no <code>.env</code>, no terminal.
-</p>
-
-<p>
-  It is not the better version. Self-hosting is, and it is
-  <a href="/#try">free and permanent</a>. This is the convenience path beside
-  it, not a replacement for it.
-</p>
+<div class="cardgrid cardgrid--2">
+  <div>
+    <h3>For you if</h3>
+    <p>
+      You want to try Brotto without standing up a server — no container, no
+      <code>.env</code>, no terminal.
+    </p>
+  </div>
+  <div>
+    <h3>Not the upgrade</h3>
+    <p>
+      It is not the better version. Self-hosting is, and it is
+      <a href="/self-host">free and permanent</a>. This is the convenience
+      path beside it, not a replacement for it.
+    </p>
+  </div>
+</div>
 
 <h2>What it costs</h2>
 
 <p>
-  Nothing during the beta. There are limits, because it is our compute: a
-  number of tasks a week, and a ceiling on what a single task may spend. If you
-  want no cap on either, self-host.
+  Nothing during the beta. There is one limit, because it is our compute: a
+  number of tasks a week. If you want no cap on that,
+  <a href="/self-host">run it yourself</a>.
+</p>
+
+<p>
+  A per-task spend ceiling is planned, not on today. Until it ships, a task
+  spends whatever your provider charges for the tokens it uses — there is no
+  Brotto-imposed ceiling. If you want a hard limit now, run it yourself and
+  use your provider's own budget controls: that is the version where the spend
+  is already yours to cap.
 </p>
 
 <h2>What we can see</h2>
@@ -109,7 +133,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
   <a href="/privacy">Privacy</a> and <a href="/security">Security</a>.
 </p>
 
-<h2>Ask for an invitation</h2>
+<h2>Join the waitlist</h2>
 
 <form class="waitlist" id="waitlist-form" method="post"
       action="mailto:{{ waitlist_email }}" enctype="text/plain"
@@ -122,7 +146,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
   <div class="actions waitlist-row">
     <input id="waitlist-email" name="email" type="email" required
            autocomplete="email" placeholder="you@example.com">
-    <button class="btn" type="submit">Ask for an invite</button>
+    <button class="btn" type="submit">Join Waitlist</button>
   </div>
   <p class="section-note" id="waitlist-msg" role="status" aria-live="polite"
      style="margin-top: 14px; display: none;"></p>
@@ -135,7 +159,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
     We will write to <span id="waitlist-echo"></span> when there is an invite,
     and once in a while after that with something worth reading.
 
-    Or skip the wait entirely — <a href="/#try">install Brotto yourself</a>.
+    Or skip the wait entirely — <a href="/self-host">install Brotto yourself</a>.
     It is free, permanent, and the better version anyway.
   </p>
 </div>
@@ -221,12 +245,12 @@ description: The hosted version of Brotto, by invitation — the same extension 
       say(known || 'That did not go through, so nothing was sent. Try again, or write to ' + ADDRESS + '.',
           'var(--bad)');
       button.disabled = false;
-      button.textContent = 'Ask for an invite';
+      button.textContent = 'Join Waitlist';
     }).catch(function () {
       say('That never reached us, so nothing was sent. Check your connection and try again, or write to ' + ADDRESS + '.',
           'var(--bad)');
       button.disabled = false;
-      button.textContent = 'Ask for an invite';
+      button.textContent = 'Join Waitlist';
     });
   });
 })();
@@ -245,6 +269,6 @@ description: The hosted version of Brotto, by invitation — the same extension 
 
 <p class="section-note">
   <a href="/closed-beta">Already in the closed beta</a> ·
-  <a href="/#try">Install Brotto yourself</a> ·
+  <a href="/self-host">Install Brotto yourself</a> ·
   <a href="/">Back to the front page</a>
 </p>

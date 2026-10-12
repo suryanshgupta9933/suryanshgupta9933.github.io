@@ -23,7 +23,11 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
 
 <p>
   No cap on how long a single task runs. If a job is going to take twenty
-  minutes, it takes twenty minutes.
+  minutes, it takes twenty minutes. A per-task spend ceiling is planned, not
+  on today: until it ships, a task spends whatever your provider charges for
+  the tokens it uses, with no Brotto-imposed ceiling. If you want a hard limit
+  now, <a href="/self-host">run it yourself</a> and use your provider's own
+  budget controls.
 </p>
 
 <p>
@@ -104,7 +108,7 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
     <p>
       Every session has a delete button in the panel. You can also leave, at
       any time, by replying to the invitation &mdash; there is nothing to
-      uninstall and no account to close first.
+      uninstall first, and writing back is the whole exit.
     </p>
   </div>
 </div>
@@ -121,7 +125,7 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
   scheduled; what we are looking for is whether a few people keep choosing this
   over installing it themselves. If it stops being worth our time to run, we
   will say so, and anyone who wants to keep it forever can
-  <a href="/#try">self-host</a> &mdash; which is free, permanent, and was never
+  <a href="/self-host">self-host</a> &mdash; which is free, permanent, and was never
   part of the beta to begin with.
 </p>
 

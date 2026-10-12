@@ -117,7 +117,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
 </div>
 
 <p class="section-note" style="margin-top: 34px;">
-  <a href="/#try">Install it yourself</a> — one container and one extension,
+  <a href="/self-host">Install it yourself</a> — one container and one extension,
   about six steps. Or read
   <a href="https://github.com/suryanshgupta9933/Brotto#screens">the README</a>
   for the same thing with the commands inline.

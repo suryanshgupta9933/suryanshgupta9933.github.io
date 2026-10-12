@@ -304,6 +304,9 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   padding-bottom: 26px;
   border-bottom: 1px solid var(--rule);
 }
+/* The BETA mark beside a page h1, same hairline .badge as the fork card. The
+   vertical-align is sized for the 34px title, not the 20px card heading. */
+.page h1 .badge { vertical-align: 0.45em; margin-left: 10px; }
 
 /* ─── Hero ─────────────────────────────────────────────────────────────────
    Two columns: the claim on the left at a reading measure, the product
@@ -317,7 +320,13 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
   gap: 0 64px;
-  padding: 76px 0 0;
+  /* Bottom padding is the room under the CTA. The hero used to end in a
+     section-note with its own 38px margin; when that line went, the button
+     sat flush against the split's top rule whenever the left column was the
+     taller one. There is no spacing token in this file — the values are
+     hand-set throughout — so this is just the 48px the narrow breakpoint
+     already uses as a column gap. */
+  padding: 76px 0 48px;
   align-items: start;
 }
 .hero-mark { width: 48px; height: 48px; display: block; margin-bottom: 22px; }
@@ -479,18 +488,24 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
    version broke them out to 1120px, which left every image visibly wider than
    the column it belongs to; the diagrams are now drawn at a viewBox that keeps
    their labels legible at measure instead. */
-.prose figure {
+/* Also `.page`: the fork pages carry the same diagrams the blog does, and a
+   figure without these rules is an unframed image with no caption gap. */
+.prose figure,
+.page figure {
   margin: 30px 0;
 }
 .prose figure img,
-.prose figure video {
+.prose figure video,
+.page figure img,
+.page figure video {
   display: block;
   width: 100%;
   height: auto;
   border: 1px solid var(--rule-2);
   background: var(--paper-2);
 }
-.prose figure figcaption {
+.prose figure figcaption,
+.page figure figcaption {
   margin-top: 10px;
   font-size: 13px;
   line-height: 1.5;
@@ -501,7 +516,6 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 /* The three-card row breaks out for the same reason it did before: it is three
    columns that cannot survive 680px. It already collapses to a single column
    below 700px, so the wide cap is safe on narrow screens. */
-   a single column below 700px, so the wide cap is safe on narrow screens. */
 .prose .shots {
   width: min(1120px, calc(100vw - 48px));
   margin-left: 50%;
@@ -1032,6 +1046,46 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
   width: 34%;
   white-space: nowrap;
 }
+
+/* ─── The fork on /get ─────────────────────────────────────────────────────
+   Two equal options in one shared-border grid — same construction as
+   .cardgrid--2, so the pair reads as one object rather than two cards that
+   happen to sit near each other. Each cell is a column so the CTA can sit at
+   the foot and both buttons land on the same line, which is the whole point
+   of laying the two paths out as equals.
+
+   The BETA mark reuses .badge: a hairline outline in --wait, mono, uppercase.
+   It is already the system's "present, but not fully here" tone, and a second
+   tag style would only make it look like a promotion. */
+.cardgrid--fork > div {
+  display: flex;
+  flex-direction: column;
+}
+.cardgrid--fork ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+.cardgrid--fork li {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: 7px;
+}
+.cardgrid--fork li:last-child { margin-bottom: 0; }
+.cardgrid--fork .actions {
+  margin-top: auto;
+  padding-top: 24px;
+}
+.cardgrid--fork h3 .badge {
+  vertical-align: 2px;
+  margin-left: 6px;
+}
+/* Three columns, so the row label stops eating a third of the table. The
+   label column stays mono and uppercase; the two option columns share the
+   rest evenly. */
+.spec--fork td:first-child { width: 22%; }
+.spec--fork th:not(:first-child),
+.spec--fork td:not(:first-child) { width: 39%; }
 
 /* ─── Narrow ────────────────────────────────────────────────────────────
    Two breakpoints, because the layouts fail differently. At 940px the split

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://brotto.dev/</loc><lastmod>2026-10-11</lastmod></url>
-  <url><loc>https://brotto.dev/screens</loc><lastmod>2026-10-11</lastmod></url>
-  <url><loc>https://brotto.dev/waitlist</loc><lastmod>2026-10-11</lastmod></url>
-  <url><loc>https://brotto.dev/closed-beta</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://brotto.dev/writing</loc><lastmod>2026-10-11</lastmod></url>
-  <url><loc>https://brotto.dev/blog/2026-10-09-twenty-tabs-one-sentence.html</loc><lastmod>2026-10-11</lastmod></url>
+  <url><loc>https://brotto.dev/</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/get</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/self-host</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/screens</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/waitlist</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/closed-beta</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/writing</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://brotto.dev/blog/2026-10-09-twenty-tabs-one-sentence.html</loc><lastmod>2026-10-13</lastmod></url>
   <url><loc>https://brotto.dev/privacy</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://brotto.dev/security</loc><lastmod>2026-10-11</lastmod></url>
 </urlset>
