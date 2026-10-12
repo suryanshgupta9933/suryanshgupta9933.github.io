@@ -223,12 +223,15 @@ description: The hosted version of Brotto, by invitation — the same extension 
 
 <p>
   Brotto is Apache 2.0 and the self-hosted install is free and permanent. One
-  container, one extension, about six steps, and everything Brotto keeps stays
-  on your own disk. That is the whole product; this page is the shortcut past
-  the install.
+  container, and a one-click
+  <a href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
+    >Chrome Web Store install</a
+  >; everything Brotto keeps stays on your own disk. That is the whole product;
+  this page is the shortcut past the install.
 </p>
 
 <p class="section-note">
+  <a href="/closed-beta">Already in the closed beta</a> ·
   <a href="/#try">Install Brotto yourself</a> ·
   <a href="/">Back to the front page</a>
 </p>

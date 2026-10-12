@@ -19,12 +19,11 @@ description: Brotto is a self-hosted AI browser agent for Chrome. It works in th
       admin panel. Not a cloud browser you have never logged into, and not a
       screenshot of a page it cannot read.
     </p>
-    <!-- The waitlist is the hero's one button: the store listing is not
-         published, so "get Brotto" cannot honestly mean "install it" to anybody
-         who is not already running the repository. Self-host stays reachable
-         one line below, quieter because it is the fuller option, not the
-         lesser one. The nav keeps "Get Brotto" because the hero already says
-         this, in the same words, one scroll away. -->
+    <!-- The waitlist is the hero's one button. Brotto Cloud is closed and
+         admitted by address, so the waitlist is the front door to it; the
+         store listing is one click and lives further down, beside the
+         self-host instructions, because a one-click install and a container
+         are not the same offer. -->
     <div class="actions">
       <a class="btn" href="/waitlist">Join the waitlist</a>
     </div>
@@ -330,6 +329,13 @@ npm ci &amp;&amp; npm run build</code></pre>
   <code>AGENT_SECRET</code> into <b>Settings → Connection</b>, and paste your
   model key under <b>Settings → Model</b>. The key is held in memory for the run
   and never written to disk.
+</p>
+<p class="section-note" style="margin-top: 22px;">
+  You do not have to build any of that to use Brotto. It is
+  <a href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
+    >on the Chrome Web Store</a
+  > — the build above is only for running the server yourself, which is what
+  makes it free of an account, an operator and a cap.
 </p>
     <table class="spec">
       <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
