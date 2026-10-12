@@ -85,11 +85,14 @@ description: The hosted version of Brotto, by invitation — the same extension 
   <div>
     <h3>Nothing sold, nothing profiled</h3>
     <p>
-      No analytics, no advertising, nothing sold or shared. The one thing we
-      keep is a failure log — when a run breaks, the reason code and your
-      account id, so we can find the bug and fix it. No page content, no
-      prompts, no task text, no URLs. You bring your own model key, so your
-      model provider sees your page, as it does on any deployment.
+      No analytics, no advertising, nothing sold or shared. We keep two things.
+      A failure log — when a run breaks, the reason code and your account id,
+      so we can find the bug and fix it. And one record per sign-in: your
+      account id, the network you came from (a /24 or /48, not the address),
+      and the browser, so we can tell a new laptop from somebody else holding
+      the account. No page content, no prompts, no task text, no URLs. You
+      bring your own model key, so your model provider sees your page, as it
+      does on any deployment.
     </p>
   </div>
   <div>

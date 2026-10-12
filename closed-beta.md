@@ -49,9 +49,8 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
 
 <p>
   <strong>Tell us when it breaks.</strong> When a run fails, the panel offers to
-  send us the reason code and your account id &mdash; nothing else. That is the
-  only telemetry in the product, and refusing it costs you nothing except that
-  we find out about the bug from somebody else.
+  send us the reason code and your account id. Refusing it costs you nothing
+  except that we find out about the bug from somebody else.
 </p>
 
 <p>
@@ -92,10 +91,12 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
   <div>
     <h3>Nothing sold, nothing profiled</h3>
     <p>
-      No analytics, no advertising, nothing sold or shared. The one thing we
-      keep is a failure log &mdash; when a run breaks, the reason code and your
-      account id, so we can find the bug and fix it. No page content, no
-      prompts, no task text, no URLs.
+      No analytics, no advertising, nothing sold or shared. We keep two things.
+      A failure log &mdash; when a run breaks, the reason code and your account
+      id, so we can find the bug and fix it. And one record per sign-in: your
+      account id, the network you came from (a /24 or /48, not the address),
+      and the browser, so we can tell a new laptop from somebody else holding
+      the account. No page content, no prompts, no task text, no URLs.
     </p>
   </div>
   <div>

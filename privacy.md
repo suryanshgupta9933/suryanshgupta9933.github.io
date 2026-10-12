@@ -40,10 +40,12 @@ agent work on pages you would not paste into a chat window, and self-host rather
 ## Summary
 
 Brotto is built so that we collect as little as possible. There is no analytics, no advertising, no
-tracking across sites, and we do not sell or share data with anyone for marketing. The one exception,
-described in full under [What the relay keeps](#what-the-relay-keeps), is a failure log: when a run
-breaks we record a machine-readable reason code and your account id so we can find the bug. It holds
-no page content, no prompts, no task text and no URLs. On
+tracking across sites, and we do not sell or share data with anyone for marketing. Two things are
+kept on the hosted relay and are described in full under [What the relay keeps](#what-the-relay-keeps):
+a failure log (a machine-readable reason code and your account id, when a run breaks), and one
+record per sign-in (your account id, the network you came from, and the browser — enough to tell a
+new laptop from somebody else holding the account). Neither holds page content, prompts, task text
+or URLs. On
 a self-hosted install we do not operate the server, so we do not receive your data. On the hosted
 relay at `agent.brotto.dev` we do operate it, and choosing that relay means your page observations
 reach us for as long as the task runs; the rest of this policy applies to it unchanged. The data that
@@ -233,18 +235,35 @@ company is given a copy.
 
 ## What the relay keeps
 
-On the hosted relay at `agent.brotto.dev` only, and only for cloud accounts, we keep a **failure log**.
-When a run ends in an error we write one row: your account id, a machine-readable reason code, a
-timestamp, and the app version that produced it. It exists so that when someone reports "it just
-stopped", we can tell which of a hundred possible failures they hit instead of guessing.
+On the hosted relay at `agent.brotto.dev` only, and only for cloud accounts, we keep two records.
 
-What it does **not** contain is the point. No page content, no accessibility tree, no prompt text, no
-task titles, no URLs, no model responses. The row is built from a fixed set of fields and the code
+**A failure log.** When a run ends in an error we write one row: your account id, a machine-readable
+reason code, a timestamp, and the app version that produced it. It exists so that when someone
+reports "it just stopped", we can tell which of a hundred possible failures they hit instead of
+guessing.
+
+**One record per sign-in.** When you sign in we write one row: your account id, the network you came
+from (a `/24` on IPv4 or a `/48` on IPv6 — a neighbourhood, not your address), and the browser and
+operating system. It exists to answer one question: is this the same person on a new laptop, or
+somebody else now holds the account? That is an incident question, not an analytics one, and the
+table is not joined to anything else. It is the trade we made to know when a member signs in from a
+device we have not seen — if you would rather we not have it, self-hosting is the version where
+there is no operator on the other end at all.
+
+What neither contains is the point. No page content, no accessibility tree, no prompt text, no task
+titles, no URLs, no model responses. The failure row is built from a fixed set of fields and the code
 raises rather than record if it is handed anything it does not recognise, so a new field cannot be
-added to it by accident. It is not used to measure usage, rank accounts, or decide who to invite. We
-would delete this whole section if the product ever stops breaking.
+added to it by accident. Neither is used to measure usage, rank accounts, or decide who to invite. We
+would delete the failure log the day the product stops breaking; the sign-in records go when the beta
+does.
 
-Nothing here applies to a self-hosted install. That disk is yours, and there is no failure log.
+Nothing here applies to a self-hosted install. That disk is yours, and there is no failure log and no
+sign-in record.
+
+**Deleting your account does not delete your sign-in history**, on purpose: the record's whole value
+is answering "was this account used by somebody else", and a cascade would let an intruder erase the
+answer by deleting the account they stole. Ask us and we delete it — one statement, and it is yours
+to make.
 
 ## Retention and deletion
 
