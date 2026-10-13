@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="900" height="240" role="img" aria-labelledby="keepTitle keepDesc">
+  <title id="keepTitle">What the relay keeps, and what it never does</title>
+  <desc id="keepDesc">Two records only: a failure log, and one row per sign-in. Everything a run actually contains — page content, prompts, task text, URLs — is on the other side of a hard line and never written down.</desc>
+
+  <rect width="900" height="240" fill="#FFFFFF"/>
+
+  <text x="32" y="32" font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="1.6" fill="#6E6E6E">TWO RECORDS. NOTHING ELSE.</text>
+
+  <!-- What is kept. -->
+  <g>
+    <rect x="32" y="56" width="220" height="120" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="52" y="88" font-family="-apple-system, system-ui, sans-serif" font-size="17" font-weight="600" fill="#000000">A failure log</text>
+    <text x="52" y="116" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">when a run breaks,</text>
+    <text x="52" y="136" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">the reason code</text>
+    <text x="52" y="156" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#6E6E6E">so we can fix the bug</text>
+
+    <rect x="272" y="56" width="220" height="120" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="292" y="88" font-family="-apple-system, system-ui, sans-serif" font-size="17" font-weight="600" fill="#000000">One sign-in row</text>
+    <text x="292" y="116" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">a new laptop,</text>
+    <text x="292" y="136" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">or somebody else</text>
+    <text x="292" y="156" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#6E6E6E">incident response, not analytics</text>
+  </g>
+
+  <!-- The hard line. -->
+  <line x1="528" y1="56" x2="528" y2="210" stroke="#000000" stroke-width="2"/>
+
+  <!-- What never lands. -->
+  <g>
+    <text x="560" y="84" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#6E6E6E">NEVER WRITTEN DOWN</text>
+    <g font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#5C5C5C">
+      <text x="560" y="112">page content</text>
+      <text x="560" y="136">prompts</text>
+      <text x="560" y="160">task text</text>
+      <text x="560" y="184">URLs</text>
+      <text x="560" y="208">model responses</text>
+    </g>
+    <g stroke="#DC2626" stroke-width="2">
+      <line x1="552" y1="107" x2="668" y2="107"/>
+      <line x1="552" y1="131" x2="628" y2="131"/>
+      <line x1="552" y1="155" x2="648" y2="155"/>
+      <line x1="552" y1="179" x2="608" y2="179"/>
+      <line x1="552" y1="203" x2="708" y2="203"/>
+    </g>
+  </g>
+
+  <text x="32" y="212" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#6E6E6E">Swept after 30 days. A restart clears the disk as well.</text>
+</svg>

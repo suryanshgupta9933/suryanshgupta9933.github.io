@@ -39,7 +39,8 @@ agent work on pages you would not paste into a chat window, and self-host rather
 
 ## Summary
 
-Brotto is built so that we collect as little as possible. There is no analytics, no advertising, no
+Brotto is built so that we collect as little as possible. We take product analytics — counts of
+whether people can run a task, not what the task was — and nothing else. There is no advertising, no
 tracking across sites, and we do not sell or share data with anyone for marketing. Two things are
 kept on the hosted relay and are described in full under [What the relay keeps](#what-the-relay-keeps):
 a failure log (a machine-readable reason code and your account id, when a run breaks), and one
@@ -164,7 +165,7 @@ The files are named after the install that created them, so that separate users 
 share settings. That name is the random install id the extension generated on your machine — not your
 name, not your IP address, and not your network. The model-configuration file is named with the install
 id in plain text; the policy file is named with a scrambled version of it. It is not used for
-advertising or analytics — on a self-hosted install the machine holding them is yours, and nothing is
+advertising — on a self-hosted install the machine holding them is yours, and nothing is
 sent anywhere with it. On the hosted relay that machine is ours, and its records are swept after 30
 days; the install id is a random identifier the
 browser generated, so it does not name you.
@@ -207,7 +208,8 @@ suggestion, so it comes back with it after you reopen the panel.
 ## Third parties
 
 The only third party that receives your page data is **the model provider you selected**. Brotto does
-not share data with analytics providers, advertising networks, data brokers, or social platforms.
+not share data with advertising networks, data brokers, or social platforms. Product analytics stay
+with us and are counts of whether people can run a task, not what the task was.
 
 **If you use Brotto Cloud, one more third party is involved.** The relay authenticates accounts through
 **Supabase**, which holds your email address and your quota row. Supabase never receives page content,
@@ -231,8 +233,8 @@ answer.
 
 **On the hosted relay, that orchestrator is ours rather than yours**, which makes us a party to your
 page data rather than only to the relay's traffic. Nothing else changes: the provider still receives
-what it would have received on a self-hosted install, Brotto still runs no analytics, and no other
-company is given a copy.
+what it would have received on a self-hosted install, the only thing Brotto measures is whether people
+can run a task — not what the task was — and no other company is given a copy.
 
 ## What the relay keeps
 
@@ -350,7 +352,8 @@ that risk is unacceptable.
 > Policy, including the Limited Use requirements.
 
 We collect user data only to perform the task you asked for — driving the tab you selected on your
-behalf — and for nothing else. We do not sell it, and we do not use it for advertising or analytics.
+behalf — and for nothing else. We do not sell it, and we do not use it for advertising. Product
+analytics are counts of whether people can run a task, not what the task was.
 
 ## Children
 

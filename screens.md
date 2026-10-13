@@ -1,13 +1,12 @@
 ---
 layout: default
 title: Screens
-wide: true
 description: Every screen in the Brotto panel, and one real run from the first sentence to the branch protection ruleset it wrote.
 ---
 
 # Screens
 
-<p class="section-note" style="margin-top: -6px;">
+<p class="section-note">
   Everything below is the real extension in a real browser. Nothing is mocked,
   staged or cropped to hide a step. The three panels are the surfaces you
   interact with; the run afterwards is what one of them looks like with a task
@@ -38,6 +37,12 @@ description: Every screen in the Brotto panel, and one real run from the first s
   public repository. Note where it stops — not once at the end, twice mid-run,
   because both were decisions only you could make.
 </p>
+
+<figure>
+  <img src="/assets/diagrams/run-shape.svg" width="900" height="170" loading="lazy"
+    alt="One run of fourteen steps drawn as a line. Two stops interrupt it — a domain it has not visited, and a choice only you can make — and the run ends done, on your disk.">
+  <figcaption>The shape of the run below: two stops, both yours to make.</figcaption>
+</figure>
 
 <div class="moment">
   <div class="n label">01</div>
@@ -93,9 +98,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
   </div>
 </div>
 
-<h2>Twenty-five seconds</h2>
-
-<div class="split" style="border-top: 0; padding-top: 8px;">
+<div class="split">
   <div class="claim">
     <span class="eyebrow label">The video</span>
     <h2>What it looks like in motion</h2>
@@ -116,7 +119,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
   </div>
 </div>
 
-<p class="section-note" style="margin-top: 34px;">
+<p class="section-note">
   <a href="/self-host">Install it yourself</a> — one container and one extension,
   about six steps. Or read
   <a href="https://github.com/suryanshgupta9933/Brotto#screens">the README</a>

@@ -118,6 +118,11 @@ your scroll than a gallery here would be.
 Once a task is in flight there are three things it will stop for, and they all
 resolve in place, so the run reads as a conversation rather than a log.
 
+<figure>
+  <img src="/assets/diagrams/three-stops.svg" width="900" height="210" alt="Three cards: a domain it has not visited, a choice between two good answers, and a sign-in wall that needs you. No setting turns any of them off." loading="lazy">
+  <figcaption>Three cards, and none of them can approve itself.</figcaption>
+</figure>
+
 **A domain it has not been to.** Approve and it proceeds; deny and it does not
 ask again in this task. An approval sticks as an eTLD+1 grant afterwards, so
 you are not re-answering for github.com every week — which is also why the

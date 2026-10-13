@@ -1,24 +1,23 @@
 ---
 layout: default
 title: Run it yourself
-wide: true
 description: How to run Brotto on your own machine — paste a prompt into your AI coding tool, or follow the steps by hand. Free, permanent, Apache 2.0, no account.
 ---
 
 # Run it yourself
 
-<p class="section-note" style="margin-top: -6px;">
-  One container on your machine — the agent loop, not a browser, about
-  510&nbsp;MB — and the extension in Chrome. Free, permanent, Apache 2.0. No
-  account, no operator, no cap. Everything Brotto keeps lands on your disk.
+<p class="section-note">
+  One container on your machine, about 510&nbsp;MB — and the extension in
+  Chrome. Free, permanent, Apache 2.0. No account, no operator, no cap.
+  Everything Brotto keeps lands on your disk.
 </p>
 
-<!-- The whole install as one path. Two doors in at step 01, one outcome at
-     step 04; the container carries the heavier rule because it is the object
-     that lands on the reader's disk. -->
+<!-- The install as one path. Two doors in at step 01, one outcome at the end;
+     the container carries the heavier rule because it is the object that lands
+     on the reader's disk. -->
 <figure>
-  <img src="/assets/diagrams/install-path.svg" width="900" height="340" loading="lazy"
-    alt="The install path in four steps. Step one is the server: an AI prompt or four commands, with Docker the only ask. Step two is a container on your machine at 127.0.0.1:8000 holding the agent loop. Step three is the Chrome extension, with two settings. Step four is a running task in the tab you are already signed in to.">
+  <img src="/assets/diagrams/install-path.svg" width="900" height="220" loading="lazy"
+    alt="The install path in three steps. Step one is the server: an AI prompt or four commands, with Docker the only ask. Step two is a container on your machine at 127.0.0.1:8000. Step three is the Chrome extension with two settings, and then a task running in the tab you are already signed in to.">
   <figcaption>Two doors in, one path out. The AI prompt and the four commands do the same job.</figcaption>
 </figure>
 
@@ -36,7 +35,9 @@ description: How to run Brotto on your own machine — paste a prompt into your 
   needs no agent — it installs from the Chrome Web Store in one click.
 </p>
 
-<pre><code>Set up Brotto's server on this machine. Brotto is an AI browser agent: a
+<div class="copywrap">
+  <button class="copy-btn" type="button" data-copy="prompt-long">Copy</button>
+  <pre id="prompt-long"><code>Set up Brotto's server on this machine. Brotto is an AI browser agent: a
 Chrome extension talks to a small local server that runs the agent loop.
 
 Prerequisite: Docker.
@@ -58,16 +59,20 @@ Prerequisite: Docker.
 
 Do not paste a model API key into any file. I will add that myself in the
 extension's Settings — it belongs there, not in .env.</code></pre>
+</div>
 
 <p>
   Shorter version, if you would rather type a sentence than paste a block:
 </p>
 
-<pre><code>Set up Brotto's local server from
+<div class="copywrap">
+  <button class="copy-btn" type="button" data-copy="prompt-short">Copy</button>
+  <pre id="prompt-short"><code>Set up Brotto's local server from
 https://github.com/suryanshgupta9933/Brotto — generate a long random
 AGENT_SECRET in .env, start it with Docker, and confirm the health check
 answers. Don't touch any model API key; I'll add that in the extension
 myself.</code></pre>
+</div>
 
 <h2>Do it by hand</h2>
 
@@ -83,8 +88,7 @@ docker compose up -d</code></pre>
 
 <p>
   That is the whole server. It listens on <code>http://127.0.0.1:8000</code>
-  with no browser in it — about 510&nbsp;MB, most of which is the model
-  provider SDKs rather than Chromium. Check it with:
+  and never opens a browser of its own. Check it with:
 </p>
 
 <pre><code>curl -s http://127.0.0.1:8000/health</code></pre>
@@ -159,7 +163,7 @@ npm ci &amp;&amp; npm run build</code></pre>
         <h3>The same three gates</h3>
         <p>
           The gates that cannot be switched off are the same ones the cloud
-          beta has, and the audit record of every run is a file on your disk.
+          beta has, and the record of every run is a file on your disk.
         </p>
       </div>
       <div>
@@ -167,7 +171,7 @@ npm ci &amp;&amp; npm run build</code></pre>
         <p>
           A one-command installer is planned, not built. Until it is, these
           are the steps. If you would rather skip them entirely,
-          <a href="/get">Brotto Cloud</a> is the other door — same extension,
+          <a href="/get-started">Brotto Cloud</a> is the other door — same extension,
           someone else's server, invite-only while it is in beta.
         </p>
       </div>
@@ -175,8 +179,47 @@ npm ci &amp;&amp; npm run build</code></pre>
   </div>
 </div>
 
+<script>
+// The prompt blocks are the reason this page exists, so the button copies the
+// whole block — not a fragment, not the textContent of a nested span. One
+// listener for every button on the page; a second prompt needs no second
+// handler.
+(function () {
+  function label(btn, text, ms) {
+    var was = btn.textContent;
+    btn.textContent = text;
+    btn.setAttribute('data-copied', '');
+    setTimeout(function () {
+      btn.textContent = was;
+      btn.removeAttribute('data-copied');
+    }, ms);
+  }
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var block = document.getElementById(btn.getAttribute('data-copy'));
+      if (!block) return;
+      var text = block.innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          label(btn, 'Copied', 1600);
+        }, function () { label(btn, 'Select and copy', 1600); });
+      } else {
+        // No clipboard API (insecure context, old browser): select the block
+        // so Cmd/Ctrl+C still works rather than leaving a dead button.
+        var range = document.createRange();
+        range.selectNodeContents(block);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        label(btn, 'Press copy', 1600);
+      }
+    });
+  });
+})();
+</script>
+
 <p class="section-note">
-  <a href="/get">Get Brotto</a> ·
+  <a href="/get-started">Get Brotto</a> ·
   <a href="/privacy">Privacy</a> ·
   <a href="/security">Security</a> ·
   <a href="/">Back to the front page</a>

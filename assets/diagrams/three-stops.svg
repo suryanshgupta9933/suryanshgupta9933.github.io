@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 210" width="900" height="210" role="img" aria-labelledby="stopsTitle stopsDesc">
+  <title id="stopsTitle">The three things it stops for</title>
+  <desc id="stopsDesc">Three cards, each resolving in place: a domain it has not visited, a question the page made ambiguous, and a sign-in wall that needs you. None of them can approve themselves.</desc>
+
+  <rect width="900" height="210" fill="#FFFFFF"/>
+
+  <text x="32" y="32" font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="1.6" fill="#6E6E6E">WHAT IT STOPS FOR</text>
+
+  <!-- Card 1: a domain it has not visited. -->
+  <g>
+    <rect x="32" y="56" width="260" height="120" fill="#FFFFFF" stroke="#DC2626"/>
+    <text x="52" y="88" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#DC2626">A NEW DOMAIN</text>
+    <text x="52" y="118" font-family="-apple-system, system-ui, sans-serif" font-size="17" font-weight="600" fill="#000000">It has not been here</text>
+    <text x="52" y="144" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">Approve once, and the grant</text>
+    <text x="52" y="162" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">outlives the run.</text>
+  </g>
+
+  <!-- Card 2: a question the page made ambiguous. -->
+  <g>
+    <rect x="320" y="56" width="260" height="120" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="340" y="88" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#6E6E6E">A CHOICE</text>
+    <text x="340" y="118" font-family="-apple-system, system-ui, sans-serif" font-size="17" font-weight="600" fill="#000000">Two good answers</text>
+    <text x="340" y="144" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">It asks, rather than guess</text>
+    <text x="340" y="162" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">and cost you the backtrack.</text>
+  </g>
+
+  <!-- Card 3: a sign-in wall. -->
+  <g>
+    <rect x="608" y="56" width="260" height="120" fill="#FFFFFF" stroke="#DC2626"/>
+    <text x="628" y="88" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#DC2626">A WALL</text>
+    <text x="628" y="118" font-family="-apple-system, system-ui, sans-serif" font-size="17" font-weight="600" fill="#000000">Only you can pass</text>
+    <text x="628" y="144" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">It hands the sign-in back</text>
+    <text x="628" y="162" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">and picks up after.</text>
+  </g>
+
+  <text x="32" y="198" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.2" fill="#6E6E6E">NO SETTING TURNS ANY OF THEM OFF</text>
+</svg>

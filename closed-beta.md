@@ -32,8 +32,8 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
 
 <p>
   You still bring your own model key, so the page you are looking at goes to
-  your provider and not to us. The provider catalogue is the same one the
-  self-hosted install reads.
+  your provider and not to us. The same providers the self-hosted install
+  supports.
 </p>
 
 <p>
@@ -73,7 +73,13 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
   worth being exact about what that means.
 </p>
 
-<div class="cardgrid cardgrid--2" style="margin-top: 26px;">
+<figure>
+  <img src="/assets/diagrams/what-the-relay-keeps.svg" width="900" height="240" loading="lazy"
+    alt="Two records only — a failure log, and one row per sign-in. Page content, prompts, task text, URLs and model responses are on the other side of a hard line and never written down.">
+  <figcaption>Two records, and a hard line after them.</figcaption>
+</figure>
+
+<div class="cardgrid cardgrid--2">
   <div>
     <h3>Thirty days, then gone</h3>
     <p>
@@ -87,20 +93,17 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
     <h3>Stripped before it goes further</h3>
     <p>
       Credentials, API keys, bearer tokens and card numbers are redacted in code
-      before page text reaches your model provider. It is a best-effort pattern
-      match rather than a guarantee, and
-      <a href="/privacy">the policy</a> says exactly what it covers.
+      before page text reaches your model provider.
+      <a href="/privacy">The policy</a> says exactly what it covers.
     </p>
   </div>
   <div>
     <h3>Nothing sold, nothing profiled</h3>
     <p>
-      No analytics, no advertising, nothing sold or shared. We keep two things.
-      A failure log &mdash; when a run breaks, the reason code and your account
-      id, so we can find the bug and fix it. And one record per sign-in: your
-      account id, the network you came from (a /24 or /48, not the address),
-      and the browser, so we can tell a new laptop from somebody else holding
-      the account. No page content, no prompts, no task text, no URLs.
+      No advertising, nothing sold or shared. We do take product analytics
+      &mdash; counts of whether people can run a task, not what the task was.
+      A failure log and one record per sign-in exist too;
+      <a href="/privacy">Privacy</a> lists every field.
     </p>
   </div>
   <div>
@@ -113,7 +116,7 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
   </div>
 </div>
 
-<p class="section-note" style="margin-top: 24px;">
+<p class="section-note">
   All of this is written out in full, for both deployments, in
   <a href="/privacy">Privacy</a> and <a href="/security">Security</a>.
 </p>
@@ -121,12 +124,10 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
 <h2>When it ends</h2>
 
 <p>
-  The beta ends when it ends. There is no announced date and nothing is
-  scheduled; what we are looking for is whether a few people keep choosing this
-  over installing it themselves. If it stops being worth our time to run, we
-  will say so, and anyone who wants to keep it forever can
-  <a href="/self-host">self-host</a> &mdash; which is free, permanent, and was never
-  part of the beta to begin with.
+  There is no announced end date and nothing is scheduled. If that changes, we
+  will write to the address we invited and say what happens next.
+  <a href="/self-host">Self-hosting</a> is not part of the beta: free,
+  permanent, Apache 2.0, and yours to run.
 </p>
 
 <p class="section-note">

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Brotto — an AI browser agent that runs where you're already signed in
-wide: true
 description: Brotto is an AI browser agent for Chrome — run it yourself, free and permanent, or ask for a seat on the cloud beta. It works in the tab you are already signed in to, and asks before anything you cannot undo.
 ---
 
@@ -20,12 +19,16 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       screenshot of a page it cannot read.
     </p>
     <!-- The hero's one button is the fork, not the waitlist. Get Brotto opens
-         both doors — self-host and the cloud beta — on /get, so the hero does
-         not pick one for the reader. There is no secondary line: the button
-         already is both offers. -->
+         both doors — self-host and the cloud beta — on /get-started, so the hero does
+         not pick one for the reader. The line under it names both doors rather
+         than reassuring about either: a reader who wants one of them knows
+         where the button goes. -->
     <div class="actions">
-      <a class="btn" href="/get">Get Brotto</a>
+      <a class="btn btn--lg" href="/get-started">Get Brotto</a>
     </div>
+    <p class="hero-cta-note">
+      Install it free and permanent, or ask for a seat on the cloud beta.
+    </p>
   </div>
 
   <!-- The panel's own status bar, rebuilt in markup so the values stay text:
@@ -225,15 +228,15 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       <div class="node">
         <span class="label">Your machine</span>
         <b>Chrome extension</b>
-        <span>A pure actuator. Handed a target, asked for a box model.</span>
+        <span>The part that clicks, types and reads the tab you already have open.</span>
       </div>
       <div class="link">
-        <span class="label">WebSocket</span>
+        <span class="label">Your tab</span>
       </div>
       <div class="node">
         <span class="label">Your machine</span>
         <b>Container</b>
-        <span>The agent loop. Chrome suspends idle MV3 workers, so the loop does not live here.</span>
+        <span>The part that plans the work. About 510&nbsp;MB, and it never opens a browser.</span>
       </div>
       <div class="link">
         <span class="label">Your key</span>
@@ -244,7 +247,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
         <span>Anthropic, OpenAI, Gemini, MiniMax, OpenRouter, DeepSeek, Groq, or your own.</span>
       </div>
     </div>
-    <div class="cardgrid cardgrid--2" style="margin-top: 26px;">
+    <div class="cardgrid cardgrid--2">
       <div>
         <h3>It drives your tab, not a cloud browser</h3>
         <p>
@@ -253,10 +256,10 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
         </p>
       </div>
       <div>
-        <h3>It reads the accessibility tree, not pixels</h3>
+        <h3>It reads the page, not a screenshot</h3>
         <p>
-          Roles, labels, values and stable references — the structure a screen
-          reader already navigates by. No vision model, no image tokens.
+          The structure the page already publishes — what is a button, what it
+          is called, what is in it. No vision model, no image tokens.
         </p>
       </div>
     </div>
@@ -296,14 +299,14 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
     <span class="eyebrow label">Install</span>
     <h2>One container, one extension</h2>
     <p>
-      The container holds the agent loop; it never launches a browser. About
-      510 MB, most of which is the model provider SDKs rather than Chromium.
+      The container is about 510&nbsp;MB and never launches a browser — it is
+      not a second Chrome. Everything Brotto keeps lands in one Docker volume on
+      your disk.
     </p>
     <p>
       Six steps, and they are on their way out — a one-command installer is next,
       and there is a hosted beta if you would rather skip all of it
-      (<a href="/waitlist">Brotto Cloud</a>). Everything Brotto keeps lands in
-      one Docker volume on your disk.
+      (<a href="/waitlist">Brotto Cloud</a>).
     </p>
   </div>
   <div>
@@ -311,7 +314,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       The install lives on one page: a prompt you can paste into an AI coding
       tool, the manual steps, and the extension — store install first.
     </p>
-    <div class="actions" style="margin-bottom: 26px;">
+    <div class="actions">
       <a class="btn" href="/self-host">Run it yourself</a>
       <a class="btn btn--ghost"
         href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
@@ -320,11 +323,11 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
     <table class="spec">
       <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
       <tr><td>Cost</td><td>Nothing, beyond the model calls you make</td></tr>
-      <tr><td>Your data</td><td>Audit files on your disk. The server transits page text and stores only a short digest of each page.</td></tr>
+      <tr><td>Your data</td><td>Run records on your disk. A short summary of each page, not the page itself.</td></tr>
       <tr><td>Providers</td><td>Eight — Anthropic, OpenAI, Gemini, MiniMax, OpenRouter, DeepSeek, Groq, or any OpenAI-compatible endpoint you run</td></tr>
-      <tr><td>Chrome only</td><td><code>chrome.debugger</code> has no Firefox equivalent</td></tr>
+      <tr><td>Chrome only</td><td>The access Brotto needs has no Firefox equivalent</td></tr>
     </table>
-    <p class="section-note" style="margin-top: 22px;">
+    <p class="section-note">
       Full instructions, honest limitations and the roadmap are on
       <a href="https://github.com/suryanshgupta9933/Brotto">GitHub</a>.
     </p>
@@ -377,13 +380,11 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       </p>
     </div>
     <div>
-      <span class="card-idx label">05 · Not on sale</span>
+      <span class="card-idx label">05 · Not built</span>
       <h3>Pro</h3>
       <p>
-        Pro does not exist and nothing is on sale. If it is ever built it would
-        carry multi-tab parallelism, a speed pack and per-run cost caps — and
-        Brotto stays Apache 2.0 either way, because the free build is the whole
-        product as it stands.
+        Pro is not built. If it ever is, it would carry multi-tab parallelism,
+        a speed pack and per-run cost caps — and Brotto stays Apache 2.0.
       </p>
     </div>
   </div>
@@ -394,8 +395,8 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
     <span class="eyebrow label">Where your data goes</span>
     <h2>Your pages reach the model. On a self-hosted install, nobody else.</h2>
     <p>
-      The browser runs on your machine. The agent loop runs on a server
-      <em>you</em> run, so page observations transit it — that is inherent to
+      The browser runs on your machine. The part that plans the work runs on a
+      server <em>you</em> run, so page observations transit it — that is inherent to
       the design. What you choose is that nobody is on the other end.
     </p>
     <p>
@@ -412,15 +413,16 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
         <h3>Page text is redacted first</h3>
         <p>
           Credentials, API keys, bearer tokens, card numbers and government
-          identifiers are stripped before it reaches the provider — in code, on
-          every task, with no setting to disable it.
+          identifiers are stripped before it reaches the provider — on every
+          task, with no setting to disable it.
         </p>
       </div>
       <div>
-        <h3>Nothing but a digest reaches disk</h3>
+        <h3>A summary, not a copy</h3>
         <p>
-          A run leaves a 200-character digest of each page rather than a copy.
-          What you typed and the model's prose about it do persist in the record.
+          A run leaves a short summary of each page rather than the page itself.
+          What you typed and what the agent wrote about the page stay in the
+          record.
         </p>
       </div>
       <div>
@@ -439,7 +441,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
         </p>
       </div>
     </div>
-    <p class="section-note" style="margin-top: 24px;">
+    <p class="section-note">
       Both of those are written out in full:
       <a href="/privacy">Privacy</a> and <a href="/security">Security</a>.
     </p>
@@ -465,7 +467,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
         finish.</span>
       </li>
     </ul>
-    <p class="section-note" style="margin-top: 22px;">
+    <p class="section-note">
       <a href="/writing">All writing</a>
     </p>
   </div>

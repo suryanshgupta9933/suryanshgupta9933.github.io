@@ -68,8 +68,15 @@
 
   /* Prose measure. 680px at 17px is roughly 78 characters, which is the top
      of the comfortable range — any wider and the eye loses the line return
-     on a scroll. */
+     on a scroll. Posts only: every `.page` runs the wide edge below. */
   --measure: 680px;
+
+  /* The one page edge. 1140px content column inside 24px gutters (16px under
+     700px), paragraphs capped at 62ch on top of it. There is no narrow page
+     shape any more — a policy and a product page share this edge so a reader
+     never has to re-find the margin when they follow a link. */
+  --page: 1140px;
+  --gutter: 24px;
 
   --t: 120ms;
 }
@@ -268,16 +275,13 @@ footer a:hover { color: var(--ink); border-bottom-color: var(--ink); }
    Title and meta sit above a hairline, then the prose column. The rule under
    the meta is the panel's card-header rule doing structural work: it says
    "the header ended" without a box or a shadow. */
-article, .page { max-width: var(--measure); margin: 0 auto; }
+article { max-width: var(--measure); margin: 0 auto; }
 
-/* The landing page runs wider than the prose measure: a single centred column
-   on a 16:10 display reads as a blog post, and the product page needs the
-   width for a split hero and a three-up screen grid. Prose blocks inside keep
-   their own measure, so the text column does not stretch with the layout.
-   Declared after `.page` on purpose — same specificity, so source order
-   decides. */
-.page--wide { max-width: 1140px; }
-.page--wide p { max-width: 62ch; }
+/* One page edge for every page: 1140px, 24px gutters, 62ch paragraphs.
+   Posts keep the 680px measure because they are a different shape — a column
+   of prose — and that difference is the point of the article layout. */
+.page { max-width: var(--page); margin: 0 auto; }
+.page p { max-width: 62ch; }
 
 .post-head { padding: 56px 0 28px; border-bottom: 1px solid var(--rule); margin-bottom: 40px; }
 .post-title {
@@ -382,8 +386,49 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 .actions .btn:hover, .actions .btn:focus-visible { background: var(--paper); color: var(--ink); }
 .actions .btn--ghost { background: var(--paper); color: var(--ink); }
 .actions .btn--ghost:hover, .actions .btn--ghost:focus-visible { background: var(--ink); color: var(--paper); }
+/* The hero's one button. Same pill, one step up in padding and type size —
+   it is the only control above the fold and it should read as the page's
+   answer rather than as one of a row of equal actions. */
+.actions .btn--lg {
+  padding: 16px 30px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+}
+
+/* The line under the hero CTA. It names the two doors rather than reassuring
+   about either one, so the corner does not sit empty and the button is not
+   the only thing telling a first-time reader what "Get" means. */
+.hero-cta-note {
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  max-width: 36ch;
+}
+.hero-cta-note a {
+  color: var(--ink-2);
+  border-bottom-color: var(--rule-2);
+}
 
 .prose p, .page p { margin-bottom: 22px; overflow-wrap: break-word; }
+
+/* ─── One vertical rhythm ───────────────────────────────────────────────
+   A section is an h2 with a rule on it: 52px above, 20px of padding under the
+   rule, 18px before the body. The standfirst under an h1 is the only place the
+   rhythm tightens, and it tightens by 6px every time — so it is a rule here
+   rather than an inline style on four pages that will drift apart. */
+.page > h1 + .section-note { margin-top: -6px; }
+
+/* A card grid follows a block, so it takes the same 26px a trailing note
+   does. Inside a split it is a column and must not indent from the claim
+   beside it, so the top margin only applies in normal flow. */
+.page > .cardgrid,
+.page > .cardgrid--2,
+.page > .cardgrid--fork,
+.page > div > .cardgrid { margin-top: 26px; }
+.split .cardgrid, .split .cardgrid--2, .split .cardgrid--fork,
+.band .cardgrid, .hero .cardgrid { margin-top: 0; }
 
 .prose h2, .page h2 {
   font-size: 21px;
@@ -960,7 +1005,7 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 .section-note {
   font-size: 16px;
   color: var(--ink-2);
-  margin: 0 0 26px;
+  margin: 22px 0 26px;
   max-width: 62ch;
 }
 
@@ -1086,6 +1131,67 @@ article, .page { max-width: var(--measure); margin: 0 auto; }
 .spec--fork td:first-child { width: 22%; }
 .spec--fork th:not(:first-child),
 .spec--fork td:not(:first-child) { width: 39%; }
+
+/* Table rows answer hover the way the post-list does: one row at a time,
+   tone only. Inversion would be too loud on a six-row comparison a reader is
+   scanning with their eyes rather than aiming a pointer at. */
+.spec tbody tr { transition: background var(--t); }
+.spec tbody tr:hover { background: var(--paper-2); }
+
+/* ─── Copy button ─────────────────────────────────────────────────────────
+   The paste-in prompt is the reason /self-host exists, so it gets the one
+   control that page needs. Sits on the pre's corner rather than in an
+   .actions row of its own: it belongs to the block, not to the section. */
+.copywrap { position: relative; margin: 0 0 24px; }
+.copywrap pre { margin: 0; padding-right: 96px; }
+.copywrap .copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--t), color var(--t), border-color var(--t);
+}
+.copywrap .copy-btn:hover,
+.copywrap .copy-btn:focus-visible { background: var(--ink); color: var(--paper); }
+.copywrap .copy-btn[data-copied] {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: var(--paper);
+}
+
+/* ─── Motion ─────────────────────────────────────────────────────────────
+   The same --t the nav and the buttons already use, extended to the two
+   things on these pages a hand actually goes to: a table row, and the copy
+   button. Plus one first-paint rise on the top-of-page blocks, the
+   waitlist-done keyframe at half the distance.
+
+   Anything that would not be noticed is not here. No in-view choreography —
+   it would need JS to do well and the pages read fine without it. The
+   prefers-reduced-motion kill switch at the bottom of this file covers all
+   of it. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero > *,
+.page > h1,
+.page > .section-note,
+.page > .split:first-of-type,
+.page > figure:first-of-type,
+.page > .cardgrid:first-of-type {
+  animation: rise 240ms ease-out both;
+}
+.page > .section-note { animation-delay: 40ms; }
+.page > .split:first-of-type, .page > figure:first-of-type { animation-delay: 80ms; }
 
 /* ─── Narrow ────────────────────────────────────────────────────────────
    Two breakpoints, because the layouts fail differently. At 940px the split

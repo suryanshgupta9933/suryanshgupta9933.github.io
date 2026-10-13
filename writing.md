@@ -6,7 +6,7 @@ description: Notes on building Brotto, an AI browser agent — what it does, wha
 
 # Writing
 
-<p class="section-note" style="margin-top: -6px;">
+<p class="section-note">
   Notes on the parts of Brotto that took the most work, and on the question
   anyone should ask before letting an agent into their own browser session.
 </p>

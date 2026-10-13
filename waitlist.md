@@ -21,7 +21,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
 <h2>What it is</h2>
 
 <p>
-  We run the orchestrator at <code>agent.brotto.dev</code>, you use the same
+  We run the server at <code>agent.brotto.dev</code>, you use the same
   extension, and there is nothing to install but the extension itself. Sign in
   with your email, get a six-digit code, and ask for something in the tab you
   are already signed in to.
@@ -36,8 +36,8 @@ description: The hosted version of Brotto, by invitation — the same extension 
      an invitation lands. No queue number, because there is not one — and the
      last line is the one the copy keeps making. -->
 <figure>
-  <img src="/assets/diagrams/batched-invites.svg" width="900" height="380" loading="lazy"
-    alt="Admission in batches. Addresses sit on a list with no queue number. When a batch opens, a few seats fill now and the rest wait. What arrives is an email, a six-digit code and the same extension. What it is not: open signup, a paid tier, or the better version.">
+  <img src="/assets/diagrams/batched-invites.svg" width="900" height="280" loading="lazy"
+    alt="Admission in batches. Addresses sit on a list with no queue number. When a batch opens, a few seats fill now and the rest wait. What arrives is an email, a six-digit code and the same extension. What it is not: open signup or a paid tier.">
   <figcaption>Admitted in batches, not as addresses arrive. An invitation is not a subscription.</figcaption>
 </figure>
 
@@ -52,11 +52,11 @@ description: The hosted version of Brotto, by invitation — the same extension 
     </p>
   </div>
   <div>
-    <h3>Not the upgrade</h3>
+    <h3>The convenience path</h3>
     <p>
-      It is not the better version. Self-hosting is, and it is
-      <a href="/self-host">free and permanent</a>. This is the convenience
-      path beside it, not a replacement for it.
+      No container, no terminal &mdash; we run the server.
+      <a href="/self-host">Self-hosting</a> stays free and permanent on your
+      own disk.
     </p>
   </div>
 </div>
@@ -87,7 +87,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
   exact about what that means.
 </p>
 
-<div class="cardgrid cardgrid--2" style="margin-top: 26px;">
+<div class="cardgrid cardgrid--2">
   <div>
     <h3>Thirty days, then gone</h3>
     <p>
@@ -101,22 +101,17 @@ description: The hosted version of Brotto, by invitation — the same extension 
     <h3>Stripped before it goes further</h3>
     <p>
       Credentials, API keys, bearer tokens and card numbers are redacted in code
-      before page text reaches your model provider. It is a best-effort pattern
-      match rather than a guarantee, and
-      <a href="/privacy">the policy</a> says exactly what it covers.
+      before page text reaches your model provider.
+      <a href="/privacy">The policy</a> says exactly what it covers.
     </p>
   </div>
   <div>
     <h3>Nothing sold, nothing profiled</h3>
     <p>
-      No analytics, no advertising, nothing sold or shared. We keep two things.
-      A failure log — when a run breaks, the reason code and your account id,
-      so we can find the bug and fix it. And one record per sign-in: your
-      account id, the network you came from (a /24 or /48, not the address),
-      and the browser, so we can tell a new laptop from somebody else holding
-      the account. No page content, no prompts, no task text, no URLs. You
-      bring your own model key, so your model provider sees your page, as it
-      does on any deployment.
+      No advertising, nothing sold or shared. We do take product analytics —
+      counts of whether people can run a task, not what the task was. A failure
+      log and one record per sign-in exist too;
+      <a href="/privacy">Privacy</a> lists every field.
     </p>
   </div>
   <div>
@@ -128,7 +123,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
   </div>
 </div>
 
-<p class="section-note" style="margin-top: 24px;">
+<p class="section-note">
   All of this is written out in full, for both deployments, in
   <a href="/privacy">Privacy</a> and <a href="/security">Security</a>.
 </p>
@@ -160,7 +155,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
     and once in a while after that with something worth reading.
 
     Or skip the wait entirely — <a href="/self-host">install Brotto yourself</a>.
-    It is free, permanent, and the better version anyway.
+    It is free, permanent, and yours.
   </p>
 </div>
 
