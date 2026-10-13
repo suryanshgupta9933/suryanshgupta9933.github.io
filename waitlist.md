@@ -89,12 +89,11 @@ description: The hosted version of Brotto, by invitation — the same extension 
 
 <div class="cardgrid cardgrid--2">
   <div>
-    <h3>Thirty days, then gone</h3>
+    <h3>Still there when you come back</h3>
     <p>
-      Each run's record is deleted automatically 30 days after it last moved.
-      That is its prompts, its actions and its timings — never the page text,
-      which is not written down at all. A restart or a deploy clears the disk
-      as well.
+      A run's record stays — its prompts, its actions, its timings — so the
+      task is there when you return to it. Never the page text, which is not
+      written down at all.
     </p>
   </div>
   <div>

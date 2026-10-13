@@ -24,9 +24,9 @@ There is no Brotto-operated service there, we run no servers on your behalf, and
 means the machine you chose to run it on.
 
 There is also a capped, invite-only hosted relay at `agent.brotto.dev`, operated by Brotto on Heroku.
-If you point the extension at it, page observations transit a server we run and are written to a dyno
-disk that is erased on restart or deploy. Retention on the relay is 30 days after a run last moves,
-not the life of the task — see [Retention and deletion](#retention-and-deletion).
+If you point the extension at it, page observations transit a server we run and a run's record is
+written to a disk we operate. Nothing there expires on a timer: the record stays until you delete it,
+so the task is there when you come back to it — see [Retention and deletion](#retention-and-deletion).
 
 That is worth being precise about: whoever operates the machine the orchestrator runs on can read the
 pages the agent reads. On a self-hosted install there is no operator between the agent and your
@@ -124,8 +124,8 @@ provider, and no copy passes through Brotto. If you are using the hosted relay i
 sentence is not true of us: the key and the observations cross a machine we operate on their way to
 the provider, and we describe what that machine keeps below. The observations do not stop at the model
 call on either deployment, though: the server saves the URL, the page title, and a short digest of
-each page to a file on its own disk, and that file is still there after the task ends — on the relay,
-for up to 30 days. The next section says exactly what is in it.
+each page to a file on its own disk, and that file is still there after the task ends. The next
+section says exactly what is in it.
 
 ## What the orchestrator writes to disk
 
@@ -166,8 +166,8 @@ share settings. That name is the random install id the extension generated on yo
 name, not your IP address, and not your network. The model-configuration file is named with the install
 id in plain text; the policy file is named with a scrambled version of it. It is not used for
 advertising — on a self-hosted install the machine holding them is yours, and nothing is
-sent anywhere with it. On the hosted relay that machine is ours, and its records are swept after 30
-days; the install id is a random identifier the
+sent anywhere with it. On the hosted relay that machine is ours, and the records on it stay until you
+delete them; the install id is a random identifier the
 browser generated, so it does not name you.
 
 **The approved-sites list is a record of where you have let Brotto work.** When you approve a site in
@@ -214,7 +214,7 @@ with us and are counts of whether people can run a task, not what the task was.
 **If you use Brotto Cloud, one more third party is involved.** The relay authenticates accounts through
 **Supabase**, which holds your email address and your quota row. Supabase never receives page content,
 your prompts or your model key — it only answers "is this signed in, and how many tasks has this
-account used this week". Everything else stays on the dyno, under our control, for the 30 days above.
+account used this week". Everything else stays on the dyno, under our control, until you delete it.
 
 **Asking for an invitation puts your address in two more places.** A waitlist row — the address, and
 the optional name you typed beside it — is held in our
@@ -275,8 +275,8 @@ on a self-hosted install:
 
 - **Session records** — the audit file and the scratchpad, described above — are written to disk and
   stay there until you remove them. Nothing expires on a schedule unless you ask for it: the server has
-  a `BROTTO_RETENTION_DAYS` setting that will age sessions out, and it is **off by default**. (The
-  hosted relay is the exception — it defaults to 30 days, because that disk is ours.)
+  a `BROTTO_RETENTION_DAYS` setting that will age sessions out, and it is **off by default** — on the
+  hosted relay as well.
   - **In the panel:** each conversation in **Session history** has a delete button, and there is a
     **Delete all** above the list. Both ask you to confirm first — the question names the conversation
     by its own first message, or names how many are about to go. There is no undo.
@@ -297,13 +297,11 @@ on a self-hosted install:
   duration of a task and not written to disk. On the hosted relay that memory belongs to a machine we
   operate, for the duration of the task.
 
-**The two deployments differ in who has to be trusted, not in what is written.** On the relay the disk
-is ours, and it expires on its own: a sweep runs hourly and deletes any session record untouched for
-30 days, and a dyno restart or deploy clears the disk outright on top of that. So a relay record has a
-ceiling of about 30 days rather than none — it is still the shortest-lived copy anywhere, but it is a
-timetable rather than a certainty. On a self-hosted install there is no timer at all unless you set
-`BROTTO_RETENTION_DAYS`. Either way the panel's **Delete** and **Delete all** are immediate and are
-the path you control. If you want a record that survives because you chose it, self-host.
+**The two deployments differ in who has to be trusted, not in what is written or how long it is
+kept.** On either one a session record stays until you delete it, so the task is there when you come
+back to it. `BROTTO_RETENTION_DAYS` will age sessions out if you set it, on either deployment, and it
+is off unless you do. The panel's **Delete** and **Delete all** are immediate and are the path you
+control.
 
 ## Security
 

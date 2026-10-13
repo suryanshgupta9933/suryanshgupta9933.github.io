@@ -106,7 +106,7 @@ description: Two ways to run Brotto — install it yourself, free and permanent,
     <tr>
       <td>Run record</td>
       <td>Your disk</td>
-      <td>Our machine, swept after 30 days</td>
+      <td>Our machine, kept until you delete it</td>
     </tr>
     <tr>
       <td>How long</td>

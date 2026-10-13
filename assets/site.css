@@ -89,7 +89,11 @@
   border-radius: 0 !important;
 }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  /* hash targets land under the sticky 56px bar without this */
+  scroll-padding-top: 72px;
+}
 
 body {
   background: var(--paper);
@@ -163,6 +167,11 @@ header {
   gap: 20px;
   height: 56px;
   padding: 0 24px;
+  /* sticky, not fixed: stays in flow, so main needs no compensating padding */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
   border-bottom: 1px solid var(--rule-ink);
 }
 
@@ -681,7 +690,8 @@ article { max-width: var(--measure); margin: 0 auto; }
 }
 .split--flip > :first-child { order: 2; }
 .split--flip > :last-child { order: 1; }
-.split .claim { position: sticky; top: 32px; }
+/* 72px, not 32px: clears the 56px sticky header + its hairline */
+.split .claim { position: sticky; top: 72px; }
 .claim h2 {
   border: 0;
   padding: 0;
@@ -1079,8 +1089,16 @@ article { max-width: var(--measure); margin: 0 auto; }
   .waitlist-done:not([hidden]) { animation: none; }
 }
 
-/* The spec table on the landing page. */
-.spec { max-width: none; display: table; }
+/* The spec table on the landing page. `table.spec`, not `.spec`: `.page table`
+   sets `display: block` at 0-1-1 and was winning over `.spec`'s `display: table`
+   (0-1-0), so the rows sat in a shrink-wrapped anonymous table instead of
+   filling the band — and the fork column percentages were then a slice of that
+   narrow box. */
+table.spec { max-width: none; display: table; width: 100%; }
+/* Captions under a full-width object follow it. `.band`, not `table.spec ~`:
+   the landing page's spec table sits in a `.split` column, where 62ch is the
+   column and the note should stay a note. */
+.band .section-note { max-width: none; }
 .spec td:first-child {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -1263,7 +1281,7 @@ article { max-width: var(--measure); margin: 0 auto; }
   footer a { display: inline-block; padding: 4px 0; min-height: 24px; }
   .footer-gh { min-width: 24px; min-height: 24px; }
 
-  .spec { display: block; overflow-x: auto; }
+  table.spec { display: block; overflow-x: auto; }
   .spec td:first-child { width: auto; }
 }
 
