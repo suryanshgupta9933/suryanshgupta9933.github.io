@@ -66,68 +66,76 @@ description: Two ways to run Brotto — install it yourself, free and permanent,
   </div>
 </div>
 
-<h2>Side by side</h2>
+<div class="band">
+  <div class="claim">
+    <span class="eyebrow label">Compare</span>
+    <h2>Side by side</h2>
+    <p>
+      Only the rows that change which door you take.
+    </p>
+  </div>
 
-<!-- Only the rows that change which door you take. Everything identical on
-     both sides is noise here and lives on the page it belongs to instead. -->
-<table class="spec spec--fork">
-  <tr>
-    <th scope="col">What changes</th>
-    <th scope="col">Run it yourself</th>
-    <th scope="col">Brotto Cloud</th>
-  </tr>
-  <tr>
-    <td>Who runs the server</td>
-    <td>You do</td>
-    <td>We do, at <code>agent.brotto.dev</code></td>
-  </tr>
-  <tr>
-    <td>Account</td>
-    <td>None</td>
-    <td>Email and a six-digit code</td>
-  </tr>
-  <tr>
-    <td>Cost</td>
-    <td>Nothing, beyond the model calls you make</td>
-    <td>Free during the beta</td>
-  </tr>
-  <tr>
-    <td>Task cap</td>
-    <td>None</td>
-    <td>A weekly task cap</td>
-  </tr>
-  <tr>
-    <td>Run record</td>
-    <td>Your disk</td>
-    <td>Our machine, swept after 30 days</td>
-  </tr>
-  <tr>
-    <td>How long</td>
-    <td>Permanent. Apache 2.0.</td>
-    <td>Invite-only while it is in beta</td>
-  </tr>
-</table>
+  <!-- Everything identical on both sides is noise here and lives on the page
+       it belongs to instead. -->
+  <table class="spec spec--fork">
+    <tr>
+      <th scope="col">What changes</th>
+      <th scope="col">Run it yourself</th>
+      <th scope="col">Brotto Cloud</th>
+    </tr>
+    <tr>
+      <td>Who runs the server</td>
+      <td>You do</td>
+      <td>We do, at <code>agent.brotto.dev</code></td>
+    </tr>
+    <tr>
+      <td>Account</td>
+      <td>None</td>
+      <td>Email and a six-digit code</td>
+    </tr>
+    <tr>
+      <td>Cost</td>
+      <td>Nothing, beyond the model calls you make</td>
+      <td>Free during the beta</td>
+    </tr>
+    <tr>
+      <td>Task cap</td>
+      <td>None</td>
+      <td>A weekly task cap</td>
+    </tr>
+    <tr>
+      <td>Run record</td>
+      <td>Your disk</td>
+      <td>Our machine, swept after 30 days</td>
+    </tr>
+    <tr>
+      <td>How long</td>
+      <td>Permanent. Apache 2.0.</td>
+      <td>Invite-only while it is in beta</td>
+    </tr>
+  </table>
 
-<p class="section-note">
-  A per-task spend ceiling is planned, not on today. Until it ships, a task
-  spends whatever your provider charges for the tokens it uses — there is no
-  Brotto-imposed ceiling. If you want a hard limit now,
-  <a href="/self-host">run it yourself</a> and use your provider's own budget
-  controls: that is the version where the spend is already yours to cap.
-</p>
+  <p class="section-note">
+    A per-task spend ceiling is planned, not on today. Until it ships, a task
+    spends whatever your provider charges for the tokens it uses — there is no
+    Brotto-imposed ceiling. If you want a hard limit now,
+    <a href="/self-host">run it yourself</a> and use your provider's own budget
+    controls: that is the version where the spend is already yours to cap.
+  </p>
 
-<p class="section-note">
-  What the cloud beta keeps, and what it does not, is written out in full on
-  <a href="/waitlist">Brotto Cloud</a> and in
-  <a href="/privacy">the privacy policy</a>. An invitation is not a
-  subscription.
-</p>
+  <p class="section-note">
+    What the cloud beta keeps, and what it does not, is written out in full on
+    <a href="/waitlist">Brotto Cloud</a> and in
+    <a href="/privacy">the privacy policy</a>. An invitation is not a
+    subscription.
+  </p>
 
-<p class="section-note">
-  If you would rather look before you choose,
-  <a href="/screens">Screens</a> shows one real run from the first sentence to
-  the last click — same run either way. Brotto is Apache 2.0 and stays that way.
-  <a href="/">Back to the front page</a> ·
-  <a href="/privacy">Privacy</a> ·
-  <a href="/security">Security</a>
-</p>
+  <p class="section-note">
+    If you would rather look before you choose,
+    <a href="/screens">Screens</a> shows one real run from the first sentence to
+    the last click — same run either way. Brotto is Apache 2.0 and stays that way.
+    <a href="/">Back to the front page</a> ·
+    <a href="/privacy">Privacy</a> ·
+    <a href="/security">Security</a>
+  </p>
+</div>
