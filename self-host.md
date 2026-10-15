@@ -93,11 +93,17 @@ docker compose up -d</code></pre>
 
 <h3>Chrome Web Store — the easy path</h3>
 
-<p>
-  <a href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd"
-    >Add Brotto to Chrome</a
-  >. Open the side panel and fill in two Settings screens:
-</p>
+<!-- A button, not a link in a sentence. This is the step most readers on
+     this page actually want — the rest of the page is for the ones who
+     don't — and a link mid-paragraph is the one presentation that gets read
+     past. Ghost rather than solid: self-hosting is this page's subject, its
+     own prose is the primary content, and the store link should state itself
+     without claiming the top of the page. -->
+<div class="actions">
+  <a class="btn btn--ghost" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
+</div>
+
+<p>Open the side panel and fill in two Settings screens:</p>
 
 <!-- The two settings as they sit in the panel, rebuilt in markup. A bullet
      list named the same two fields and read as a checklist; as cards they

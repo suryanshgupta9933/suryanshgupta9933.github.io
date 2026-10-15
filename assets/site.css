@@ -380,7 +380,14 @@ article { max-width: var(--measure); margin: 0 auto; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .actions .btn {
   display: inline-block;
-  padding: 13px 24px;
+  /* line-height is said here rather than inherited. The body's 1.65 gave an
+     11px mono label an ~18px line box, and that extra leading went inside
+     the label rather than into the padding — so the text read as loosely set
+     inside a box whose padding had been tuned against it. line-height: 1
+     puts the label on the em and lets the padding carry the height: 18 + 11
+     + 18 = 47px, close to the 48px the old rule produced. */
+  line-height: 1;
+  padding: 18px 24px;
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--paper);
@@ -399,7 +406,7 @@ article { max-width: var(--measure); margin: 0 auto; }
    it is the only control above the fold and it should read as the page's
    answer rather than as one of a row of equal actions. */
 .actions .btn--lg {
-  padding: 16px 30px;
+  padding: 21px 30px;
   font-size: 12px;
   letter-spacing: 0.14em;
 }

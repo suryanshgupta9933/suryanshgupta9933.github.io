@@ -18,14 +18,15 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       admin panel. Not a cloud browser you have never logged into, and not a
       screenshot of a page it cannot read.
     </p>
-    <!-- The store listing is public, so the hero's primary button is the store
-         install: it is one click, needs no account, and every reader can take
-         it. The fork stays, one step below it in ghost, because where the
-         agent runs is still a real choice — but it is not the thing a first
-         visitor has to answer before they can try the product. -->
+    <!-- Two doors, filled then outlined. "Get Brotto" leads because it is the
+         one that explains the fork instead of skipping it; the store link is
+         the shortcut, and an outlined button beside a filled one reads as
+         exactly that. Solid and ghost are the two existing variants — a
+         reader who learns the pair here reads the Install section below the
+         same way. -->
     <div class="actions">
-      <a class="btn btn--lg" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
-      <a class="btn btn--ghost" href="/get-started">Get Brotto</a>
+      <a class="btn btn--lg" href="/get-started">Get Brotto</a>
+      <a class="btn btn--lg btn--ghost" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
     </div>
     <p class="hero-cta-note">
       Free from the Chrome Web Store, no account. Run it yourself free and
@@ -325,7 +326,8 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
   </div>
   <div>
     <div class="actions">
-      <a class="btn btn--lg" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
+      <a class="btn btn--lg" href="/get-started">Get Brotto</a>
+      <a class="btn btn--lg btn--ghost" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
     </div>
     <p class="section-note">
       Free, and it stays installed until you remove it. Chrome asks you to
