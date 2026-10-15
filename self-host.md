@@ -61,19 +61,6 @@ Do not paste a model API key into any file. I will add that myself in the
 extension's Settings — it belongs there, not in .env.</code></pre>
 </div>
 
-<p>
-  Shorter version, if you would rather type a sentence than paste a block:
-</p>
-
-<div class="copywrap">
-  <button class="copy-btn" type="button" data-copy="prompt-short">Copy</button>
-  <pre id="prompt-short"><code>Set up Brotto's local server from
-https://github.com/suryanshgupta9933/Brotto — generate a long random
-AGENT_SECRET in .env, start it with Docker, and confirm the health check
-answers. Don't touch any model API key; I'll add that in the extension
-myself.</code></pre>
-</div>
-
 <h2>Do it by hand</h2>
 
 <p>

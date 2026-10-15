@@ -294,76 +294,27 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
   </div>
 </div>
 
-<div class="split" id="try">
-  <div class="claim">
-    <span class="eyebrow label">Install</span>
-    <h2>One container, one extension</h2>
-    <p>
-      The container is about 510&nbsp;MB and never launches a browser — it is
-      not a second Chrome. Everything Brotto keeps lands in one Docker volume on
-      your disk.
-    </p>
-    <p>
-      Six steps, and they are on their way out — a one-command installer is next,
-      and there is a hosted beta if you would rather skip all of it
-      (<a href="/waitlist">Brotto Cloud</a>).
-    </p>
-  </div>
-  <div>
-    <p>
-      The install lives on one page: a prompt you can paste into an AI coding
-      tool, the manual steps, and the extension — store install first.
-    </p>
-    <div class="actions">
-      <a class="btn" href="/self-host">Run it yourself</a>
-      <a class="btn btn--ghost"
-        href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
-        >Chrome Web Store</a>
-    </div>
-    <table class="spec">
-      <tr><td>Licence</td><td>Apache 2.0 — read it, fork it, ship it</td></tr>
-      <tr><td>Cost</td><td>Nothing, beyond the model calls you make</td></tr>
-      <tr><td>Your data</td><td>Run records on your disk. A short summary of each page, not the page itself.</td></tr>
-      <tr><td>Providers</td><td>Eight — Anthropic, OpenAI, Gemini, MiniMax, OpenRouter, DeepSeek, Groq, or any OpenAI-compatible endpoint you run</td></tr>
-      <tr><td>Chrome only</td><td>The access Brotto needs has no Firefox equivalent</td></tr>
-    </table>
-    <p class="section-note">
-      Full instructions, honest limitations and the roadmap are on
-      <a href="https://github.com/suryanshgupta9933/Brotto">GitHub</a>.
-    </p>
-  </div>
-</div>
-
 <div class="split">
   <div class="claim">
     <span class="eyebrow label">Next</span>
     <h2>Not built yet</h2>
     <p>
-      Ordered by what unblocks the most people. One of these is the reason a
-      person who doesn't write code cannot use Brotto yet, and removing it is
-      the top priority rather than a someday item.
+      Ordered by what unblocks the most people. None of these exist yet — this
+      is the honest list, in the order they are planned.
     </p>
   </div>
   <div class="cardgrid">
     <div>
       <span class="card-idx label">01 · Planned</span>
-      <h3>Remove the last step</h3>
+      <h3>Vision fallback</h3>
       <p>
-        A one-command installer for the container — at which point there is
-        nothing left to run yourself. <a href="/waitlist">Brotto Cloud</a>
-        removes the step entirely, for anyone we invite.
+        Google Sheets draws itself to a canvas and publishes nothing to read.
+        A screenshot, sent only when a page has no structure — vision as the
+        fallback, not the default.
       </p>
     </div>
     <div>
       <span class="card-idx label">02 · Planned</span>
-      <h3>Canvas surfaces</h3>
-      <p>
-        Google Sheets genuinely draws to a canvas and is the one place Brotto is
-        blind. Worth checking separately; Docs renders a real DOM.
-      </p>
-    </div>
-    <div>
-      <span class="card-idx label">03 · Planned</span>
       <h3>A published benchmark</h3>
       <p>
         Until it scores real runs, any reliability number in this space is a
@@ -372,7 +323,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       </p>
     </div>
     <div>
-      <span class="card-idx label">04 · Planned</span>
+      <span class="card-idx label">03 · Planned</span>
       <h3>Routines</h3>
       <p>
         Saved, reusable tasks — <em>every weekday, summarise these</em> — and
@@ -380,7 +331,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       </p>
     </div>
     <div>
-      <span class="card-idx label">05 · Not built</span>
+      <span class="card-idx label">04 · Not built</span>
       <h3>Pro</h3>
       <p>
         Pro is not built. If it ever is, it would carry multi-tab parallelism,
