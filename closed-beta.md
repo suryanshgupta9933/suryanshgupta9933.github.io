@@ -38,7 +38,7 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
 
 <p>
   <strong
-    ><a href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
+    ><a href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd"
       >Add Brotto to Chrome</a
     ></strong
   >, sign in with your email, get a six-digit code, and ask for something in the

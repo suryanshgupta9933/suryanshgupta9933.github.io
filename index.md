@@ -18,16 +18,18 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       admin panel. Not a cloud browser you have never logged into, and not a
       screenshot of a page it cannot read.
     </p>
-    <!-- The hero's one button is the fork, not the waitlist. Get Brotto opens
-         both doors — self-host and the cloud beta — on /get-started, so the hero does
-         not pick one for the reader. The line under it names both doors rather
-         than reassuring about either: a reader who wants one of them knows
-         where the button goes. -->
+    <!-- The store listing is public, so the hero's primary button is the store
+         install: it is one click, needs no account, and every reader can take
+         it. The fork stays, one step below it in ghost, because where the
+         agent runs is still a real choice — but it is not the thing a first
+         visitor has to answer before they can try the product. -->
     <div class="actions">
-      <a class="btn btn--lg" href="/get-started">Get Brotto</a>
+      <a class="btn btn--lg" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
+      <a class="btn btn--ghost" href="/get-started">Get Brotto</a>
     </div>
     <p class="hero-cta-note">
-      Install it free and permanent, or ask for a seat on the cloud beta.
+      Free from the Chrome Web Store, no account. Run it yourself free and
+      permanent, or ask for a seat on the cloud beta.
     </p>
   </div>
 
@@ -168,13 +170,15 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
     </p>
   </div>
 
-  <!-- The panel below is not an illustration. It is the actual card the
-       extension renders, rebuilt in markup so you can read what it says. -->
+  <!-- The panel below is rebuilt in markup so you can read what it says.
+       The shapes and the wording are the panel's, so it is not an
+       illustration of a design that exists only here — but it is also not a
+       literal capture of a run, and saying it was would be the kind of
+       claim this page avoids elsewhere. -->
   <div class="panel">
     <div class="panel-head">
       <img class="panel-logo" src="/assets/logo.svg" alt="">
       <span class="panel-brand">Brotto</span>
-      <span class="panel-pill label">Connected</span>
     </div>
     <div class="panel-body">
       <div class="bubble bubble--user">Find me the cheapest direct flight to Lisbon in November</div>
@@ -291,6 +295,45 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
       <img src="/assets/gifs/login.gif" alt="Brotto's panel stopped on a Google sign-in page, waiting for you to sign in before it continues" loading="lazy" width="400" height="760">
       <figcaption><b>Sign in.</b> Your cookies stay yours. Brotto hands the wall back to you and picks up after.</figcaption>
     </figure>
+  </div>
+</div>
+
+<!-- The store listing is public, so the install section comes back. It sat
+     here once already, between the panel and what comes next, and that is
+     still where it reads best: a reader who has just seen what it does and
+     what it refuses to do has nothing left to want before the install.
+     Everything here is either a fact about the store install or a pointer to
+     the page that owns the detail — nothing the section above already said,
+     and nothing that belongs to the roadmap below. -->
+<div class="split" id="install">
+  <div class="claim">
+    <span class="eyebrow label">Install</span>
+    <h2>One click, then a chat box</h2>
+    <p>
+      Adding it from the Chrome Web Store is the whole setup: no account to
+      make, no card, nothing to try that runs out. Open a page you are already
+      signed in to, press the icon, and write what you want.
+    </p>
+    <p>
+      Where the agent runs is your call, and the store install works with
+      either. <a href="/self-host">Run it yourself</a> is free and permanent
+      under Apache 2.0, with everything Brotto keeps on your own disk.
+      <a href="/waitlist">Brotto Cloud</a> is the same extension with the
+      server run for you, on an invite. <a href="/get-started">Compare the
+      two</a>.
+    </p>
+  </div>
+  <div>
+    <div class="actions">
+      <a class="btn btn--lg" href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd">Add to Chrome</a>
+    </div>
+    <p class="section-note">
+      Free, and it stays installed until you remove it. Chrome asks you to
+      confirm the permissions it needs before anything runs — the
+      <a href="/privacy">privacy policy</a> says what each one is for, and the
+      <a href="/security">security notes</a> cover the parts that cannot be
+      switched off.
+    </p>
   </div>
 </div>
 

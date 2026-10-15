@@ -94,7 +94,7 @@ docker compose up -d</code></pre>
 <h3>Chrome Web Store — the easy path</h3>
 
 <p>
-  <a href="https://chromewebstore.google.com/detail/brotto/mahkomofcmohephggjlfgocopgfhkggb"
+  <a href="https://chromewebstore.google.com/detail/brotto/kblfiddjaeekmlpmgpgchcfbakjhflpd"
     >Add Brotto to Chrome</a
   >. Open the side panel and fill in two Settings screens:
 </p>
