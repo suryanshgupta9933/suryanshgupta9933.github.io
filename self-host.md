@@ -16,7 +16,7 @@ description: How to run Brotto on your own machine — paste a prompt into your 
      the container carries the heavier rule because it is the object that lands
      on the reader's disk. -->
 <figure>
-  <img src="/assets/diagrams/install-path.svg" width="900" height="220" loading="lazy"
+  <img src="/assets/diagrams/install-path.svg" width="900" loading="lazy"
     alt="The install path in three steps. Step one is the server: an AI prompt or four commands, with Docker the only ask. Step two is a container on your machine at 127.0.0.1:8000. Step three is the Chrome extension with two settings, and then a task running in the tab you are already signed in to.">
   <figcaption>Two doors in, one path out. The AI prompt and the four commands do the same job.</figcaption>
 </figure>

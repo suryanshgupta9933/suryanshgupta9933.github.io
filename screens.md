@@ -39,7 +39,7 @@ description: Every screen in the Brotto panel, and one real run from the first s
 </p>
 
 <figure>
-  <img src="/assets/diagrams/run-shape.svg" width="900" height="170" loading="lazy"
+  <img src="/assets/diagrams/run-shape.svg" width="900" loading="lazy"
     alt="One run of fourteen steps drawn as a line. Two stops interrupt it — a domain it has not visited, and a choice only you can make — and the run ends done, on your disk.">
   <figcaption>The shape of the run below: two stops, both yours to make.</figcaption>
 </figure>

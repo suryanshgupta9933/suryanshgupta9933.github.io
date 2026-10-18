@@ -1,56 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420" role="img" aria-labelledby="forkTitle forkDesc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" width="900" height="380" role="img" aria-labelledby="forkTitle forkDesc">
   <title id="forkTitle">Two ways to run the same extension</title>
-  <desc id="forkDesc">Self-hosting runs the agent loop in a container on your machine, so the run record lands on your disk. The cloud beta runs that loop at agent.brotto.dev. The extension, your model key and the three gates are the same either way — only the middle box changes.</desc>
+  <desc id="forkDesc">Two rows of three boxes each. The first row, captioned your machine, runs the agent loop in a container on your machine so the run record lands on your disk, free and permanent. The second row, captioned our machine, runs that loop at agent.brotto.dev instead, invite-only. Either way the Chrome extension on your tab with your cookies is one end and your provider with your key and your money is the other; only the heavier-ruled middle box changes.</desc>
 
-  <rect width="900" height="420" fill="#FFFFFF"/>
+  <rect width="900" height="380" fill="#FFFFFF"/>
 
   <g font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="1.6" fill="#6E6E6E">
     <text x="32" y="34">YOUR MACHINE</text>
-    <text x="32" y="238">OUR MACHINE</text>
+    <text x="32" y="222">OUR MACHINE</text>
   </g>
 
   <!-- Track one: self-host. The middle box is the one that changes, so it
        carries the heavier rule — hierarchy by border weight, not colour. -->
   <g>
-    <rect x="32" y="58" width="250" height="132" fill="#FFFFFF" stroke="#C9C9C9"/>
-    <text x="52" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="21" font-weight="600" fill="#000000">Chrome extension</text>
-    <text x="52" y="140" font-family="-apple-system, system-ui, sans-serif" font-size="17" fill="#5C5C5C">your tab, your cookies</text>
+    <rect x="32" y="58" width="250" height="76" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="157" y="160" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">chrome extension</text>
+    <text x="157" y="175" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your tab, your cookies</text>
 
-    <line x1="282" y1="124" x2="312" y2="124" stroke="#C9C9C9"/>
-    <path d="M318 124 L308 118 L308 130 Z" fill="#C9C9C9"/>
+    <line x1="282" y1="96" x2="312" y2="96" stroke="#C9C9C9"/>
+    <path d="M318 96 L308 90 L308 102 Z" fill="#C9C9C9"/>
 
-    <rect x="318" y="58" width="250" height="132" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
-    <text x="338" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="21" font-weight="600" fill="#000000">Container</text>
-    <text x="338" y="140" font-family="-apple-system, system-ui, sans-serif" font-size="17" fill="#5C5C5C">your machine, your disk</text>
-    <text x="338" y="168" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#6E6E6E">free · permanent</text>
+    <rect x="318" y="58" width="250" height="76" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+    <text x="443" y="160" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">container</text>
+    <text x="443" y="175" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your machine, your disk</text>
+    <text x="443" y="190" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">free &#183; permanent</text>
 
-    <line x1="568" y1="124" x2="598" y2="124" stroke="#C9C9C9"/>
-    <path d="M604 124 L594 118 L594 130 Z" fill="#C9C9C9"/>
+    <line x1="568" y1="96" x2="598" y2="96" stroke="#C9C9C9"/>
+    <path d="M604 96 L594 90 L594 102 Z" fill="#C9C9C9"/>
 
-    <rect x="604" y="58" width="264" height="132" fill="#FFFFFF" stroke="#C9C9C9"/>
-    <text x="624" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="21" font-weight="600" fill="#000000">Your provider</text>
-    <text x="624" y="140" font-family="-apple-system, system-ui, sans-serif" font-size="17" fill="#5C5C5C">your key, your money</text>
+    <rect x="604" y="58" width="264" height="76" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="736" y="160" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your provider</text>
+    <text x="736" y="175" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your key, your money</text>
   </g>
 
   <!-- Track two: the cloud beta. Same two ends, different middle. -->
   <g>
-    <rect x="32" y="262" width="250" height="132" fill="#FFFFFF" stroke="#C9C9C9"/>
-    <text x="52" y="312" font-family="-apple-system, system-ui, sans-serif" font-size="21" font-weight="600" fill="#000000">Chrome extension</text>
-    <text x="52" y="344" font-family="-apple-system, system-ui, sans-serif" font-size="17" fill="#5C5C5C">your tab, your cookies</text>
+    <rect x="32" y="246" width="250" height="76" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="157" y="348" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">chrome extension</text>
+    <text x="157" y="363" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your tab, your cookies</text>
 
-    <line x1="282" y1="328" x2="312" y2="328" stroke="#C9C9C9"/>
-    <path d="M318 328 L308 322 L308 334 Z" fill="#C9C9C9"/>
+    <line x1="282" y1="284" x2="312" y2="284" stroke="#C9C9C9"/>
+    <path d="M318 284 L308 278 L308 290 Z" fill="#C9C9C9"/>
 
-    <rect x="318" y="262" width="250" height="132" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
-    <text x="338" y="312" font-family="-apple-system, system-ui, sans-serif" font-size="21" font-weight="600" fill="#000000">agent.brotto.dev</text>
-    <text x="338" y="344" font-family="-apple-system, system-ui, sans-serif" font-size="17" fill="#5C5C5C">we run it, invite-only</text>
-    <text x="338" y="372" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#6E6E6E">beta · yours to keep</text>
+    <rect x="318" y="246" width="250" height="76" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+    <text x="443" y="348" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">agent.brotto.dev</text>
+    <text x="443" y="363" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">we run it, invite-only</text>
+    <text x="443" y="378" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">beta &#183; yours to keep</text>
 
-    <line x1="568" y1="328" x2="598" y2="328" stroke="#C9C9C9"/>
-    <path d="M604 328 L594 322 L594 334 Z" fill="#C9C9C9"/>
+    <line x1="568" y1="284" x2="598" y2="284" stroke="#C9C9C9"/>
+    <path d="M604 284 L594 278 L594 290 Z" fill="#C9C9C9"/>
 
-    <rect x="604" y="262" width="264" height="132" fill="#FFFFFF" stroke="#C9C9C9"/>
-    <text x="624" y="312" font-family="-apple-system, system-ui, sans-serif" font-size="21" font-weight="600" fill="#000000">Your provider</text>
-    <text x="624" y="344" font-family="-apple-system, system-ui, sans-serif" font-size="17" fill="#5C5C5C">your key, your money</text>
+    <rect x="604" y="246" width="264" height="76" fill="#FFFFFF" stroke="#C9C9C9"/>
+    <text x="736" y="348" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your provider</text>
+    <text x="736" y="363" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">your key, your money</text>
   </g>
 </svg>

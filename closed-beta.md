@@ -74,7 +74,7 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
 </p>
 
 <figure>
-  <img src="/assets/diagrams/what-the-relay-keeps.svg" width="900" height="240" loading="lazy"
+  <img src="/assets/diagrams/what-the-relay-keeps.svg" width="900" loading="lazy"
     alt="Two records only — a failure log, and one row per sign-in. Page content, prompts, task text, URLs and model responses are on the other side of a hard line and never written down.">
   <figcaption>Two records, and a hard line after them.</figcaption>
 </figure>

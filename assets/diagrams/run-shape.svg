@@ -30,22 +30,22 @@
     <line x1="338" y1="52" x2="338" y2="124" stroke="#DC2626" stroke-width="2"/>
     <circle cx="338" cy="88" r="7" fill="#FFFFFF" stroke="#DC2626" stroke-width="2"/>
     <text x="338" y="42" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.2" fill="#DC2626">STOP</text>
-    <text x="338" y="148" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">a domain it has not visited</text>
+    <text x="338" y="148" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">a domain it has not visited</text>
   </g>
 
   <g>
     <line x1="628" y1="52" x2="628" y2="124" stroke="#DC2626" stroke-width="2"/>
     <circle cx="628" cy="88" r="7" fill="#FFFFFF" stroke="#DC2626" stroke-width="2"/>
     <text x="628" y="42" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.2" fill="#DC2626">STOP</text>
-    <text x="628" y="148" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">a choice only you can make</text>
+    <text x="628" y="148" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">a choice only you can make</text>
   </g>
 
   <!-- The end of the run. -->
   <circle cx="852" cy="88" r="7" fill="#15803D"/>
   <text x="852" y="42" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.2" fill="#15803D">DONE</text>
-  <text x="852" y="148" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">on your disk</text>
+  <text x="852" y="148" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6E6E6E">on your disk</text>
 
   <!-- Below the line, not above it: at y=42 this shared the legend's row and
        "ONE RUN, FOURTEEN STEPS" runs to x≈277, so the two collided. -->
-  <text x="48" y="120" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.2" fill="#6E6E6E">YOU ASK</text>
+  <text x="48" y="120" font-family="ui-monospace, Menlo, monospace" font-size="11" letter-spacing="1.2" fill="#6E6E6E">YOU ASK</text>
 </svg>

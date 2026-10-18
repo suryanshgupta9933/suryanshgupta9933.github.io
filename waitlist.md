@@ -36,7 +36,7 @@ description: The hosted version of Brotto, by invitation — the same extension 
      an invitation lands. No queue number, because there is not one — and the
      last line is the one the copy keeps making. -->
 <figure>
-  <img src="/assets/diagrams/batched-invites.svg" width="900" height="280" loading="lazy"
+  <img src="/assets/diagrams/batched-invites.svg" width="900" loading="lazy"
     alt="Admission in batches. Addresses sit on a list with no queue number. When a batch opens, a few seats fill now and the rest wait. What arrives is an email, a six-digit code and the same extension. What it is not: open signup or a paid tier.">
   <figcaption>Admitted in batches, not as addresses arrive. An invitation is not a subscription.</figcaption>
 </figure>
