@@ -695,6 +695,12 @@ article { max-width: var(--measure); margin: 0 auto; }
   padding: 60px 0 64px;
   align-items: start;
 }
+/* Where one side is a short button row and the other is a paragraph of copy,
+   top-aligning leaves the buttons level with the eyebrow and a slab of dead
+   space under them. Centre the shorter column instead — last child only, so
+   the claim on the left keeps its sticky top and every other split keeps
+   `align-items: start`. */
+.split--center > :last-child { align-self: center; }
 .split--flip > :first-child { order: 2; }
 .split--flip > :last-child { order: 1; }
 /* 72px, not 32px: clears the 56px sticky header + its hairline */
@@ -1232,6 +1238,8 @@ table.spec { max-width: none; display: table; width: 100%; }
   .split, .split--flip { grid-template-columns: minmax(0, 1fr); gap: 34px; padding: 44px 0 48px; }
   .split .claim { position: static; }
   .split--flip > :first-child, .split--flip > :last-child { order: 0; }
+  /* one column: centring a full-width block does nothing useful */
+  .split--center > :last-child { align-self: start; }
   .arch { grid-template-columns: minmax(0, 1fr); }
   .arch .link { padding: 14px 22px; }
   .arch .link::after { height: 1px; }

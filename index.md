@@ -306,7 +306,7 @@ description: Brotto is an AI browser agent for Chrome — run it yourself, free 
      Everything here is either a fact about the store install or a pointer to
      the page that owns the detail — nothing the section above already said,
      and nothing that belongs to the roadmap below. -->
-<div class="split" id="install">
+<div class="split split--center" id="install">
   <div class="claim">
     <span class="eyebrow label">Install</span>
     <h2>One click, then a chat box</h2>
