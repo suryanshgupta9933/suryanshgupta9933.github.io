@@ -89,7 +89,9 @@ When you start a task, the extension sends to the orchestrator:
    provider. It holds it in memory for the duration of the task.
 2. **The page you are looking at**, as the machine sees it: the page URL, the page title, the
    accessibility tree of interactive elements (role, accessible name, value, and a stable reference for
-   each), and visible page text when the task calls for it.
+   each), visible page text when the task calls for it, and — only if the server has screenshot capture
+   enabled — a JPEG of the visible viewport, for pages where nothing the browser can read is about
+   the task you gave.
 
 **Page text is redacted before it is sent.** Before page text reaches the model, the orchestrator
 removes credentials, API keys, bearer tokens and payment card numbers, replacing
@@ -110,6 +112,39 @@ The list above runs on the page-text channel only. The tree — the roles, label
 listed in the previous section, and the channel the model mostly reads — is passed through as it is. A
 token that appears in a field's label or value rather than in body text will reach your provider
 unredacted.
+
+**A screenshot is not redacted at all.** There is a third channel, and it is the one with no coverage
+whatsoever. When nothing the browser can read is about the task you gave — a chart, a drawing canvas,
+Google Docs, Figma, a spreadsheet whose grid the browser has no way to describe and whose toolbar it
+describes perfectly — the agent has nothing to work from, and if screenshot capture is enabled it asks
+the extension for a JPEG of the visible viewport of the tab you attached. Note that this is broader than
+an empty page: a page with a full toolbar and a couple of hundred characters of chrome around it is
+photographed too, because what matters is whether what the browser could read was about your task, not
+whether there was anything at all. Redaction is pattern matching over strings. A JPEG is pixels, so there
+is nothing for it to match: a payment card number, a one-time code or an account balance rendered into a
+canvas reaches the model provider whole, where the same characters in page text would have been replaced
+with `[redacted]`. This is not partial coverage or best-effort coverage. It is no coverage, and the
+honest description is that the one channel the redaction cannot touch is the one carrying whatever was
+drawn on the screen.
+
+**It also sees more of the page than the other two channels do.** The accessibility tree is narrowed to
+interactive elements, and the page text is capped and redacted. A screenshot is the whole viewport,
+unfiltered and unredacted. And because Brotto is bring-your-own-key, that image goes to *your* provider —
+a single unredacted JPEG of a logged-in session is worth more to a provider's retention than an excerpt
+of text from the same page is.
+
+**Capture is off unless you turn it on.** It is a server setting: a self-hosted orchestrator takes a
+screenshot only when `BROTTO_VISION_CAPTURE` is explicitly set to `on`, `1`, `true` or `yes`. Any
+other value — including a typo, `false`, or the variable being absent — means no screenshot is ever
+captured, on any step, for any page. If you never set it, nothing here describes anything your install
+does. Independently of the switch, a page whose domain is on your own blocklist is never photographed:
+that is the same list you already wrote, not a second one you have to maintain.
+
+A screenshot is one image of the visible viewport of the one tab you attached, taken while a task is
+running — not a recording, not a screenshot of your whole screen, not a history of what you have looked
+at. Brotto does not write it to disk: not to the audit trail, not to a log, not to the side panel. What
+the model then writes about what it saw appears in its summary, exactly as page-derived text already
+does. On the hosted relay, whether capture is enabled is the operator's decision, not yours.
 
 The orchestrator then sends **the page observations to the model provider you selected**. Brotto ships
 with Anthropic, OpenAI, MiniMax, Gemini, OpenRouter, DeepSeek and Groq, and can be pointed at a
