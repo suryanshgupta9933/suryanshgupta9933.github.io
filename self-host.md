@@ -121,8 +121,7 @@ docker compose up -d</code></pre>
     <span class="card-idx label">Settings · Model</span>
     <h3>Your model key</h3>
     <p>
-      Your key, any of
-      <a href="/#how">the providers Brotto supports</a>. Held in memory for
+      Your key, any of the providers Brotto supports. Held in memory for
       the run and never written to disk. It goes here, in the extension — not
       in <code>.env</code>, and not in any file on the server.
     </p>
