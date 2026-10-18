@@ -736,6 +736,10 @@ article { max-width: var(--measure); margin: 0 auto; }
 .cardgrid > div {
   padding: 26px 24px 28px;
   border-left: 1px solid var(--rule);
+  /* A grid item is min-width:auto, so one long token inside it — a URL, a
+     code span — widens the column instead of wrapping in it and the card
+     paints past its own rule. 0 lets the column honour 1fr. */
+  min-width: 0;
 }
 .cardgrid > div:first-child { border-left: 0; }
 .cardgrid h3 {
