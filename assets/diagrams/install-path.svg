@@ -39,8 +39,8 @@
     <rect x="498" y="52" width="176" height="116" fill="#FFFFFF" stroke="#C9C9C9"/>
     <text x="518" y="82" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#6E6E6E">IN CHROME</text>
     <text x="518" y="114" font-family="-apple-system, system-ui, sans-serif" font-size="19" font-weight="600" fill="#000000">The extension</text>
-    <text x="518" y="142" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#5C5C5C">store install, then</text>
-    <text x="518" y="162" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#6E6E6E">connection · model key</text>
+    <text x="518" y="142" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#5C5C5C">connection</text>
+    <text x="518" y="162" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#6E6E6E">model key</text>
 
     <line x1="674" y1="110" x2="704" y2="110" stroke="#C9C9C9"/>
     <path d="M710 110 L700 104 L700 116 Z" fill="#C9C9C9"/>
