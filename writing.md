@@ -13,10 +13,15 @@ description: Notes on building Brotto, an AI browser agent — what it does, wha
 
 <ul class="post-list">
   <li>
-    <a href="/blog/2026-10-09-twenty-tabs-one-sentence.html">Twenty tabs, one sentence</a>
-    <span class="post-when">2026-10-09</span>
-    <span class="post-stand">Why cloud browser agents ask for your passwords, and what it
-    looks like to drive the tab you are already signed into. One real run, start to
-    finish.</span>
+    <!-- The whole row is the anchor: the date and standfirst are siblings of the
+         title visually, so anything less makes the row look clickable where it
+         isn't. -->
+    <a href="/blog/2026-10-09-twenty-tabs-one-sentence.html">
+      <span class="post-title">Twenty tabs, one sentence</span>
+      <span class="post-when">2026-10-09</span>
+      <span class="post-stand">Why cloud browser agents ask for your passwords, and what it
+      looks like to drive the tab you are already signed into. One real run, start to
+      finish.</span>
+    </a>
   </li>
 </ul>

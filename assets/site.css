@@ -596,18 +596,26 @@ article { max-width: var(--measure); margin: 0 auto; }
 }
 .page ul.post-list li {
   margin: 0;
-  padding: 22px 14px 22px 12px;
   font-size: 15px;
   color: var(--ink-2);
   border-bottom: 1px solid var(--rule);
+}
+/* The anchor IS the row: it wraps the title, the date and the standfirst, so
+   what inverts on hover is what is actually clickable. The padding lives here
+   rather than on the li so the whole row — the gutters included — is inside the
+   link rather than a dead band around it, and the title's type is set on the
+   title text itself because the date and the standfirst are sized separately. */
+.page ul.post-list a {
+  display: block;
+  padding: 22px 14px 22px 12px;
+  color: var(--ink);
+  border-bottom: 0;
   transition: background var(--t), color var(--t);
 }
-.page ul.post-list a {
+.page ul.post-list a > .post-title {
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: var(--ink);
-  border-bottom: 0;
 }
 /* The date sits on the title's baseline rather than its own line, so the row
    still reads as one entry at 390px where a separate line would triple it. */
@@ -619,12 +627,11 @@ article { max-width: var(--measure); margin: 0 auto; }
   margin-left: 10px;
   white-space: nowrap;
 }
-.page ul.post-list .post-stand { display: block; margin-top: 7px; max-width: 54ch; }
-.page ul.post-list li:hover { background: var(--ink); color: var(--paper); }
-.page ul.post-list li:hover a { color: var(--paper); }
-.page ul.post-list li:hover .post-when,
-.page ul.post-list li:hover .post-stand { color: var(--paper-3); }
-.page ul.post-list li:hover em { color: var(--paper); font-style: italic; }
+.page ul.post-list .post-stand { display: block; font-size: 15px; margin-top: 7px; max-width: 54ch; }
+.page ul.post-list a:hover { background: var(--ink); color: var(--paper); }
+.page ul.post-list a:hover .post-when,
+.page ul.post-list a:hover .post-stand { color: var(--paper-3); }
+.page ul.post-list a:hover em { color: var(--paper); font-style: italic; }
 
 /* ─── Landing page ─────────────────────────────────────────────────────────
    Everything below is the extension's own interface rebuilt at page scale, so
@@ -1277,7 +1284,7 @@ table.spec { max-width: none; display: table; width: 100%; }
   .moment { grid-template-columns: 1fr; gap: 10px; }
   .panel-body .bubble { max-width: 92%; }
 
-  .page ul.post-list a { font-size: 18px; }
+  .page ul.post-list a > .post-title { font-size: 18px; }
   .page ul.post-list .post-when { display: block; margin: 6px 0 0; }
   .page ul.post-list .post-stand { font-size: 14px; max-width: none; }
 
