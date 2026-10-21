@@ -133,11 +133,11 @@ unfiltered and unredacted. And because Brotto is bring-your-own-key, that image 
 a single unredacted JPEG of a logged-in session is worth more to a provider's retention than an excerpt
 of text from the same page is.
 
-**Capture is off unless you turn it on.** It is a server setting: a self-hosted orchestrator takes a
-screenshot only when `BROTTO_VISION_CAPTURE` is explicitly set to `on`, `1`, `true` or `yes`. Any
-other value — including a typo, `false`, or the variable being absent — means no screenshot is ever
-captured, on any step, for any page. If you never set it, nothing here describes anything your install
-does. Independently of the switch, a page whose domain is on your own blocklist is never photographed:
+**Capture is off unless you turn it on.** It is a server setting: a self-hosted orchestrator *sends a
+screenshot to the model provider* only when `BROTTO_VISION_CAPTURE` is explicitly set to `on`, `1`,
+`true` or `yes`. Any other value — including a typo, `false`, or the variable being absent — means no
+screenshot ever reaches a provider, on any step, for any page. Independently of the switch, a page
+whose domain is on your own blocklist is never photographed:
 that is the same list you already wrote, not a second one you have to maintain.
 
 A screenshot is one image of the visible viewport of the one tab you attached, taken while a task is
@@ -145,6 +145,24 @@ running — not a recording, not a screenshot of your whole screen, not a histor
 at. Brotto does not write it to disk: not to the audit trail, not to a log, not to the side panel. What
 the model then writes about what it saw appears in its summary, exactly as page-derived text already
 does. On the hosted relay, whether capture is enabled is the operator's decision, not yours.
+
+**One capture happens regardless, and you can check that claim yourself.** To tell whether a page changed
+at all, the extension takes its own capture of the attached viewport each step and compares it with the
+previous one — a "page delta", which is what makes a spreadsheet or drawing canvas workable when the
+accessibility tree never moves. That capture is decoded inside the extension, differenced against the
+previous frame and dropped: no pixel of it reaches the server, your model provider, your disk, the audit
+trail or the side panel. About a hundred bytes of derived integers cross the wire instead — whether the
+page changed, plus the rectangles of a selection or caret you were typing in — and the server hands them
+to the agent only while the switch above is on. One frame is held per tab to compare against and
+discarded on navigation, on task start, when the tab closes and when the extension is detached. A caret
+is painted over before the comparison, so a blinking cursor does not read as a change. If the page is
+refused for that step — a domain on your blocklist, a credential the agent positively identified, or a
+typed value it could not classify, which withholds the delta for that step and the two that follow — the
+delta is withheld and reported as unknown rather than as "nothing changed".
+
+So this does not weaken anything above. A JPEG is the one channel redaction cannot reach *because a JPEG
+reaches the model*. This one does not reach the model. If you run the extension yourself, `PERMISSIONS.md`
+in the repository states the same thing and names the file and the function.
 
 The orchestrator then sends **the page observations to the model provider you selected**. Brotto ships
 with Anthropic, OpenAI, MiniMax, Gemini, OpenRouter, DeepSeek and Groq, and can be pointed at a
