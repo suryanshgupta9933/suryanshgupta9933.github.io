@@ -91,9 +91,10 @@ description: The hosted version of Brotto, by invitation — the same extension 
   <div>
     <h3>Still there when you come back</h3>
     <p>
-      A run's record stays — its prompts, its actions, its timings — so the
-      task is there when you return to it. Never the page text, which is not
-      written down at all.
+      A run's record stays — its prompts, its actions, its timings, what you
+      typed and what the agent said — so the task is there when you return to
+      it. Never the page itself: each step kept its address, its title and how
+      much the browser could read, not the words.
     </p>
   </div>
   <div>

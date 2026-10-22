@@ -83,9 +83,10 @@ description: What the Brotto Cloud closed beta is, what it gives you, and what w
   <div>
     <h3>Still there when you come back</h3>
     <p>
-      A run's record stays &mdash; its prompts, its actions, its timings &mdash;
-      so the task is there when you return to it. Never the page text, which is
-      not written down at all.
+      A run's record stays &mdash; its prompts, its actions, its timings, what
+      you typed and what the agent said &mdash; so the task is there when you
+      return to it. Never the page itself: each step kept its address, its title
+      and how much the browser could read, not the words.
     </p>
   </div>
   <div>

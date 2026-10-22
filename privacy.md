@@ -176,27 +176,34 @@ so both the key and the page observations go from your browser to your machine a
 provider, and no copy passes through Brotto. If you are using the hosted relay instead, that last
 sentence is not true of us: the key and the observations cross a machine we operate on their way to
 the provider, and we describe what that machine keeps below. The observations do not stop at the model
-call on either deployment, though: the server saves the URL, the page title, and a short digest of
-each page to a file on its own disk, and that file is still there after the task ends. The next
-section says exactly what is in it.
+call on either deployment, though: the server writes a record of the run to a file on its own
+disk, and that file is still there after the task ends. It holds what you typed, what the agent
+said, and where it was at each step — not the pages themselves. The next section says exactly
+what is in it.
 
 ## What the orchestrator writes to disk
 
 | File | Contents |
 |---|---|
-| `logs/sessions/<session_id>.json` | The audit record of your conversation: your messages, the page URL and title at each step, the prompts, the actions taken, approvals, timing, and errors. It also holds the text you **typed** into a field, and the model's own written reasoning about what it saw. For the page itself it keeps counts and a summary of what changed — not the whole tree. |
-| `logs/sessions/<session_id>.scratchpad.txt` | The agent's working memory: a short digest of each captured page and its URL. |
+| `logs/sessions/<session_id>.json` | The audit record of your conversation: your messages, the page URL and title at each step, the prompts, the actions taken, approvals, timing, and errors. It also holds the text you **typed** into a field, the model's own written reasoning about what it saw, and the run's final summary — which, when a write could not be confirmed, quotes what the cell really reads beside what you intended. For the page itself it keeps counts: how many elements, how many characters, and by how much that changed from the step before. It also keeps the ledger of every write the run attempted — the target, the mechanism, the step, and whether the write was confirmed, did not land, or could not be read back — with the values themselves masked and only their lengths kept. |
+| `logs/sessions/<session_id>.scratchpad.txt` | The agent's working memory: the first 200 characters of each captured page and its URL, so a resumed run can tell what it had already read. |
 | `logs/user_models/<install-id>.json` | Your model configuration: provider, model name, context window, and the address of your provider's API if you set a custom one. **Not your key.** If that address is on your own network, it is written to disk in the clear. |
 | `logs/user_policies/<hash>.json` | Your blocked-domains list; the sites you have approved Brotto to work on; and when you last saved it. |
 
-**The page itself is never written to disk — but the record of it is not empty.** Each step's page is
-recorded as a 200-character digest, so a run over an authenticated session leaves a record of *what* was
-visited and not copies of *what was on it*. Two things about that step survive on disk in full: **the text
-you typed** (only fields that look like credential fields are masked), and **the model's own prose about
-the page**, which is its paraphrase rather than a copy. A run over your mail or your documents therefore
-leaves readable traces of both.
-A run resumed later recalls those digests rather than whole pages — that is the trade for keeping your
-pages off the filesystem, and it is not configurable.
+**The page is not copied to disk, but the run is not a list of addresses either.** Each step records the
+page's address and its title, and *how much* of it the browser was able to read — how many elements, how
+many characters, and by how much that differed from the step before. The elements, their labels and the
+body text are not stored. One part of the text is: the first 200 characters of each step's visible text,
+in the agent's working memory, so a resumed run can tell what it had already read. That is an excerpt
+rather than the page, and it is not configurable.
+
+Three things about that step survive in full, and they are the reason a run is worth keeping at all.
+**The text you typed** — every field the agent filled, so the panel can replay the run afterwards and an
+approval card can show you the exact value before it is written. **What the agent said about the page**,
+which is its own prose and may quote what it read. And **the run's final summary**, which is where an
+unproven write is reported: the record names the cell and prints what it actually reads beside what you
+intended. A run over your mail or your documents therefore leaves readable traces of both what you wrote
+and what the page said.
 
 **If you used an earlier build, read this one.** Those builds kept a page-bodies sidecar beside each
 session file, and it does hold whole pages — tens of kilobytes per session. Nothing writes it any more,
@@ -206,13 +213,24 @@ all** removes every one including any left behind on their own; to clear them al
 
 Values typed into a field the orchestrator identifies as a secret — anything with `type="password"`, or
 a field whose name reads like a credential, a token, or a code — are **redacted before the record is
-written**, so a password you type is not stored in the audit file.
+written**, so a password you type is not stored in the audit file. Where the browser cannot tell the
+orchestrator what kind of field it is typing into, it masks the value anyway and keeps only its length: a
+mask that was not needed costs you a replay that reads `[redacted]`, and a mask that was missed costs the
+secret on disk.
+
+The mask is not shape-based where it matters most. When the agent writes into something that is not a
+form field — a cell in a spreadsheet, a row in a table — the record keeps **where** it wrote, **how**, at
+which step, whether the write was confirmed, did not land, or could not be read back, and **how long** the
+value was. The value itself is replaced outright, whatever it looks like: a column of ordinary customer
+names has no secret shape, so a pattern match would have kept every one of them. The name of the target is
+stored as a one-way hash when it came off the page, so the page's own wording does not reach the file; a
+cell address like `A1` is kept as it is, because that is your task's, not the page's.
 
 That redaction applies to what the agent *types*, and the page text that reaches the model provider is
-redacted separately. What is kept on disk is narrower than either: a 200-character digest of each page.
-A page that displays a token, an account number, or an email address may still put a fragment of it in
-that digest. If that matters for a site you use, the safest thing is to not have the agent work on that
-site.
+redacted separately. Neither one covers the 200-character excerpt in the agent's working memory, and
+neither covers the summary at the end of a run — both can carry whatever the page held. **A page that
+displays a token, an account number, or an email address may put a fragment of it into either.** If that
+matters for a site you use, the safest thing is to not have the agent work on that site.
 
 The files are named after the install that created them, so that separate users on one server do not
 share settings. That name is the random install id the extension generated on your machine — not your
